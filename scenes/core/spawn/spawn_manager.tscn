@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cwirlatjdcc61"]
+
+[ext_resource type="Script" uid="uid://cmw1lfbexedpv" path="res://scenes/core/spawn/spawn_manager.gd" id="1_b7hal"]
+[ext_resource type="PackedScene" uid="uid://dcyysp40m6m22" path="res://scenes/game/characters/link.tscn" id="2_ox1rk"]
+
+[node name="SpawnManager" type="Node2D" unique_id=600587778]
+script = ExtResource("1_b7hal")
+entities = Dictionary[String, PackedScene]({
+"link": ExtResource("2_ox1rk")
+})

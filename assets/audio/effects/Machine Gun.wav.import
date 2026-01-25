@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwfhpji1ljpte"
+path="res://.godot/imported/Machine Gun.wav-bf131684bdfeb1fe7aa9bd202c34c571.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/Machine Gun.wav"
+dest_files=["res://.godot/imported/Machine Gun.wav-bf131684bdfeb1fe7aa9bd202c34c571.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwyi1rni50hr2"
+path="res://.godot/imported/Hit Laser.wav-d2cfaf373b83020b4a4590121acca0ae.sample"
+
+[deps]
+
+source_file="res://assets/audio/Hit Laser.wav"
+dest_files=["res://.godot/imported/Hit Laser.wav-d2cfaf373b83020b4a4590121acca0ae.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

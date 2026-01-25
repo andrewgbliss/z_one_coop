@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dkiitgitidkwm"
+path="res://.godot/imported/red-arrow.aseprite-5a39ecdec0a32dba2dbbf2897ed39457.res"
+
+[deps]
+
+source_file="res://assets/img/controls/red-arrow.aseprite"
+dest_files=["res://.godot/imported/red-arrow.aseprite-5a39ecdec0a32dba2dbbf2897ed39457.res"]
+
+[params]
+

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://buh6bxcocixpe"]
+
+[ext_resource type="Script" uid="uid://mte2cgqaa2mf" path="res://scenes/core/audio/audio_manager.gd" id="1_l3ouf"]
+[ext_resource type="Script" uid="uid://byidjxsgxdc0x" path="res://scenes/core/audio/audio_config.gd" id="2_fksyh"]
+
+[sub_resource type="Resource" id="Resource_ukpki"]
+script = ExtResource("2_fksyh")
+metadata/_custom_type_script = "uid://byidjxsgxdc0x"
+
+[node name="AudioManager" type="Node2D" unique_id=847550544]
+process_mode = 3
+script = ExtResource("1_l3ouf")
+audio_config = SubResource("Resource_ukpki")

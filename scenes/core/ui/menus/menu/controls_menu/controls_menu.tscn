@@ -1,0 +1,411 @@
+[gd_scene format=3 uid="uid://crehrk04266wa"]
+
+[ext_resource type="Script" uid="uid://cb1l7kt3hpgmp" path="res://scenes/core/ui/menus/menu/controls_menu/controls_menu_script.gd" id="1_j7oww"]
+[ext_resource type="PackedScene" uid="uid://bxsuo25o46jh8" path="res://scenes/core/ui/menus/menu/controls_menu/input_listener_overlay.tscn" id="2_8p5xu"]
+[ext_resource type="Script" uid="uid://chqodxm47k6c0" path="res://scenes/core/ui/menus/menu/controls_menu/input_options_button.gd" id="3_ssh7p"]
+[ext_resource type="Script" uid="uid://jnyn4yy8houc" path="res://scenes/core/ui/menus/menu/buttons/menu_back_button.gd" id="4_mdcsb"]
+
+[sub_resource type="Animation" id="Animation_83v66"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ew8a1"]
+resource_name = "transition_away_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nvb2c"]
+resource_name = "transition_away_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_q5jky"]
+resource_name = "transition_in"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_lfual"]
+resource_name = "transition_out"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Panel:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Panel:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Panel:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8wlj"]
+_data = {
+&"RESET": SubResource("Animation_83v66"),
+&"transition_away_in": SubResource("Animation_ew8a1"),
+&"transition_away_out": SubResource("Animation_nvb2c"),
+&"transition_in": SubResource("Animation_q5jky"),
+&"transition_out": SubResource("Animation_lfual")
+}
+
+[node name="ControlsMenu" type="CanvasLayer" unique_id=1725822209 node_paths=PackedStringArray("action_list_container", "reset_button", "back_button")]
+script = ExtResource("1_j7oww")
+overlay_scene = ExtResource("2_8p5xu")
+action_list_container = NodePath("Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/ActionListContainer")
+reset_button = NodePath("Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton")
+back_button = NodePath("Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/BackButton")
+metadata/_custom_type_script = "uid://cfidra8l63jcf"
+
+[node name="Control" type="Control" parent="." unique_id=1794762340]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control" unique_id=182833517]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel" unique_id=672885269]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer" unique_id=932707801]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=447101547]
+layout_mode = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=1133228218]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=9661295]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1718791648]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=230357130]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/HBoxContainer2" unique_id=1124567870]
+layout_mode = 2
+script = ExtResource("3_ssh7p")
+type = "Movement"
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/HBoxContainer2" unique_id=1583450447]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Movement"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=664533530]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/HBoxContainer" unique_id=1857393195]
+layout_mode = 2
+script = ExtResource("3_ssh7p")
+type = "Aim"
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/HBoxContainer" unique_id=908632908]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Aim"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1908062581]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=122547021]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3" unique_id=419704157]
+layout_mode = 2
+script = ExtResource("3_ssh7p")
+type = "Facing"
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer3" unique_id=1026419650]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Facing"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1499793950]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer4" unique_id=2078644]
+layout_mode = 2
+script = ExtResource("3_ssh7p")
+type = "Attack"
+
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer4" unique_id=674787320]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=805526631]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1208206874]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="ActionListContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1571055500]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=1294183996]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=2121632512]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=689682363]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset to Defaults"
+
+[node name="BackButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=488770023]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+script = ExtResource("4_mdcsb")
+metadata/_custom_type_script = "uid://jnyn4yy8houc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=23462610]
+libraries/ = SubResource("AnimationLibrary_e8wlj")

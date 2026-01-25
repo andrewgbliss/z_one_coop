@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dw4lv5giixk0c"]
+
+[ext_resource type="Script" uid="uid://cbqv03xadaan5" path="res://scenes/core/ui/menus/menu/inventory/inventory/item_slot.gd" id="1_yo2vj"]
+[ext_resource type="Texture2D" uid="uid://doc1qi7oow3w8" path="res://assets/img/ui/icons/InventorySlot.png" id="2_54pg1"]
+
+[node name="ItemSlot" type="Panel" unique_id=772654340]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+theme_type_variation = &"SlotPanel"
+script = ExtResource("1_yo2vj")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1724195245]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_54pg1")

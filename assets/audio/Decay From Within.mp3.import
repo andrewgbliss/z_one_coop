@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cw1mm77t6jvx7"
+path="res://.godot/imported/Decay From Within.mp3-7c18ea8d9c629f7e540a35dc418357eb.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Decay From Within.mp3"
+dest_files=["res://.godot/imported/Decay From Within.mp3-7c18ea8d9c629f7e540a35dc418357eb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bfxkh68ku5jf4"
+path="res://.godot/imported/Panel-Block.aseprite-712653d6613cd2c67cfd4e81b0baa291.res"
+
+[deps]
+
+source_file="res://assets/img/ui/Panel-Block.aseprite"
+dest_files=["res://.godot/imported/Panel-Block.aseprite-712653d6613cd2c67cfd4e81b0baa291.res"]
+
+[params]
+

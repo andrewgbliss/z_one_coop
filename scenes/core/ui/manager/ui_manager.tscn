@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://q052ogik1unx"]
+
+[ext_resource type="Script" uid="uid://b45g1r2pxxebr" path="res://scenes/core/ui/manager/ui_manager.gd" id="1_4amv8"]
+[ext_resource type="PackedScene" uid="uid://dgq6syw2qe32p" path="res://scenes/core/ui/menus/game_menus.tscn" id="2_4amv8"]
+
+[node name="UiManager" type="Node" unique_id=610716686 node_paths=PackedStringArray("game_menus")]
+script = ExtResource("1_4amv8")
+game_menus = NodePath("GameMenus")
+
+[node name="GameMenus" parent="." unique_id=920775959 instance=ExtResource("2_4amv8")]

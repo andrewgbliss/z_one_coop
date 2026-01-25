@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crxt7lysqi6kk"
+path="res://.godot/imported/Final Instinct.mp3-c399a1bd20dce6a1945a6767cc5dcdd9.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Final Instinct/Final Instinct.mp3"
+dest_files=["res://.godot/imported/Final Instinct.mp3-c399a1bd20dce6a1945a6767cc5dcdd9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

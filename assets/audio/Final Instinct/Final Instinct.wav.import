@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drneaxx7cmmbt"
+path="res://.godot/imported/Final Instinct.wav-668cfcc71a1b0c84e17b802e567f7c98.sample"
+
+[deps]
+
+source_file="res://assets/audio/Final Instinct/Final Instinct.wav"
+dest_files=["res://.godot/imported/Final Instinct.wav-668cfcc71a1b0c84e17b802e567f7c98.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
