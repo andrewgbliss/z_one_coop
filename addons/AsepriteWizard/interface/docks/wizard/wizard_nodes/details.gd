@@ -39,4 +39,3 @@ func _adjust_icon(is_visible: bool) -> void:
 func _on_label_pressed():
 	_details_container.visible = not _details_container.visible
 	_adjust_icon(_details_container.visible)
-

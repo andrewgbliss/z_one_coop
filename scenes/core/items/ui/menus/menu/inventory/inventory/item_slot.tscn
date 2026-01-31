@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dw4lv5giixk0c"]
 
-[ext_resource type="Script" uid="uid://cbqv03xadaan5" path="res://scenes/core/ui/menus/menu/inventory/inventory/item_slot.gd" id="1_yo2vj"]
+[ext_resource type="Script" uid="uid://cbqv03xadaan5" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/item_slot.gd" id="1_yo2vj"]
 [ext_resource type="Texture2D" uid="uid://doc1qi7oow3w8" path="res://assets/img/ui/icons/InventorySlot.png" id="2_54pg1"]
 
 [node name="ItemSlot" type="Panel" unique_id=772654340]

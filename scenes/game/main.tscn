@@ -1,6 +1,25 @@
 [gd_scene format=3 uid="uid://dnmr1mh1t2v5b"]
 
 [ext_resource type="Script" uid="uid://cp44dir5b5s00" path="res://scenes/game/main.gd" id="1_llaio"]
+[ext_resource type="Texture2D" uid="uid://dthge7co2xym0" path="res://assets/packs/games/zelda/hqdefault.jpg" id="2_oekm8"]
+
+[sub_resource type="Gradient" id="Gradient_oekm8"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yd8kv"]
+gradient = SubResource("Gradient_oekm8")
 
 [node name="Main" type="Node2D" unique_id=1738263689]
 script = ExtResource("1_llaio")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1692638324]
+zoom = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2114494394]
+position = Vector2(9.536743e-06, 0.5)
+scale = Vector2(1.3046876, 195)
+texture = SubResource("GradientTexture1D_yd8kv")
+
+[node name="Hqdefault" type="Sprite2D" parent="." unique_id=1835970972]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_oekm8")

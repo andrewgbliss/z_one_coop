@@ -33,24 +33,8 @@ var last_aim_direction: Vector2
 
 func _ready():
 	super ()
-	_detect_input_method()
-	device_index = str(parent.device_index)
-	move_right = "move_right_" + device_index
-	move_left = "move_left_" + device_index
-	move_down = "move_down_" + device_index
-	move_up = "move_up_" + device_index
-	aim_right = "aim_right_" + device_index
-	aim_left = "aim_left_" + device_index
-	aim_down = "aim_down_" + device_index
-	aim_up = "aim_up_" + device_index
-	double_tap = "double_tap_" + device_index
-	dash = "dash_" + device_index
-	run = "run_" + device_index
-	trigger_left = "trigger_left_" + device_index
-	trigger_right = "trigger_right_" + device_index
-	bumper_left = "bumper_left_" + device_index
-	bumper_right = "bumper_right_" + device_index
-	
+	_detect_input_method()	
+	set_device_index(parent.device_index)
 	if mouse_cursor:
 		Input.set_custom_mouse_cursor(mouse_cursor, Input.CURSOR_ARROW, Vector2(16, 16))
 		
@@ -67,8 +51,6 @@ func _input(event: InputEvent) -> void:
 		_setup_mobile()
 	elif event is InputEventJoypadMotion:
 		_setup_joystick()
-	elif event is InputEventMouseMotion:
-		_setup_mouse()
 
 	if event is InputEventScreenTouch and event.double_tap:
 		touch_position = to_world_position(event.position)
@@ -95,6 +77,24 @@ func _input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	_double_tap()
 	_touch_trigger_left()
+
+func set_device_index(index: int):
+	device_index = str(index)
+	move_right = "move_right_" + device_index
+	move_left = "move_left_" + device_index
+	move_down = "move_down_" + device_index
+	move_up = "move_up_" + device_index
+	aim_right = "aim_right_" + device_index
+	aim_left = "aim_left_" + device_index
+	aim_down = "aim_down_" + device_index
+	aim_up = "aim_up_" + device_index
+	double_tap = "double_tap_" + device_index
+	dash = "dash_" + device_index
+	run = "run_" + device_index
+	trigger_left = "trigger_left_" + device_index
+	trigger_right = "trigger_right_" + device_index
+	bumper_left = "bumper_left_" + device_index
+	bumper_right = "bumper_right_" + device_index
 
 func _touch_trigger_left():
 	if trigger_type == INPUT_TYPE.TOUCH and is_touching:
@@ -234,7 +234,7 @@ func _detect_input_method():
 		return
 	if _setup_joystick():
 		return
-	if _setup_mouse():
+	if _setup_default():
 		return
 
 func _setup_mobile():
@@ -256,7 +256,7 @@ func _setup_joystick():
 			return true
 	return false
 
-func _setup_mouse():
+func _setup_default():
 	if aim_type != INPUT_TYPE.MOUSE:
 		move_type = INPUT_TYPE.DEFAULT
 		aim_type = INPUT_TYPE.MOUSE

@@ -11,9 +11,11 @@
 [ext_resource type="Script" uid="uid://di01ncefep77c" path="res://scenes/core/debug/debug_pos_label.gd" id="9_351u7"]
 [ext_resource type="Script" uid="uid://61lhkms3dscs" path="res://scenes/core/character/player_state_machine.gd" id="10_5lmwx"]
 [ext_resource type="Script" uid="uid://dldg08ieeo3x8" path="res://scenes/core/debug/debug_state_label.gd" id="11_merj7"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_k4075"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_ibvvj"]
 [ext_resource type="Script" uid="uid://0vge3j1r1s0n" path="res://scenes/core/character/animated_sprite_facing_direction.gd" id="14_ibvvj"]
+[ext_resource type="Script" uid="uid://etf6j42h3hsb" path="res://scenes/core/character/animation_sprite_resolver.gd" id="15_r2tyc"]
+[ext_resource type="Script" uid="uid://bk2gf5us4rbu" path="res://scenes/core/hitbox/nodes/weapon_fire.gd" id="16_lsoyk"]
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/hitbox/resources/weapon.gd" id="17_5r47n"]
+[ext_resource type="Script" uid="uid://conxtgxbjjak8" path="res://scenes/core/hitbox/collisions/hurtbox.gd" id="18_5r47n"]
 
 [sub_resource type="Resource" id="Resource_5lmwx"]
 resource_local_to_scene = true
@@ -22,27 +24,41 @@ character_name = "Link"
 level = 1
 health = 3
 max_health = 3
+speed = 100.0
+acceleration = 50.0
+friction = 30.0
 metadata/_custom_type_script = "uid://xij0fxllggis"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5s7b"]
 size = Vector2(15, 16)
 
-[sub_resource type="Resource" id="Resource_r2tyc"]
-script = ExtResource("13_ibvvj")
+[sub_resource type="Resource" id="Resource_b83i4"]
+resource_local_to_scene = true
+script = ExtResource("17_5r47n")
+projectile = "sword_shoot"
+unlimited_ammo = true
+top_level = false
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"
 
-[node name="Link" type="CharacterBody2D" unique_id=1651556451 node_paths=PackedStringArray("controls")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b83i4"]
+size = Vector2(15, 16)
+
+[node name="Link" type="CharacterBody2D" unique_id=1651556451 node_paths=PackedStringArray("controls", "weapon_fires") groups=["player"]]
+collision_mask = 65
 motion_mode = 1
 script = ExtResource("1_3wlww")
 blackboard = SubResource("Resource_5lmwx")
 controls = NodePath("PlayerControls")
+weapon_fires = [NodePath("WeaponFire")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1753390454]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_s5s7b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1331818955]
+z_index = 5
 sprite_frames = ExtResource("2_xe0a3")
-animation = &"Down"
+animation = &"Attack Up"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1775382243]
 
@@ -57,8 +73,9 @@ metadata/_custom_type_script = "uid://2iv8he2mshdo"
 
 [node name="DebugPosLabel" type="Label" parent="." unique_id=1651346620 node_paths=PackedStringArray("node")]
 visible = false
+offset_top = -41.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = -18.0
 script = ExtResource("9_351u7")
 node = NodePath("..")
 metadata/_custom_type_script = "uid://di01ncefep77c"
@@ -73,22 +90,32 @@ metadata/_custom_type_script = "uid://c48jtox4ix61q"
 script = ExtResource("10_5lmwx")
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=177901555 node_paths=PackedStringArray("player_state_machine")]
+visible = false
+offset_top = -34.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = -11.0
 script = ExtResource("11_merj7")
 player_state_machine = NodePath("../PlayerStateMachine")
 metadata/_custom_type_script = "uid://dldg08ieeo3x8"
 
-[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=613954636 node_paths=PackedStringArray("follow_target")]
-top_level = true
-script = ExtResource("12_k4075")
-follow_mode = 5
-follow_target = NodePath("..")
-tween_resource = SubResource("Resource_r2tyc")
-metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
-
-[node name="AnimatedSpriteFacingDirection" type="Node" parent="." unique_id=1240837267 node_paths=PackedStringArray("agent", "animated_sprite")]
+[node name="AnimatedSpriteFacingDirection" type="Node" parent="." unique_id=1240837267]
 script = ExtResource("14_ibvvj")
-agent = NodePath("..")
-animated_sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://0vge3j1r1s0n"
+
+[node name="AnimationSpriteResolver" type="Node" parent="." unique_id=1280112701]
+script = ExtResource("15_r2tyc")
+metadata/_custom_type_script = "uid://etf6j42h3hsb"
+
+[node name="WeaponFire" type="Node2D" parent="." unique_id=645443972]
+position = Vector2(0, 1)
+script = ExtResource("16_lsoyk")
+weapon = SubResource("Resource_b83i4")
+metadata/_custom_type_script = "uid://bk2gf5us4rbu"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=824124893]
+script = ExtResource("18_5r47n")
+metadata/_custom_type_script = "uid://conxtgxbjjak8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=87542346]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_b83i4")

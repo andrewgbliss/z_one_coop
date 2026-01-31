@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform vec4 shine_color : source_color = vec4(1.0); //Shine color
 uniform float alpha_limit : hint_range(0.0, 1.0, 0.1) = 0.0; //Alpha color limit to apply the shine, for example, if you won't to apply the shine to semi-transparent pixels
-uniform float cycle_speed : hint_range(0.0, 10.0, 0.1) = 1.0; //Pulse cycle speed
+uniform float cycle_speed : hint_range(0.0, 20.0, 0.1) = 1.0; //Pulse cycle speed
 uniform bool full_pulse_cycle = false; //[False = Do the effect and make a pause] [True = Do the effect continuosly]
 uniform int mode : hint_range(0, 2, 1) = 0; //[0 = Always off] [1 = Pulse mode] [2 = Always on]
 

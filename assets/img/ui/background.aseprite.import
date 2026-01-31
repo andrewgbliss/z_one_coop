@@ -7,7 +7,7 @@ valid=false
 
 [deps]
 
-source_file="res://assets/img/background.aseprite"
+source_file="res://assets/img/ui/background.aseprite"
 
 [params]
 

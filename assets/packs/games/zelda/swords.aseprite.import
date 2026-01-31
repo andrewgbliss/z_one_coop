@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d0ig6i5jxyb1g"
+path="res://.godot/imported/swords.aseprite-16a050ea62929a69def89699153c8045.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/swords.aseprite"
+dest_files=["res://.godot/imported/swords.aseprite-16a050ea62929a69def89699153c8045.res"]
+
+[params]
+

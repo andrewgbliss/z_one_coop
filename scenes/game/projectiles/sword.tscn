@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bpa7uw2fo6feu"]
+
+[ext_resource type="Script" uid="uid://b3yaenxtgdr6f" path="res://scenes/game/projectiles/projectile.gd" id="1_kdsf6"]
+[ext_resource type="Texture2D" uid="uid://bvlgn4on426vl" path="res://assets/packs/games/zelda/swords.png" id="2_rxco6"]
+[ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="3_bha7g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmlj7"]
+size = Vector2(16, 3)
+
+[node name="Sword" type="Node2D" unique_id=6012962]
+script = ExtResource("1_kdsf6")
+offset = 12.0
+speed = 0
+acceleration = 0
+time_to_live = 0.2
+metadata/_custom_type_script = "uid://b3yaenxtgdr6f"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1365442932]
+z_index = 4
+texture = ExtResource("2_rxco6")
+hframes = 4
+vframes = 4
+frame = 2
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1155815618]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_bha7g")
+metadata/_custom_type_script = "uid://chj8v1sp4qgus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=729845139]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hmlj7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=244063304]

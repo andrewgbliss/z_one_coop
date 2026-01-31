@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://e0drsvjkcm2b"
+path="res://.godot/imported/enemy_killed_explosion.aseprite-b23e38a81f8a01e7eab3673f63501911.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/enemy_killed_explosion.aseprite"
+dest_files=["res://.godot/imported/enemy_killed_explosion.aseprite-b23e38a81f8a01e7eab3673f63501911.res"]
+
+[params]
+

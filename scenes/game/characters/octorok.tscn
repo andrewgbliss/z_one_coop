@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://co602ptr3ssm"]
+
+[ext_resource type="Script" uid="uid://om5mwrgyg8u7" path="res://scenes/core/character/character_controller.gd" id="1_2883y"]
+[ext_resource type="Script" uid="uid://conxtgxbjjak8" path="res://scenes/core/hitbox/collisions/hurtbox.gd" id="2_8mg08"]
+[ext_resource type="Script" uid="uid://xij0fxllggis" path="res://scenes/core/character/character_blackboard.gd" id="2_efxgm"]
+[ext_resource type="SpriteFrames" uid="uid://ber8r7u2uqv04" path="res://assets/packs/games/zelda/octorok.res" id="3_efxgm"]
+[ext_resource type="PackedScene" uid="uid://c5ikeeommtxrp" path="res://scenes/game/effects/enemy_killed_explosion.tscn" id="5_fxtxh"]
+[ext_resource type="Script" uid="uid://oggxvsephie7" path="res://scenes/core/controls/scripts/path_finding/follow_target.gd" id="6_qifhe"]
+[ext_resource type="Script" uid="uid://dibsls1l3cp4a" path="res://scenes/core/controls/scripts/path_finding/aim_at_target.gd" id="7_xqg8t"]
+[ext_resource type="Script" uid="uid://c4rhw3nruc3c5" path="res://scenes/core/controls/scripts/controls/npc_controls.gd" id="8_w3gne"]
+
+[sub_resource type="Resource" id="Resource_fxtxh"]
+resource_local_to_scene = true
+script = ExtResource("2_efxgm")
+level = 1
+health = 5
+max_health = 5
+speed = 50.0
+acceleration = 50.0
+friction = 10.0
+metadata/_custom_type_script = "uid://xij0fxllggis"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhlpo"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxtxh"]
+size = Vector2(16, 16)
+
+[sub_resource type="Shader" id="Shader_efxgm"]
+code = "shader_type canvas_item;
+
+uniform vec4 shine_color : source_color = vec4(1.0); //Shine color
+uniform float alpha_limit : hint_range(0.0, 1.0, 0.1) = 0.0; //Alpha color limit to apply the shine, for example, if you won't to apply the shine to semi-transparent pixels
+uniform float cycle_speed : hint_range(0.0, 20.0, 0.1) = 1.0; //Pulse cycle speed
+uniform bool full_pulse_cycle = false; //[False = Do the effect and make a pause] [True = Do the effect continuosly]
+uniform int mode : hint_range(0, 2, 1) = 0; //[0 = Always off] [1 = Pulse mode] [2 = Always on]
+
+void fragment()
+{
+	//Check if the effect is enabled
+	if (mode > 0)
+	{
+		//Check the pixel alpha value
+		if (COLOR.a >= alpha_limit)
+		{
+			//Check the mode
+			switch (mode)
+			{
+				case 1: //Pulse mode
+				{
+					float cycle = sin(TIME * cycle_speed);
+					COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, (((cycle >= 0.0) || (full_pulse_cycle)) ? abs(cycle) : 0.0) * shine_color.a);
+					break;
+				}
+				case 2: //Always on
+				{
+					COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, shine_color.a);
+					break;
+				}
+			}
+		}
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxtxh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_efxgm")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_limit = 0.0
+shader_parameter/cycle_speed = 20.0
+shader_parameter/full_pulse_cycle = false
+shader_parameter/mode = 0
+
+[node name="Octorok" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions")]
+collision_layer = 2
+collision_mask = 65
+motion_mode = 1
+script = ExtResource("1_2883y")
+blackboard = SubResource("Resource_fxtxh")
+controls = NodePath("NpcControls")
+garbage = true
+garbage_time = 0.5
+die_explosions = [NodePath("EnemyKilledExplosion")]
+metadata/_custom_type_script = "uid://om5mwrgyg8u7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533761963]
+shape = SubResource("RectangleShape2D_dhlpo")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1711131074]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("2_8mg08")
+metadata/_custom_type_script = "uid://conxtgxbjjak8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470119857]
+shape = SubResource("RectangleShape2D_fxtxh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1892765473]
+material = SubResource("ShaderMaterial_fxtxh")
+sprite_frames = ExtResource("3_efxgm")
+animation = &"Walk Down"
+
+[node name="EnemyKilledExplosion" parent="." unique_id=372614873 instance=ExtResource("5_fxtxh")]
+run_on_ready = false
+
+[node name="FollowTarget" type="Node" parent="." unique_id=134678395]
+script = ExtResource("6_qifhe")
+
+[node name="AimAtTarget" type="Node" parent="." unique_id=838280735]
+script = ExtResource("7_xqg8t")
+
+[node name="NpcControls" type="Node" parent="." unique_id=386353652]
+script = ExtResource("8_w3gne")

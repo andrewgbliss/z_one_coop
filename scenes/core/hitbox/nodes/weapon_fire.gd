@@ -37,9 +37,12 @@ func spawn_projectile_from_weapon() -> void:
 	else:
 		aim_direction = parent.controls.target_aim_direction
 	var spawn_position = global_position
+	if not weapon.top_level:
+		spawn_position = position
 	var entity = SpawnManager.spawn(weapon.projectile, spawn_position, self)
 	if entity is Projectile:
-		entity.top_level = true
+		if weapon.top_level:
+			entity.top_level = true
 		entity.start(spawn_position, aim_direction)
 
 func _update_weapon_cooldowns(delta: float) -> void:
@@ -49,5 +52,6 @@ func _update_weapon_cooldowns(delta: float) -> void:
 func _fire_weapon() -> void:
 	if not weapon or not weapon.can_fire():
 		return
+	parent.is_attacking = true
 	spawn_projectile_from_weapon()
 	weapon.fire()

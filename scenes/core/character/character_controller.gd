@@ -37,10 +37,11 @@ var flip_h_lock: bool = false
 var spawn_position: Vector2 = Vector2.ZERO
 var gravity_dir: Vector2 = Vector2(0, 1)
 var facing_right_modifier: int = 1
+var is_attacking: bool = false
+var is_facing_y: bool = false
 
 signal spawned(pos: Vector2)
 signal died(pos: Vector2)
-signal facing_direction_changed
 signal parent_path_created(path: Path2D)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -185,6 +186,10 @@ func die():
 		return
 	is_alive = false
 	is_paralyzed = true
+	if sprite:
+		sprite.hide()
+	if animated_sprite:
+		animated_sprite.hide()
 	for explosion in die_explosions:
 		explosion.run()
 	if garbage:
@@ -242,7 +247,6 @@ func pulse_health():
 			
 func flip_h():
 	animated_sprite.flip_h = not is_facing_right
-	facing_direction_changed.emit()
 
 func item_pickup(item: Item):
 	if item is Currency:
@@ -295,4 +299,3 @@ func focus():
 
 func get_random_path():
 	return paths[randi() % paths.size()]
-	

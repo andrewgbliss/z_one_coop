@@ -13,9 +13,9 @@ func _on_scene_finished(transition_name: String):
 func _on_game_state_changed(state: GameManager.GAME_STATE):
 	match state:
 		GameManager.GAME_STATE.GAME_INIT:
-			GameManager.set_state(GameManager.GAME_STATE.GAME_SPLASH_SCREENS)
+			GameManager.set_state(GameManager.GAME_STATE.GAME_MAIN_MENU)
 		GameManager.GAME_STATE.GAME_SPLASH_SCREENS:
-			SceneManager.transition_play("InitSplashScreen")
+			SceneManager.transition_play("BrandSplashScreen")
 		GameManager.GAME_STATE.GAME_MAIN_MENU:
 			UiManager.game_menus.push("MainMenu")
 		GameManager.GAME_STATE.GAME_PLAY:

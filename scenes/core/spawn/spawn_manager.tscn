@@ -2,9 +2,19 @@
 
 [ext_resource type="Script" uid="uid://cmw1lfbexedpv" path="res://scenes/core/spawn/spawn_manager.gd" id="1_b7hal"]
 [ext_resource type="PackedScene" uid="uid://dcyysp40m6m22" path="res://scenes/game/characters/link.tscn" id="2_ox1rk"]
+[ext_resource type="PackedScene" uid="uid://bpa7uw2fo6feu" path="res://scenes/game/projectiles/sword.tscn" id="3_b7hal"]
+[ext_resource type="PackedScene" uid="uid://dbs8rbbiblq67" path="res://scenes/game/projectiles/sword_shoot.tscn" id="4_uyff0"]
+[ext_resource type="PackedScene" uid="uid://co602ptr3ssm" path="res://scenes/game/characters/octorok.tscn" id="5_1ywyu"]
+[ext_resource type="PackedScene" uid="uid://f0i3j5iar35x" path="res://scenes/game/effects/sword_hit.tscn" id="6_b7sl6"]
+[ext_resource type="PackedScene" uid="uid://c5ikeeommtxrp" path="res://scenes/game/effects/enemy_killed_explosion.tscn" id="7_gw8sj"]
 
 [node name="SpawnManager" type="Node2D" unique_id=600587778]
 script = ExtResource("1_b7hal")
 entities = Dictionary[String, PackedScene]({
-"link": ExtResource("2_ox1rk")
+"enemy_killed_explosion": ExtResource("7_gw8sj"),
+"link": ExtResource("2_ox1rk"),
+"octorok": ExtResource("5_1ywyu"),
+"sword": ExtResource("3_b7hal"),
+"sword_hit": ExtResource("6_b7sl6"),
+"sword_shoot": ExtResource("4_uyff0")
 })

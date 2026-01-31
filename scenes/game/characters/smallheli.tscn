@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://bglvjb6wrpn4a"]
+
+[ext_resource type="Script" uid="uid://he0afna1eilc" path="res://scenes/core/controls/scripts/characters/character_controller.gd" id="1_sxtlc"]
+[ext_resource type="Script" uid="uid://xij0fxllggis" path="res://scenes/core/controls/scripts/characters/character_blackboard.gd" id="2_1eram"]
+[ext_resource type="Texture2D" uid="uid://cmyg451perpm0" path="res://assets/img/enemies/smallheli-Sheet.png" id="2_kf3h5"]
+[ext_resource type="AudioStream" uid="uid://cbwbqaxwj5dcm" path="res://assets/audio/helicopter_synth.wav" id="4_oykj5"]
+[ext_resource type="Script" uid="uid://conxtgxbjjak8" path="res://scenes/core/hitbox/collisions/hurtbox.gd" id="5_36ymm"]
+[ext_resource type="PackedScene" uid="uid://p2gs7qyg3g2q" path="res://scenes/game/effects/small_explosion.tscn" id="5_38cwa"]
+[ext_resource type="Shader" uid="uid://d2hsc8sfw7ddj" path="res://shaders/pulse.gdshader" id="6_fdy5v"]
+[ext_resource type="Script" uid="uid://oggxvsephie7" path="res://scenes/core/controls/scripts/path_finding/follow_target.gd" id="9_plajg"]
+[ext_resource type="Script" uid="uid://dibsls1l3cp4a" path="res://scenes/core/controls/scripts/path_finding/aim_at_target.gd" id="10_ero76"]
+[ext_resource type="Script" uid="uid://bksqodk4igtmh" path="res://scenes/core/controls/scripts/characters/character_flip.gd" id="11_sa4t3"]
+[ext_resource type="Script" uid="uid://bk2gf5us4rbu" path="res://scenes/core/hitbox/nodes/weapon_fire.gd" id="12_plajg"]
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/hitbox/resources/weapon.gd" id="13_ero76"]
+[ext_resource type="Script" uid="uid://c4rhw3nruc3c5" path="res://scenes/core/controls/scripts/controls/npc_controls.gd" id="13_plajg"]
+[ext_resource type="Texture2D" uid="uid://tbqkf31yixau" path="res://assets/img/projectiles/Bullet.png" id="16_i8srf"]
+
+[sub_resource type="Resource" id="Resource_xjq1q"]
+resource_local_to_scene = true
+script = ExtResource("2_1eram")
+character_controller_type = 1
+level = 2
+health = 2
+max_health = 1
+armor = 1
+speed = 50.0
+acceleration = 50.0
+friction = 10.0
+dash_speed = 200.0
+metadata/_custom_type_script = "uid://xij0fxllggis"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v15n"]
+size = Vector2(9, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qwhng"]
+resource_local_to_scene = true
+shader = ExtResource("6_fdy5v")
+shader_parameter/shine_color = Color(1, 0, 0, 1)
+shader_parameter/alpha_limit = 0.0
+shader_parameter/cycle_speed = 1.0
+shader_parameter/full_pulse_cycle = false
+shader_parameter/mode = 0
+
+[sub_resource type="Animation" id="Animation_cxyrn"]
+resource_name = "Die"
+
+[sub_resource type="Animation" id="Animation_lvfrb"]
+resource_name = "Fly"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_sxcx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2grky"]
+_data = {
+&"Die": SubResource("Animation_cxyrn"),
+&"Fly": SubResource("Animation_lvfrb"),
+&"RESET": SubResource("Animation_sxcx7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjlqp"]
+size = Vector2(16, 8)
+
+[sub_resource type="Curve2D" id="Curve2D_fdy5v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 180, -15, 0, 0, 0, 0, 74, 4, 0, 0, 0, 0, 0, -15, 0, 0, 0, 0, -63, 5, 0, 0, 0, 0, -191, -12, 0, 0, 0, 0, -191, 56, 0, 0, 0, 0, 181, 58, 0, 0, 0, 0, 181, -15)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_fkicd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 182, 73, 0, 0, 0, 0, 63, 69, 0, 0, 0, 0, -1, 34, 0, 0, 0, 0, -56, 70, 0, 0, 0, 0, -189, 75, 0, 0, 0, 0, -190, 2, 0, 0, 0, 0, 183, -3, 0, 0, 0, 0, 183, 75)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_554jy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -189, 75, 0, 0, 0, 0, -56, 71, 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 44, 72, 0, 0, 0, 0, 185, 77, 0, 0, 0, 0, 182, 2, 0, 0, 0, 0, -189, 6, 0, 0, 0, 0, -189, 74)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_xjq1q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -185, 4, 0, 0, 0, 0, -61, 19, 0, 0, 0, 0, -2, 5, 0, 0, 0, 0, 85, 22, 0, 0, 0, 0, 181, 1, 0, 0, 0, 0, 184, 74, 0, 0, 0, 0, -189, 75, 0, 0, 0, 0, -187, 4)
+}
+point_count = 8
+
+[sub_resource type="Resource" id="Resource_ero76"]
+resource_local_to_scene = true
+script = ExtResource("13_ero76")
+damage_min = 1
+damage_max = 1
+attack_rate = 0.25
+projectile = "enemy_bullet_1"
+unlimited_ammo = true
+burst_size = 3
+burst_cooldown = 1.0
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"
+
+[node name="Smallheli" type="CharacterBody2D" unique_id=1062555870 node_paths=PackedStringArray("controls", "die_explosions", "paths", "weapon_fires") groups=["enemy"]]
+z_index = 5
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_sxtlc")
+blackboard = SubResource("Resource_xjq1q")
+controls = NodePath("NpcControls")
+garbage = true
+garbage_time = 0.5
+die_explosions = [NodePath("SmallExplosion"), NodePath("SmallExplosion2")]
+paths = [NodePath("Path2D"), NodePath("Path2D2"), NodePath("Path2D3"), NodePath("Path2D4")]
+weapon_fires = [NodePath("MachineGun"), NodePath("")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615762495]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_3v15n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=450209728]
+material = SubResource("ShaderMaterial_qwhng")
+texture = ExtResource("2_kf3h5")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=892970831]
+libraries/ = SubResource("AnimationLibrary_2grky")
+autoplay = &"Fly"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=417823997]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("5_36ymm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2039999723]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_gjlqp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1338621614]
+stream = ExtResource("4_oykj5")
+volume_db = -15.0
+autoplay = true
+max_distance = 100.0
+attenuation = 1.93187
+bus = &"Effects"
+
+[node name="RedDot" type="Sprite2D" parent="." unique_id=835325374]
+modulate = Color(1.5, 0, 0, 1)
+position = Vector2(1, -2)
+texture = ExtResource("16_i8srf")
+centered = false
+region_enabled = true
+region_rect = Rect2(6, 6, 1, 1)
+
+[node name="SmallExplosion" parent="." unique_id=1875606658 instance=ExtResource("5_38cwa")]
+position = Vector2(-5, 0)
+
+[node name="SmallExplosion2" parent="." unique_id=569775230 instance=ExtResource("5_38cwa")]
+position = Vector2(5, 0)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=538336925]
+position = Vector2(1, -55)
+curve = SubResource("Curve2D_fdy5v")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=344823486]
+position = Vector2(-74.27106, 3.5030642)
+progress = 261.58856
+rotates = false
+
+[node name="Path2D2" type="Path2D" parent="." unique_id=1399902021]
+position = Vector2(1, -71)
+curve = SubResource("Curve2D_fkicd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=2112122234]
+position = Vector2(182, 73)
+rotates = false
+
+[node name="Path2D3" type="Path2D" parent="." unique_id=2081624514]
+position = Vector2(1, -73)
+curve = SubResource("Curve2D_554jy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3" unique_id=1921135498]
+position = Vector2(-189, 75)
+rotates = false
+
+[node name="Path2D4" type="Path2D" parent="." unique_id=203389994]
+position = Vector2(0, -72)
+curve = SubResource("Curve2D_xjq1q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D4" unique_id=15098086]
+position = Vector2(-185, 4)
+rotates = false
+
+[node name="FollowTarget" type="Node" parent="." unique_id=106762625]
+script = ExtResource("9_plajg")
+
+[node name="AimAtTarget" type="Node" parent="." unique_id=1067609437]
+script = ExtResource("10_ero76")
+
+[node name="CharacterFlip" type="Node" parent="." unique_id=455847829]
+script = ExtResource("11_sa4t3")
+metadata/_custom_type_script = "uid://bksqodk4igtmh"
+
+[node name="NpcControls" type="Node" parent="." unique_id=376731935]
+script = ExtResource("13_plajg")
+
+[node name="MachineGun" type="Node2D" parent="." unique_id=1599333942]
+position = Vector2(6, 0)
+script = ExtResource("12_plajg")
+weapon = SubResource("Resource_ero76")
+metadata/_custom_type_script = "uid://bk2gf5us4rbu"

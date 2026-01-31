@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://3y04wdx2golm"]
 
-[ext_resource type="Script" uid="uid://cslkbqblelm2u" path="res://scenes/core/ui/menus/menu/inventory/inventory_menu.gd" id="1_ty5u0"]
-[ext_resource type="Script" uid="uid://dxu4gak2oeese" path="res://scenes/core/ui/menus/menu/inventory/inventory/inventory_grid_ui.gd" id="2_dvqci"]
-[ext_resource type="Script" uid="uid://d1v74357ynnao" path="res://scenes/core/ui/menus/menu/inventory/inventory/item_belt_ui.gd" id="3_4th1g"]
-[ext_resource type="Script" uid="uid://cmyssf8qpthyf" path="res://scenes/core/ui/menus/menu/inventory/inventory/equipment_ui.gd" id="3_ty5u0"]
-[ext_resource type="PackedScene" uid="uid://dw4lv5giixk0c" path="res://scenes/core/ui/menus/menu/inventory/inventory/item_slot.tscn" id="4_ty5u0"]
+[ext_resource type="Script" uid="uid://cslkbqblelm2u" path="res://scenes/core/items/ui/menus/menu/inventory/inventory_menu.gd" id="1_ty5u0"]
+[ext_resource type="Script" uid="uid://dxu4gak2oeese" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/inventory_grid_ui.gd" id="2_dvqci"]
+[ext_resource type="Script" uid="uid://d1v74357ynnao" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/item_belt_ui.gd" id="3_4th1g"]
+[ext_resource type="Script" uid="uid://cmyssf8qpthyf" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/equipment_ui.gd" id="3_ty5u0"]
+[ext_resource type="PackedScene" uid="uid://dw4lv5giixk0c" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/item_slot.tscn" id="4_ty5u0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dux7x"]
 
@@ -261,7 +261,6 @@ script = ExtResource("1_ty5u0")
 inventory_ui = NodePath("Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/InventoryGridContainer")
 equipment_ui = NodePath("Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/EquipmentPanel")
 item_belt_ui = NodePath("Control/Panel/MarginContainer/VBoxContainer/ItemBeltGridContainer")
-input_action = "inventory"
 
 [node name="Control" type="Control" parent="." unique_id=1148749936]
 layout_mode = 3

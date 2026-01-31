@@ -1431,7 +1431,6 @@ time_to_live = 0.1
 any_key_to_next = true
 
 [node name="Label" type="Label" parent="InitSplashScreen" unique_id=572460085]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 3
 anchor_left = 1.0
@@ -1469,13 +1468,11 @@ expand_mode = 1
 
 [node name="TextureRectSword" type="TextureRect" parent="BrandSplashScreen" unique_id=1776831558]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -244.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -64.0
 offset_right = 64.0
 offset_bottom = -64.0
 grow_horizontal = 2
@@ -1491,7 +1488,7 @@ any_key_to_next = true
 
 [node name="LogoVerticalColorDark" type="Sprite2D" parent="SponserSplashScreen" unique_id=1855465159]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(161, 90)
+position = Vector2(318, 185)
 texture = ExtResource("5_fmum8")
 
 [node name="Label" type="Label" parent="SponserSplashScreen" unique_id=1443553935]

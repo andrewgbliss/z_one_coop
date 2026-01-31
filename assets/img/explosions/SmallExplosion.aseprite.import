@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bujgnpods3ooe"
+path="res://.godot/imported/SmallExplosion.aseprite-1f4974080a5b1c20212c85bccc235101.res"
+
+[deps]
+
+source_file="res://assets/img/explosions/SmallExplosion.aseprite"
+dest_files=["res://.godot/imported/SmallExplosion.aseprite-1f4974080a5b1c20212c85bccc235101.res"]
+
+[params]
+

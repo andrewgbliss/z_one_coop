@@ -4,6 +4,7 @@ class_name Projectile extends Node2D
 @onready var hitbox: Hitbox = $Hitbox
 
 @export var animation_name: String = "Fire"
+@export var offset: float = 0.0
 @export var speed = 300
 @export var acceleration = 1
 @export var follow_group_name: String
@@ -13,7 +14,6 @@ class_name Projectile extends Node2D
 @export var audio: AudioStreamPlayer2D
 @export_range(-100.0, 0) var min_audio_level: float = -20
 @export_range(-100.0, 0) var max_audio_level: float = -5
-
 
 var target: Node2D
 var closest_target: Node2D
@@ -27,7 +27,12 @@ var angular_velocity
 func start(_position, _direction):
 	position = _position
 	rotation = _direction.angle()
-	velocity = _direction.normalized() * speed
+	position += Vector2.from_angle(rotation) * offset
+	if speed > 0:
+		velocity = _direction.normalized() * speed
+	else:
+		velocity = Vector2.ZERO
+
 
 	if audio != null:
 		var rand_level = randf_range(min_audio_level, max_audio_level)
@@ -56,18 +61,19 @@ func _ready():
 func _physics_process(delta):
 	if gravity != 0:
 		velocity.y += gravity * delta
-		
-	if target != null and target.is_inside_tree():
-		var direction = target.global_position - global_position
-		
-		velocity.x = move_toward(velocity.x, direction.normalized().x * speed, acceleration * delta)
-		velocity.y = move_toward(velocity.y, direction.normalized().y * speed, acceleration * delta)
 
-		rotation = velocity.angle()
-	elif target != null and not target.is_inside_tree():
-		target = null
+	if speed > 0:
+		if target != null and target.is_inside_tree():
+			var direction = target.global_position - global_position
+			
+			velocity.x = move_toward(velocity.x, direction.normalized().x * speed, acceleration * delta)
+			velocity.y = move_toward(velocity.y, direction.normalized().y * speed, acceleration * delta)
 
-	position += velocity * delta
+			rotation = velocity.angle()
+		elif target != null and not target.is_inside_tree():
+			target = null
+
+		position += velocity * delta
 			
 	time_elapsed -= delta
 	if time_elapsed <= 0:

@@ -13,6 +13,7 @@ class_name Weapon extends Resource
 @export var screen_shake_amount: float = 0.0
 @export var burst_size: int = 1 # Number of shots in a burst
 @export var burst_cooldown: float = 0.0 # Cooldown time after a burst
+@export var top_level: bool = true
 
 signal ammo_changed(ammo_change: int, max_ammo: int)
 

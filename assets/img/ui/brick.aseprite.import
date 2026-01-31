@@ -7,7 +7,7 @@ valid=false
 
 [deps]
 
-source_file="res://assets/img/brick.aseprite"
+source_file="res://assets/img/ui/brick.aseprite"
 
 [params]
 
