@@ -1431,6 +1431,7 @@ time_to_live = 0.1
 any_key_to_next = true
 
 [node name="Label" type="Label" parent="InitSplashScreen" unique_id=572460085]
+visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 3
 anchor_left = 1.0

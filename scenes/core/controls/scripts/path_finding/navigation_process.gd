@@ -20,3 +20,5 @@ func _physics_process(_delta: float) -> void:
 		parent.navigation_agent.set_velocity(new_velocity)
 	else:
 		parent._on_velocity_computed(new_velocity)
+
+	parent.default_move()

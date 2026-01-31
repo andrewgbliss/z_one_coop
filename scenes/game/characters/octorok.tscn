@@ -5,16 +5,19 @@
 [ext_resource type="Script" uid="uid://xij0fxllggis" path="res://scenes/core/character/character_blackboard.gd" id="2_efxgm"]
 [ext_resource type="SpriteFrames" uid="uid://ber8r7u2uqv04" path="res://assets/packs/games/zelda/octorok.res" id="3_efxgm"]
 [ext_resource type="PackedScene" uid="uid://c5ikeeommtxrp" path="res://scenes/game/effects/enemy_killed_explosion.tscn" id="5_fxtxh"]
-[ext_resource type="Script" uid="uid://oggxvsephie7" path="res://scenes/core/controls/scripts/path_finding/follow_target.gd" id="6_qifhe"]
 [ext_resource type="Script" uid="uid://dibsls1l3cp4a" path="res://scenes/core/controls/scripts/path_finding/aim_at_target.gd" id="7_xqg8t"]
 [ext_resource type="Script" uid="uid://c4rhw3nruc3c5" path="res://scenes/core/controls/scripts/controls/npc_controls.gd" id="8_w3gne"]
+[ext_resource type="Script" uid="uid://dhn4xcjw813bf" path="res://scenes/core/controls/scripts/path_finding/navigation_agent_set_target_pos.gd" id="8_xqg8t"]
+[ext_resource type="Script" uid="uid://d2r7135pju422" path="res://scenes/core/controls/scripts/path_finding/navigation_process.gd" id="9_w3gne"]
+[ext_resource type="Script" uid="uid://etf6j42h3hsb" path="res://scenes/core/character/animation_sprite_resolver.gd" id="10_w3gne"]
+[ext_resource type="Script" uid="uid://0vge3j1r1s0n" path="res://scenes/core/character/animated_sprite_facing_direction.gd" id="11_odvvf"]
 
 [sub_resource type="Resource" id="Resource_fxtxh"]
 resource_local_to_scene = true
 script = ExtResource("2_efxgm")
 level = 1
-health = 5
-max_health = 5
+health = 1
+max_health = 1
 speed = 50.0
 acceleration = 50.0
 friction = 10.0
@@ -71,7 +74,7 @@ shader_parameter/cycle_speed = 20.0
 shader_parameter/full_pulse_cycle = false
 shader_parameter/mode = 0
 
-[node name="Octorok" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions")]
+[node name="Octorok" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions", "navigation_agent")]
 collision_layer = 2
 collision_mask = 65
 motion_mode = 1
@@ -81,6 +84,7 @@ controls = NodePath("NpcControls")
 garbage = true
 garbage_time = 0.5
 die_explosions = [NodePath("EnemyKilledExplosion")]
+navigation_agent = NodePath("NavigationAgent2D")
 metadata/_custom_type_script = "uid://om5mwrgyg8u7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533761963]
@@ -103,11 +107,29 @@ animation = &"Walk Down"
 [node name="EnemyKilledExplosion" parent="." unique_id=372614873 instance=ExtResource("5_fxtxh")]
 run_on_ready = false
 
-[node name="FollowTarget" type="Node" parent="." unique_id=134678395]
-script = ExtResource("6_qifhe")
-
 [node name="AimAtTarget" type="Node" parent="." unique_id=838280735]
 script = ExtResource("7_xqg8t")
 
 [node name="NpcControls" type="Node" parent="." unique_id=386353652]
 script = ExtResource("8_w3gne")
+
+[node name="NavigationAgentSetMoveTo" type="Node" parent="." unique_id=1533371802]
+script = ExtResource("8_xqg8t")
+metadata/_custom_type_script = "uid://dhn4xcjw813bf"
+
+[node name="NavigationProcess" type="Node" parent="." unique_id=947249187]
+script = ExtResource("9_w3gne")
+speed = 50.0
+metadata/_custom_type_script = "uid://d2r7135pju422"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=194493816]
+avoidance_enabled = true
+
+[node name="AnimationSpriteResolver" type="Node" parent="." unique_id=1675968784]
+script = ExtResource("10_w3gne")
+idle_str = &"Walk"
+metadata/_custom_type_script = "uid://etf6j42h3hsb"
+
+[node name="AnimatedSpriteFacingDirection" type="Node" parent="." unique_id=1470390229]
+script = ExtResource("11_odvvf")
+metadata/_custom_type_script = "uid://0vge3j1r1s0n"
