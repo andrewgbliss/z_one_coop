@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dci8qiogae2pi"]
+
+[ext_resource type="Texture2D" uid="uid://casmx8paw0ybp" path="res://assets/packs/games/zelda/BlackDoor.png" id="1_f2eoc"]
+[ext_resource type="Script" uid="uid://etvy7brg0yj" path="res://scenes/game/doors/door.gd" id="1_vh71p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2eoc"]
+size = Vector2(16, 16)
+
+[node name="Door" type="Node2D" unique_id=1345818104]
+script = ExtResource("1_vh71p")
+scene_name = "cave"
+
+[node name="BlackDoor" type="Sprite2D" parent="." unique_id=1185198235]
+texture = ExtResource("1_f2eoc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1070016605]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1843910926]
+shape = SubResource("RectangleShape2D_f2eoc")

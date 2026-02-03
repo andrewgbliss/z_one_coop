@@ -13,6 +13,10 @@ config_version=5
 config/name="z_one_coop"
 run/main_scene="res://scenes/game/main.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://cexb4qmpnjy5b"
+config/icon="uid://1rwwcihdyieu"
+config/windows_native_icon="res://assets/img/icons/icon-1024.ico"
 
 [autoload]
 

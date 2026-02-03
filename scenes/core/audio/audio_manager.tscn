@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mte2cgqaa2mf" path="res://scenes/core/audio/audio_manager.gd" id="1_l3ouf"]
 [ext_resource type="Script" uid="uid://byidjxsgxdc0x" path="res://scenes/core/audio/audio_config.gd" id="2_fksyh"]
+[ext_resource type="AudioStream" uid="uid://bwr2p1a5f5qfh" path="res://assets/audio/effects/pickupCoin.wav" id="3_sjn35"]
 
 [sub_resource type="Resource" id="Resource_ukpki"]
 script = ExtResource("2_fksyh")
@@ -11,3 +12,7 @@ metadata/_custom_type_script = "uid://byidjxsgxdc0x"
 process_mode = 3
 script = ExtResource("1_l3ouf")
 audio_config = SubResource("Resource_ukpki")
+
+[node name="Pickup" type="AudioStreamPlayer" parent="." unique_id=1436602205]
+stream = ExtResource("3_sjn35")
+volume_db = -8.954

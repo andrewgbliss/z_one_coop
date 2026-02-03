@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://lb4utamoj8i"]
+
+[ext_resource type="SpriteFrames" uid="uid://ddwr32v0jty3n" path="res://assets/packs/games/zelda/Fire.res" id="1_71tf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71tf1"]
+size = Vector2(16, 16)
+
+[node name="Fire" type="Node2D" unique_id=1186502192]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=931825633]
+sprite_frames = ExtResource("1_71tf1")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2024565848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1833293064]
+shape = SubResource("RectangleShape2D_71tf1")

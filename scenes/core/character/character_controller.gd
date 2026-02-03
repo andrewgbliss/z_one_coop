@@ -9,6 +9,9 @@ enum CameraBoundsType {
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: PhantomCamera2D = $PhantomCamera2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var hurtbox: Hurtbox = $Hurtbox
+
 
 @export var blackboard: CharacterBlackboard
 @export var controls: CharacterControls
@@ -19,6 +22,7 @@ enum CameraBoundsType {
 @export var garbage: bool = false
 @export var garbage_time: float = 0.0
 @export var die_explosions: Array[Explosion]
+@export var drop_items: Array[String]
 
 @export_group("Navigation")
 @export var navigation_agent: NavigationAgent2D
@@ -27,8 +31,8 @@ enum CameraBoundsType {
 @export var camera_bounds: Area2D
 @export var camera_bounds_type: CameraBoundsType = CameraBoundsType.RECTANGLE
 
-@export_group("Weapons")
-@export var weapon_fires: Array[WeaponFire]
+@export_group("Collisions")
+@export var hitbox: Hitbox
 
 var is_alive: bool = false
 var is_paralyzed: bool = false
@@ -44,41 +48,38 @@ signal spawned(pos: Vector2)
 signal died(pos: Vector2)
 signal parent_path_created(path: Path2D)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			prev_level()
-		elif event.keycode == KEY_2:
-			next_level()
-
-func prev_level():
-	if blackboard.level < 1:
-		blackboard.add_level(6)
-	else:
-		blackboard.add_level(-1)
-	var weapon_fire = weapon_fires[0]
-	var weapon = weapon_fire.weapon
-	if weapon:
-		weapon.attack_rate = 0.15
-		weapon.projectile = "bullet_" + str(blackboard.level + 1)
-
-func next_level():
-	if blackboard.level >= 6:
-		blackboard.add_level(-6)
-	else:
-		blackboard.add_level(1)
-	var weapon_fire = weapon_fires[0]
-	var weapon = weapon_fire.weapon
-	if weapon:
-		weapon.attack_rate = 0.15
-		weapon.projectile = "bullet_" + str(blackboard.level + 1)
-
 func _ready() -> void:
 	if navigation_agent:
 		navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	is_alive = false
 	is_paralyzed = true
 	hide()
+
+	if blackboard and blackboard.character_controller_type == CharacterBlackboard.CharacterControllerType.PLAYER:
+		_setup_player_blackboard()
+
+func _setup_player_blackboard() -> void:
+	blackboard.restore_blackboard()
+	blackboard.health_changed.connect(_on_blackboard_health_changed)
+	blackboard.inventory.item_added.connect(_on_blackboard_item_added)
+	blackboard.inventory.item_removed.connect(_on_blackboard_item_removed)
+	blackboard.inventory.gold_changed.connect(_on_blackboard_gold_changed)
+	blackboard.equipment.equipment_changed.connect(_on_blackboard_equipment_changed)
+	
+func _on_blackboard_health_changed(_health: int, _max_health: int) -> void:
+	blackboard.save_blackboard()
+
+func _on_blackboard_item_added(_item: Item) -> void:
+	blackboard.save_blackboard()
+
+func _on_blackboard_item_removed(_item: Item) -> void:
+	blackboard.save_blackboard()
+
+func _on_blackboard_gold_changed(_gold: int) -> void:
+	blackboard.save_blackboard()
+
+func _on_blackboard_equipment_changed() -> void:
+	blackboard.save_blackboard()
 
 func created_parent_path(path: Path2D):
 	parent_path_created.emit(path)
@@ -185,6 +186,15 @@ func die():
 	if not is_alive:
 		return
 	is_alive = false
+	velocity = Vector2.ZERO
+	blackboard.velocity = Vector2.ZERO
+	collision_shape.disabled = true
+	if hurtbox:
+		hurtbox.monitoring = false
+		hurtbox.monitorable = false
+	if hitbox:
+		hitbox.monitoring = false
+		hitbox.monitorable = false
 	is_paralyzed = true
 	if sprite:
 		sprite.hide()
@@ -192,6 +202,9 @@ func die():
 		animated_sprite.hide()
 	for explosion in die_explosions:
 		explosion.run()
+	if drop_items.size() > 0:
+		var item = drop_items.pick_random()
+		SpawnManager.spawn(item, global_position, get_parent())
 	if garbage:
 		await get_tree().create_timer(garbage_time).timeout
 		call_deferred("queue_free")
@@ -252,45 +265,20 @@ func item_pickup(item: Item):
 	if item is Currency:
 		blackboard.inventory.add_gold(item)
 	elif item is Equipable:
-		equip(item)
+		if item.equip_on_pickup:
+			blackboard.equipment.equip(item, blackboard.equipment.get_slot_type(item.slot))
+		blackboard.inventory.add(item)
 	elif item is Consumable:
-		consume(item)
-
-func consume(item: Item):
-	if item.consume_on_pickup:
-		if item.hp > 0:
-			blackboard.add_health(item.hp)
-		if item.mp > 0:
-			blackboard.add_mana(item.mp)
-		if item.sp > 0:
-			blackboard.add_stamina(item.sp)
-		if item.ammo > 0:
-			var weapon_fire = weapon_fires[1]
-			var weapon = weapon_fire.weapon
-			if weapon:
-				weapon.add_ammo(item.ammo)
-		if item.armor > 0:
-			blackboard.add_armor(item.armor)
-		if item.level > 0:
-			if blackboard.level >= 6:
-				blackboard.add_level(-6)
-			else:
+		if item.consume_on_pickup:
+			if item.hp > 0:
+				blackboard.add_health(item.hp)
+			if item.mp > 0:
+				blackboard.add_mana(item.mp)
+			if item.sp > 0:
+				blackboard.add_stamina(item.sp)
+			if item.level > 0:
 				blackboard.add_level(item.level)
-			var weapon_fire = weapon_fires[0]
-			var weapon = weapon_fire.weapon
-			if weapon:
-				weapon.attack_rate = 0.15
-				weapon.projectile = "bullet_" + str(blackboard.level + 1)
-	else:
-		blackboard.inventory.add(item)
-
-func equip(item: Item):
-	if item.equip_on_pickup:
-		blackboard.item_belt.set_next_belt_slot(item)
-		blackboard.equipment.equip(item, blackboard.equipment.get_slot_type(item.slot))
-	else:
-		blackboard.inventory.add(item)
-
+		
 func focus():
 	if camera:
 		camera.set_priority(10)
@@ -299,3 +287,7 @@ func focus():
 
 func get_random_path():
 	return paths[randi() % paths.size()]
+	
+func reset():
+	blackboard.reset()
+	blackboard.save_blackboard()

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cuyf1xilylye7"
+path="res://.godot/imported/Icon.aseprite-d7a8aba6494f910ee42a0f4832f13b48.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/Icon.aseprite"
+dest_files=["res://.godot/imported/Icon.aseprite-d7a8aba6494f910ee42a0f4832f13b48.res"]
+
+[params]
+

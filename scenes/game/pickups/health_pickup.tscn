@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://g4vptffs1ibv"]
+
+[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="1_lm8bj"]
+[ext_resource type="Texture2D" uid="uid://b13l6dbawsyjo" path="res://assets/img/pickups/Cargo.png" id="3_s0h3m"]
+[ext_resource type="Script" uid="uid://dfarl1fr76j2f" path="res://scenes/core/items/resources/consumable.gd" id="9_e6qrt"]
+
+[sub_resource type="Resource" id="Resource_i8k56"]
+resource_local_to_scene = true
+script = ExtResource("9_e6qrt")
+hp = 50
+consume_on_pickup = true
+metadata/_custom_type_script = "uid://dfarl1fr76j2f"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leuas"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cjth"]
+atlas = ExtResource("3_s0h3m")
+region = Rect2(0, 0, 8, 8)
+
+[node name="HealthPickup" type="Area2D" unique_id=884572675]
+collision_layer = 4
+script = ExtResource("1_lm8bj")
+text = "+50 Health"
+offset = Vector2(-8, -16)
+item = SubResource("Resource_i8k56")
+audio_name = "Pickup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2091935005]
+shape = SubResource("RectangleShape2D_leuas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=587309432]
+modulate = Color(1.1, 0.26, 0.26, 1)
+z_index = 5
+position = Vector2(-1.78814e-07, 1.78814e-07)
+texture = SubResource("AtlasTexture_5cjth")

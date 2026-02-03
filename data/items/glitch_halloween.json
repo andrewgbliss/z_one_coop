@@ -1,0 +1,43 @@
+{
+  "spriteSheet": {
+    "name": "Glitch Halloween",
+    "atlas": {
+      "path": "res://assets/img/theme/Halloween-Items.png",
+      "cell_size": 16,
+      "hframes": 6,
+      "vframes": 2
+    }
+  },
+  "items": [
+    {
+      "frame": 1,
+      "type": "currency",
+      "name": "skull",
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 2,
+      "type": "consumable",
+      "name": "purple magicians hat",
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 9,
+      "type": "consumable",
+      "name": "green potion",
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 8,
+      "type": "consumable",
+      "name": "cauldron",
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 11,
+      "type": "consumable",
+      "name": "candle",
+      "consume_on_pickup": true
+    }
+  ]
+}

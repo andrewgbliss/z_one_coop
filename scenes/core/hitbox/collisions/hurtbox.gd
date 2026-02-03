@@ -8,12 +8,17 @@ func _ready() -> void:
 
 func _on_area_entered(area: Node2D) -> void:
 	if area is Hitbox:
-		take_damage(area.damage)
-		
-func take_damage(damage: int):
+		take_damage(area.damage, area)
+
+func take_damage(damage: int, hitbox_area: Node2D = null) -> void:
+	if not parent:
+		return
 	parent.take_damage(damage)
-	var direction = Vector2.ZERO
-	parent.apply_knockback(direction)
+	# Only players (CharacterController with PlayerControls) get knockback; NPCs do not
+	if parent.controls and parent.controls is PlayerControls:
+		var direction := (global_position - hitbox_area.global_position).normalized() if hitbox_area else Vector2.ZERO
+		if direction != Vector2.ZERO:
+			parent.apply_knockback(direction)
 
 # func apply_knockback_rigid(rigidbody: RigidBody2D) -> void:
 # 	# Direction AWAY from hitbox - flip it

@@ -1,0 +1,213 @@
+{
+  "spriteSheet": {
+    "name": "Fruit and Vegetable",
+    "atlas": {
+      "path": "res://assets/img/items/FruitAndVegetable.png",
+      "cell_size": 16,
+      "hframes": 8,
+      "vframes": 5
+    }
+  },
+  "items": [
+    {
+      "frame": 0,
+      "type": "consumable",
+      "name": "red apple"
+    },
+    {
+      "frame": 1,
+      "type": "consumable",
+      "name": "orange"
+    },
+    {
+      "frame": 2,
+      "type": "consumable",
+      "name": "banana"
+    },
+    {
+      "frame": 3,
+      "type": "consumable",
+      "name": "cherry"
+    },
+    {
+      "frame": 4,
+      "type": "consumable",
+      "name": "yellow lemon"
+    },
+    {
+      "frame": 5,
+      "type": "consumable",
+      "name": "purple grape"
+    },
+    {
+      "frame": 6,
+      "type": "consumable",
+      "name": "red strawberry"
+    },
+    {
+      "frame": 7,
+      "type": "consumable",
+      "name": "watermelon"
+    },
+    {
+      "frame": 8,
+      "type": "consumable",
+      "name": "green apple"
+    },
+    {
+      "frame": 9,
+      "type": "consumable",
+      "name": "orange"
+    },
+    {
+      "frame": 10,
+      "type": "consumable",
+      "name": "kiwi"
+    },
+    {
+      "frame": 11,
+      "type": "consumable",
+      "name": "avocado"
+    },
+    {
+      "frame": 12,
+      "type": "consumable",
+      "name": "green lemon"
+    },
+    {
+      "frame": 13,
+      "type": "consumable",
+      "name": "green grape"
+    },
+    {
+      "frame": 14,
+      "type": "consumable",
+      "name": "green strawberry"
+    },
+    {
+      "frame": 15,
+      "type": "consumable",
+      "name": "watermelon"
+    },
+    {
+      "frame": 16,
+      "type": "consumable",
+      "name": "pineapple"
+    },
+    {
+      "frame": 17,
+      "type": "consumable",
+      "name": "grapefruit"
+    },
+    {
+      "frame": 18,
+      "type": "consumable",
+      "name": "green pear"
+    },
+    {
+      "frame": 19,
+      "type": "consumable",
+      "name": "pear"
+    },
+    {
+      "frame": 20,
+      "type": "consumable",
+      "name": "white onion"
+    },
+    {
+      "frame": 21,
+      "type": "consumable",
+      "name": "eggplant"
+    },
+    {
+      "frame": 22,
+      "type": "consumable",
+      "name": "green bell pepper"
+    },
+    {
+      "frame": 23,
+      "type": "consumable",
+      "name": "green pepper"
+    },
+    {
+      "frame": 24,
+      "type": "consumable",
+      "name": "tomato"
+    },
+    {
+      "frame": 25,
+      "type": "consumable",
+      "name": "potato"
+    },
+    {
+      "frame": 26,
+      "type": "consumable",
+      "name": "carrot"
+    },
+    {
+      "frame": 27,
+      "type": "consumable",
+      "name": "garlic"
+    },
+    {
+      "frame": 28,
+      "type": "consumable",
+      "name": "yellow onion"
+    },
+    {
+      "frame": 29,
+      "type": "consumable",
+      "name": "leek"
+    },
+    {
+      "frame": 30,
+      "type": "consumable",
+      "name": "red bell pepper"
+    },
+    {
+      "frame": 31,
+      "type": "consumable",
+      "name": "red pepper"
+    },
+    {
+      "frame": 32,
+      "type": "consumable",
+      "name": "green tomato"
+    },
+    {
+      "frame": 33,
+      "type": "consumable",
+      "name": "pumpkin"
+    },
+    {
+      "frame": 34,
+      "type": "consumable",
+      "name": "green pumpkin"
+    },
+    {
+      "frame": 35,
+      "type": "consumable",
+      "name": "purple onion"
+    },
+    {
+      "frame": 36,
+      "type": "consumable",
+      "name": "mushroom"
+    },
+    {
+      "frame": 37,
+      "type": "consumable",
+      "name": "lettuce"
+    },
+    {
+      "frame": 38,
+      "type": "consumable",
+      "name": "yellow bell pepper"
+    },
+    {
+      "frame": 39,
+      "type": "consumable",
+      "name": "yellow pepper"
+    }
+  ]
+}

@@ -87,9 +87,13 @@ func swap_slots(from_index: int, to_index: int):
 	return false
 
 func save():
+	var restored_items: Array[Item] = []
+	for item in items:
+		if item:
+			restored_items.append(item.save())
 	var data = {
 		"gold": gold,
-		"items": items.map(func(item): return item.save() if item else null)
+		"items": restored_items
 	}
 	return data
 	
@@ -97,7 +101,11 @@ func restore(data):
 	if data.has("gold"):
 		gold = data["gold"]
 	if data.has("items"):
-		items = data["items"].map(func(item: Item): return item.restore(item))
+		var restored_items: Array[Item] = []
+		for item in items:
+			if item:
+				restored_items.append(item.save())
+		items = restored_items
 
 func print_inventory():
 	print("Inventory: ", save())

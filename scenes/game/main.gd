@@ -18,5 +18,6 @@ func _on_game_state_changed(state: GameManager.GAME_STATE):
 			SceneManager.transition_play("BrandSplashScreen")
 		GameManager.GAME_STATE.GAME_MAIN_MENU:
 			UiManager.game_menus.push("MainMenu")
-		GameManager.GAME_STATE.GAME_PLAY:
+		GameManager.GAME_STATE.GAME_PLAY_READY:
+			# TODO - change to first scene or select a scene
 			SceneManager.goto_scene("res://scenes/game/levels/overworld.tscn")

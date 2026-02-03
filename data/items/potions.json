@@ -1,0 +1,55 @@
+{
+  "spriteSheet": {
+    "name": "Potions",
+    "atlas": {
+      "path": "res://assets/img/items/potions.png",
+      "cell_size": 16,
+      "hframes": 3,
+      "vframes": 2
+    }
+  },
+  "items": [
+    {
+      "frame": 0,
+      "type": "consumable",
+      "name": "red low health potion",
+      "health": 25.0,
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 1,
+      "type": "consumable",
+      "name": "red medium health potion",
+      "health": 50.0,
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 2,
+      "type": "consumable",
+      "name": "red high health potion",
+      "health": 100.0,
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 3,
+      "type": "consumable",
+      "name": "blue low mana potion",
+      "mana": 25.0,
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 4,
+      "type": "consumable",
+      "name": "blue medium mana potion",
+      "mana": 50.0,
+      "consume_on_pickup": true
+    },
+    {
+      "frame": 5,
+      "type": "consumable",
+      "name": "blue high mana potion",
+      "mana": 100.0,
+      "consume_on_pickup": true
+    }
+  ]
+}

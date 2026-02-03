@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://d1s3pc6tjqad3"]
+
+[ext_resource type="Script" uid="uid://b3yaenxtgdr6f" path="res://scenes/game/projectiles/projectile.gd" id="1_0clxq"]
+[ext_resource type="Texture2D" uid="uid://bvlgn4on426vl" path="res://assets/packs/games/zelda/swords.png" id="2_wwtoq"]
+[ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="3_y5cep"]
+[ext_resource type="PackedScene" uid="uid://f0i3j5iar35x" path="res://scenes/game/effects/sword_hit.tscn" id="4_8afus"]
+[ext_resource type="AudioStream" uid="uid://b2x4ssgne1ixb" path="res://assets/audio/effects/laserShoot.wav" id="5_jylgk"]
+
+[sub_resource type="Shader" id="Shader_rq4w8"]
+code = "shader_type canvas_item;
+
+uniform vec4 shine_color : source_color = vec4(1.0); //Shine color
+uniform float alpha_limit : hint_range(0.0, 1.0, 0.1) = 0.0; //Alpha color limit to apply the shine, for example, if you won't to apply the shine to semi-transparent pixels
+uniform float cycle_speed : hint_range(0.0, 20.0, 0.1) = 1.0; //Pulse cycle speed
+uniform bool full_pulse_cycle = false; //[False = Do the effect and make a pause] [True = Do the effect continuosly]
+uniform int mode : hint_range(0, 2, 1) = 0; //[0 = Always off] [1 = Pulse mode] [2 = Always on]
+
+void fragment()
+{
+	//Check if the effect is enabled
+	if (mode > 0)
+	{
+		//Check the pixel alpha value
+		if (COLOR.a >= alpha_limit)
+		{
+			//Check the mode
+			switch (mode)
+			{
+				case 1: //Pulse mode
+				{
+					float cycle = sin(TIME * cycle_speed);
+					COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, (((cycle >= 0.0) || (full_pulse_cycle)) ? abs(cycle) : 0.0) * shine_color.a);
+					break;
+				}
+				case 2: //Always on
+				{
+					COLOR.rgb = mix(COLOR.rgb, shine_color.rgb, shine_color.a);
+					break;
+				}
+			}
+		}
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttgua"]
+shader = SubResource("Shader_rq4w8")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_limit = 0.0
+shader_parameter/cycle_speed = 20.0
+shader_parameter/full_pulse_cycle = false
+shader_parameter/mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmlj7"]
+size = Vector2(16, 3)
+
+[sub_resource type="Animation" id="Animation_3fm7x"]
+resource_name = "Fire"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6uy4a"]
+_data = {
+&"Fire": SubResource("Animation_3fm7x")
+}
+
+[node name="WhiteSwordShoot" type="Node2D" unique_id=6012962 node_paths=PackedStringArray("audio")]
+script = ExtResource("1_0clxq")
+acceleration = 50
+audio = NodePath("AudioStreamPlayer2D")
+metadata/_custom_type_script = "uid://b3yaenxtgdr6f"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1365442932]
+material = SubResource("ShaderMaterial_ttgua")
+texture = ExtResource("2_wwtoq")
+hframes = 4
+vframes = 4
+frame = 10
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1155815618]
+collision_layer = 8
+collision_mask = 66
+script = ExtResource("3_y5cep")
+damage = 10
+collide_effect = ExtResource("4_8afus")
+metadata/_custom_type_script = "uid://chj8v1sp4qgus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=729845139]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hmlj7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=244063304]
+libraries/ = SubResource("AnimationLibrary_6uy4a")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1408060242]
+stream = ExtResource("5_jylgk")
+volume_db = -17.829

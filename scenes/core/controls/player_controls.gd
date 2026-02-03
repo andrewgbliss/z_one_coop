@@ -28,12 +28,12 @@ var double_tap_count: int = 0
 var touch_position: Vector2 = Vector2.ZERO
 var is_touching: bool = false
 var last_pressed_movement: String = ""
-var last_movement_direction: Vector2
-var last_aim_direction: Vector2
+var last_movement_direction: Vector2 = Vector2.ZERO
+var last_aim_direction: Vector2 = Vector2.RIGHT
 
 func _ready():
 	super ()
-	_detect_input_method()	
+	_detect_input_method()
 	set_device_index(parent.device_index)
 	if mouse_cursor:
 		Input.set_custom_mouse_cursor(mouse_cursor, Input.CURSOR_ARROW, Vector2(16, 16))

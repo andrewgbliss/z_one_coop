@@ -1,0 +1,806 @@
+[gd_scene format=3 uid="uid://c5crrb1erwhvc"]
+
+[ext_resource type="Script" uid="uid://c8wbfqp4accut" path="res://scenes/game/ui/hud/hud.gd" id="1_4jqwt"]
+[ext_resource type="Texture2D" uid="uid://cuaemmusujclh" path="res://assets/packs/games/zelda/heart.png" id="2_sdl82"]
+[ext_resource type="Texture2D" uid="uid://b7lkeempj2qsb" path="res://assets/packs/games/zelda/Ui-Coin.png" id="3_jdapi"]
+[ext_resource type="Shader" uid="uid://6uph4m6ym2yk" path="res://shaders/color_overlay.gdshader" id="7_gonto"]
+
+[sub_resource type="Animation" id="Animation_s5utl"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:r")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:g")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:b")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("DieOverlay/CanvasLayer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5atvc"]
+resource_name = "die_fade_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DieOverlay/CanvasLayer/Control:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DieOverlay/CanvasLayer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bkoqt"]
+resource_name = "hide_message"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_a660p"]
+resource_name = "hide_mobile_controls"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_l0aiv"]
+resource_name = "show_message"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dialogue/CanvasLayer/Panel2:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_swth0"]
+resource_name = "show_mobile_controls"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_j2i3k"]
+resource_name = "transition_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.33333334)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_bdjak"]
+resource_name = "transition_out"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(2.98023e-08, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(2.98023e-08, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(2.98023e-08, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerBar/CanvasLayer/Control:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0, 0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(2.98023e-08, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kvmp"]
+_data = {
+&"RESET": SubResource("Animation_s5utl"),
+&"die_fade_in": SubResource("Animation_5atvc"),
+&"hide_message": SubResource("Animation_bkoqt"),
+&"hide_mobile_controls": SubResource("Animation_a660p"),
+&"show_message": SubResource("Animation_l0aiv"),
+&"show_mobile_controls": SubResource("Animation_swth0"),
+&"transition_in": SubResource("Animation_j2i3k"),
+&"transition_out": SubResource("Animation_bdjak")
+}
+
+[sub_resource type="Gradient" id="Gradient_6y3w7"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sdl82"]
+gradient = SubResource("Gradient_6y3w7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdapi"]
+atlas = ExtResource("2_sdl82")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swl4k"]
+shader = ExtResource("7_gonto")
+shader_parameter/color = Color(0.341176, 0.286275, 0.113725, 0.47451)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5atvc"]
+
+[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button")]
+process_mode = 3
+script = ExtResource("1_4jqwt")
+player_one_coins_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/CoinLabel")
+player_two_coins_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/CoinLabel")
+player_one_hearts = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/Container")
+player_two_hearts = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container")
+heart_texture = ExtResource("2_sdl82")
+restart_button = NodePath("DieOverlay/CanvasLayer/Control/Control/RestartButton")
+metadata/_custom_type_script = "uid://c8wbfqp4accut"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1262092961]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_5kvmp")
+
+[node name="PlayerBar" type="Node" parent="." unique_id=1229171266]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerBar" unique_id=1334377459]
+layer = 5
+
+[node name="Control" type="Control" parent="PlayerBar/CanvasLayer" unique_id=902086425]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="BlackBg" type="TextureRect" parent="PlayerBar/CanvasLayer/Control" unique_id=1524764056]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture1D_sdl82")
+
+[node name="PlayerOneControl" type="Control" parent="PlayerBar/CanvasLayer/Control" unique_id=146933721]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Container" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=500348912]
+layout_mode = 1
+offset_left = 2.0
+offset_right = 175.0
+offset_bottom = 34.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = -5
+columns = 6
+
+[node name="HeartImage" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=468270691]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1453424618]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1624415354]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage4" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=282120298]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage5" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=550226888]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage6" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=938462345]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage7" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=24950397]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage8" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=490145658]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage9" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1599174607]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage10" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1824156541]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage11" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1824241809]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage12" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/Container" unique_id=1023930396]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="CoinUi" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=1788061395]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 18.0
+offset_bottom = 42.0
+texture = ExtResource("3_jdapi")
+
+[node name="CoinLabel" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=836434245]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 26.0
+offset_right = 106.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "256"
+vertical_alignment = 1
+
+[node name="PlayerTwoControl" type="Control" parent="PlayerBar/CanvasLayer/Control" unique_id=499949790]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Container" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=580238499]
+layout_mode = 1
+offset_left = -59.0
+offset_right = 114.0
+offset_bottom = 34.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = -5
+columns = 6
+
+[node name="HeartImage" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=964043093]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=1956448393]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=935286181]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage4" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=650584854]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage5" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=283574699]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage6" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=817018542]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage7" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=1745577413]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage8" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=2020843557]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage9" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=86627832]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage10" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=222281251]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage11" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=874412695]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="HeartImage12" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container" unique_id=1433509746]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jdapi")
+
+[node name="CoinUi" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=2042005622]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 42.0
+texture = ExtResource("3_jdapi")
+
+[node name="CoinLabel" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=547529741]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 26.0
+offset_right = 108.0
+offset_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 18
+text = "256"
+vertical_alignment = 1
+
+[node name="DieOverlay" type="Node" parent="." unique_id=192002190]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DieOverlay" unique_id=207369512]
+layer = 10
+visible = false
+
+[node name="Control" type="Control" parent="DieOverlay/CanvasLayer" unique_id=1112837144]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="DieOverlay/CanvasLayer/Control" unique_id=1335771228]
+material = SubResource("ShaderMaterial_swl4k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="DieOverlay/CanvasLayer/Control" unique_id=1278315566]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DieOverlay/CanvasLayer/Control/Control" unique_id=156165791]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -37.0
+offset_right = 48.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="DieOverlay/CanvasLayer/Control/Control" unique_id=1936209861]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -3.00003
+offset_right = -8.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_right = NodePath("../QuitButton")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="DieOverlay/CanvasLayer/Control/Control" unique_id=460329947]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -2.0
+offset_right = 73.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../RestartButton")
+theme_type_variation = &"FlatButton"
+text = "Quit"
+
+[node name="Dialogue" type="Node" parent="." unique_id=1093952241]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Dialogue" unique_id=920672881]
+layer = 5
+
+[node name="Panel2" type="Panel" parent="Dialogue/CanvasLayer" unique_id=1083241886]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -9.5
+offset_right = 33.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5atvc")
+
+[node name="TextureRect" type="TextureRect" parent="Dialogue/CanvasLayer/Panel2" unique_id=161447980]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -73.0
+offset_right = -51.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureRect2" type="TextureRect" parent="Dialogue/CanvasLayer/Panel2" unique_id=1303523081]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -60.0
+offset_right = 8.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Message" type="Label" parent="Dialogue/CanvasLayer/Panel2/TextureRect2" unique_id=2128539070]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -16.0
+offset_right = 33.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ready 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="DieOverlay/CanvasLayer/Control/Control/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="DieOverlay/CanvasLayer/Control/Control/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://0if6xx63hf4k"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_1rpt8"]
+[ext_resource type="Texture2D" uid="uid://bvlgn4on426vl" path="res://assets/packs/games/zelda/swords.png" id="2_yvqtr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alsuc"]
+atlas = ExtResource("2_yvqtr")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_1rpt8")
+damage_min = 5
+damage_max = 5
+stamina_cost = 1.0
+projectile = "wood_sword"
+unlimited_ammo = true
+top_level = false
+weight = 1
+durability = 1
+sell_price = 1
+buy_price = 1
+level_requirement = 1
+slot = 9
+equip_on_pickup = true
+package = "swords"
+name = "Wood Sword"
+is_game_unique = true
+texture = SubResource("AtlasTexture_alsuc")
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

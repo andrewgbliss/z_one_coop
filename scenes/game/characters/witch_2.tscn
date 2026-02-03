@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://co6ksft0q3c8x"]
+
+[ext_resource type="Texture2D" uid="uid://bmjpqxbpgoau" path="res://assets/packs/games/zelda/witch_2.png" id="1_21cgj"]
+
+[node name="Witch2" type="Node2D" unique_id=1486150566]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926849140]
+texture = ExtResource("1_21cgj")

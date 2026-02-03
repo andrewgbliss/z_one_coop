@@ -8,6 +8,7 @@ enum GAME_STATE {
 	GAME_CHARACTER_CREATE,
 	GAME_CHARACTER_SELECT,
 	GAME_START,
+	GAME_PLAY_READY,
 	GAME_PLAY,
 	GAME_SAVE,
 	GAME_RESTORE,
@@ -20,6 +21,7 @@ enum GAME_STATE {
 var game_state: GAME_STATE = GAME_STATE.NONE
 var previous_game_state: GAME_STATE = GAME_STATE.NONE
 var is_paused: bool = false
+var how_many_players: int = 1
 
 signal state_changed(state: GAME_STATE)
 signal paused_toggled(is_paused: bool)
@@ -84,8 +86,12 @@ func toggle_pause():
 		pause()
 
 func reset_scene():
+	set_state(GAME_STATE.GAME_PLAY_READY)
 	get_tree().reload_current_scene()
 	
 func quit():
 	set_state(GAME_STATE.GAME_QUIT)
 	get_tree().quit()
+	
+func reset():
+	pass

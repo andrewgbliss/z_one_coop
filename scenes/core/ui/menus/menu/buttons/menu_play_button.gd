@@ -1,6 +1,7 @@
 class_name MenuPlayButton extends Button
 
 @export var menu_stack: MenuStack
+@export var how_many_players: int = 1
 
 func _ready() -> void:
 	pressed.connect(_on_button_pressed)
@@ -11,4 +12,5 @@ func _on_button_pressed() -> void:
 	
 func _on_menu_stack_finished():
 	menu_stack.finished.disconnect(_on_menu_stack_finished)
-	GameManager.set_state(GameManager.GAME_STATE.GAME_PLAY)
+	GameManager.how_many_players = how_many_players
+	GameManager.set_state(GameManager.GAME_STATE.GAME_PLAY_READY)

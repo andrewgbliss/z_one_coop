@@ -1,0 +1,109 @@
+{
+  "spriteSheet": {
+    "name": "Weapons and Armor",
+    "atlas": {
+      "path": "res://assets/img/items/WeaponsAndArmor.png",
+      "cell_size": 16,
+      "hframes": 4,
+      "vframes": 4
+    }
+  },
+  "items": [
+    {
+      "frame": 0,
+      "type": "melee_weapon",
+      "name": "long sword",
+      "slot": "hand"
+    },
+    {
+      "frame": 1,
+      "type": "melee_weapon",
+      "name": "axe",
+      "slot": "hand"
+    },
+    {
+      "frame": 2,
+      "type": "melee_weapon",
+      "name": "mace",
+      "slot": "hand"
+    },
+    {
+      "frame": 3,
+      "type": "melee_weapon",
+      "name": "short sword",
+      "slot": "hand"
+    },
+    {
+      "frame": 4,
+      "type": "ranged_weapon",
+      "name": "bow",
+      "slot": "hand"
+    },
+    {
+      "frame": 5,
+      "type": "ranged_weapon",
+      "name": "wand",
+      "slot": "hand"
+    },
+    {
+      "frame": 6,
+      "type": "shield",
+      "name": "small shield",
+      "slot": "hand"
+    },
+    {
+      "frame": 7,
+      "type": "shield",
+      "name": "large shield",
+      "slot": "hand"
+    },
+    {
+      "frame": 8,
+      "type": "helmet",
+      "name": "helmet",
+      "slot": "head"
+    },
+    {
+      "frame": 9,
+      "type": "amulet",
+      "name": "amulet",
+      "slot": "neck"
+    },
+    {
+      "frame": 10,
+      "type": "chest",
+      "name": "chestplate",
+      "slot": "chest"
+    },
+    {
+      "frame": 11,
+      "type": "belt",
+      "name": "belt",
+      "slot": "waist"
+    },
+    {
+      "frame": 12,
+      "type": "leggings",
+      "name": "leggings",
+      "slot": "legs"
+    },
+    {
+      "frame": 13,
+      "type": "boots",
+      "name": "boots",
+      "slot": "feet"
+    },
+    {
+      "frame": 14,
+      "type": "gloves",
+      "name": "gloves",
+      "slot": "hands"
+    },
+    {
+      "frame": 15,
+      "type": "ring",
+      "name": "ring",
+      "slot": "finger"
+    }
+  ]
+}

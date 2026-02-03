@@ -1,0 +1,19 @@
+{
+  "spriteSheet": {
+    "name": "Currency",
+    "atlas": {
+      "path": "res://assets/img/items/Coin-Sheet.png",
+      "cell_size": 16,
+      "hframes": 4,
+      "vframes": 1
+    }
+  },
+  "items": [
+    {
+      "frame": 0,
+      "type": "currency",
+      "name": "gold",
+      "amount": 1.0
+    }
+  ]
+}

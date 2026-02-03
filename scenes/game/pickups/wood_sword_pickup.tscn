@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://p86152tbeahg"]
+
+[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="1_dvwic"]
+[ext_resource type="Resource" uid="uid://0if6xx63hf4k" path="res://data/resources/items/wood_sword.tres" id="2_50nfa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcspe"]
+size = Vector2(8, 16)
+
+[node name="WoodSwordPickup" type="Area2D" unique_id=1815426670]
+script = ExtResource("1_dvwic")
+text = "Wood Sword"
+item = ExtResource("2_50nfa")
+audio_name = "Pickup"
+metadata/_custom_type_script = "uid://dy55lqpe5tllk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=173724177]
+shape = SubResource("RectangleShape2D_fcspe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2133930512]
+z_index = 5
+position = Vector2(0, 1.19209e-07)

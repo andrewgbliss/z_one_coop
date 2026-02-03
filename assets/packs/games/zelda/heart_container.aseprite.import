@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dlra5b4g2i0rk"
+path="res://.godot/imported/heart_container.aseprite-3389592ae3f2c3442b2022cb0e34b082.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/heart_container.aseprite"
+dest_files=["res://.godot/imported/heart_container.aseprite-3389592ae3f2c3442b2022cb0e34b082.res"]
+
+[params]
+

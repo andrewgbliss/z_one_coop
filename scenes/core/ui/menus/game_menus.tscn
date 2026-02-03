@@ -777,7 +777,7 @@ stream = ExtResource("4_iq7ms")
 
 [node name="MainMenu" type="CanvasLayer" parent="." unique_id=613131746 node_paths=PackedStringArray("focus_btn")]
 script = ExtResource("4_bg78d")
-focus_btn = NodePath("Control/HBoxContainer/ButtonPlay")
+focus_btn = NodePath("Control/HBoxContainer/ButtonOnePlayer")
 metadata/_custom_type_script = "uid://cfidra8l63jcf"
 
 [node name="Control" type="Control" parent="MainMenu" unique_id=1949000338]
@@ -806,25 +806,37 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -91.0
-offset_right = 45.0
-offset_bottom = -67.0
+offset_left = -74.0
+offset_top = -64.0
+offset_right = 74.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ButtonPlay" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=1783834768 node_paths=PackedStringArray("menu_stack")]
+[node name="ButtonOnePlayer" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=1783834768 node_paths=PackedStringArray("menu_stack")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonQuit")
 focus_neighbor_right = NodePath("../ButtonSettings")
-text = "Play"
+theme_override_font_sizes/font_size = 32
+text = "One"
 script = ExtResource("7_a02qa")
 menu_stack = NodePath("../../../..")
 
+[node name="ButtonTwoPlayer" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=1979310409 node_paths=PackedStringArray("menu_stack")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonQuit")
+focus_neighbor_right = NodePath("../ButtonSettings")
+theme_override_font_sizes/font_size = 32
+text = "Two"
+script = ExtResource("7_a02qa")
+menu_stack = NodePath("../../../..")
+how_many_players = 2
+
 [node name="ButtonSettings" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=1974396545 node_paths=PackedStringArray("menu_stack", "to_menu")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ButtonPlay")
+focus_neighbor_left = NodePath("../ButtonOnePlayer")
 focus_neighbor_right = NodePath("../ButtonQuit")
+theme_override_font_sizes/font_size = 32
 text = "Settings"
 script = ExtResource("5_vwoi7")
 menu_stack = NodePath("../../../..")
@@ -835,6 +847,7 @@ metadata/_custom_type_script = "uid://kfj666n2xifd"
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonSettings")
 focus_neighbor_right = NodePath(".")
+theme_override_font_sizes/font_size = 32
 text = "Quit"
 script = ExtResource("7_iwh2y")
 

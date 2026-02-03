@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterBlackboard" format=3 uid="uid://bu067jl6j8010"]
+
+[ext_resource type="Script" uid="uid://xij0fxllggis" path="res://scenes/core/character/character_blackboard.gd" id="4_4psk4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("4_4psk4")
+character_name = "Link"
+level = 1
+health = 240
+max_health = 240
+speed = 100.0
+acceleration = 50.0
+friction = 30.0
+metadata/_custom_type_script = "uid://xij0fxllggis"

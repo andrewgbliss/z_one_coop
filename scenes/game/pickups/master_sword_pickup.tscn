@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2y5gv5i28kqi"]
+
+[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="1_kcm8o"]
+[ext_resource type="Resource" uid="uid://c1oyrubk667o6" path="res://data/resources/items/master_sword.tres" id="2_kcm8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcspe"]
+size = Vector2(8, 16)
+
+[node name="MasterSwordPickup" type="Area2D" unique_id=1815426670]
+script = ExtResource("1_kcm8o")
+text = "Master Sword"
+item = ExtResource("2_kcm8o")
+audio_name = "Pickup"
+metadata/_custom_type_script = "uid://dy55lqpe5tllk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=173724177]
+shape = SubResource("RectangleShape2D_fcspe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2133930512]
+z_index = 5
+position = Vector2(0, 1.19209e-07)

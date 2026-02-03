@@ -1,58 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cl1pmlit1i68i"]
 
-[ext_resource type="Texture2D" uid="uid://dvshpsoqly1rg" path="res://assets/img/ui/FunMetalSet.png" id="2_ehq15"]
 [ext_resource type="FontFile" uid="uid://bpemy6eb6xjf5" path="res://assets/fonts/PixelFont.ttf" id="3_il5tp"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yrla"]
-texture = ExtResource("2_ehq15")
-texture_margin_left = 4.18905
-texture_margin_top = 3.78365
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-region_rect = Rect2(64, 0, 32, 16)
-modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tyrsm"]
-texture = ExtResource("2_ehq15")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-region_rect = Rect2(64, 0, 32, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2dv04"]
-texture = ExtResource("2_ehq15")
-texture_margin_left = 4.45931
-texture_margin_top = 4.0
-texture_margin_right = 4.32418
-texture_margin_bottom = 6.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(64, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6q6k"]
-atlas = ExtResource("2_ehq15")
-region = Rect2(50, 114, 12, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4x52v"]
-atlas = ExtResource("2_ehq15")
-region = Rect2(50, 114, 12, 12)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_audxb"]
-texture = ExtResource("2_ehq15")
-texture_margin_left = 17.0
-texture_margin_top = 17.0
-texture_margin_right = 17.0
-texture_margin_bottom = 17.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(0, 0, 48, 48)
 
 [resource]
 default_font = ExtResource("3_il5tp")
-Button/styles/hover = SubResource("StyleBoxTexture_7yrla")
-Button/styles/normal = SubResource("StyleBoxTexture_tyrsm")
-Button/styles/pressed = SubResource("StyleBoxTexture_2dv04")
-HSlider/icons/grabber = SubResource("AtlasTexture_m6q6k")
-HSlider/icons/grabber_highlight = SubResource("AtlasTexture_4x52v")
-Panel/styles/panel = SubResource("StyleBoxTexture_audxb")

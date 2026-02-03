@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Consumable" format=3 uid="uid://d2gpfjjtlco0f"]
+
+[ext_resource type="Script" uid="uid://dfarl1fr76j2f" path="res://scenes/core/items/resources/consumable.gd" id="1_ojtyw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ojtyw"]
+load_path = "res://.godot/imported/heart.png-c18779543fb9c2effc5b893dbe7a2b63.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8stxw"]
+atlas = SubResource("CompressedTexture2D_ojtyw")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_ojtyw")
+hp = 10
+consume_on_pickup = true
+name = "Heart"
+texture = SubResource("AtlasTexture_8stxw")
+metadata/_custom_type_script = "uid://dfarl1fr76j2f"

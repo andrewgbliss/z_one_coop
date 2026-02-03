@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://conxtgxbjjak8" path="res://scenes/core/hitbox/collisions/hurtbox.gd" id="2_8mg08"]
 [ext_resource type="Script" uid="uid://xij0fxllggis" path="res://scenes/core/character/character_blackboard.gd" id="2_efxgm"]
 [ext_resource type="SpriteFrames" uid="uid://ber8r7u2uqv04" path="res://assets/packs/games/zelda/octorok.res" id="3_efxgm"]
+[ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="4_othl5"]
 [ext_resource type="PackedScene" uid="uid://c5ikeeommtxrp" path="res://scenes/game/effects/enemy_killed_explosion.tscn" id="5_fxtxh"]
 [ext_resource type="Script" uid="uid://dibsls1l3cp4a" path="res://scenes/core/controls/scripts/path_finding/aim_at_target.gd" id="7_xqg8t"]
 [ext_resource type="Script" uid="uid://c4rhw3nruc3c5" path="res://scenes/core/controls/scripts/controls/npc_controls.gd" id="8_w3gne"]
@@ -15,9 +16,10 @@
 [sub_resource type="Resource" id="Resource_fxtxh"]
 resource_local_to_scene = true
 script = ExtResource("2_efxgm")
+character_controller_type = 1
 level = 1
-health = 1
-max_health = 1
+health = 5
+max_health = 5
 speed = 50.0
 acceleration = 50.0
 friction = 10.0
@@ -28,6 +30,9 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxtxh"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd8g5"]
+size = Vector2(16, 15)
 
 [sub_resource type="Shader" id="Shader_efxgm"]
 code = "shader_type canvas_item;
@@ -74,17 +79,19 @@ shader_parameter/cycle_speed = 20.0
 shader_parameter/full_pulse_cycle = false
 shader_parameter/mode = 0
 
-[node name="Octorok" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions", "navigation_agent")]
+[node name="Octorok" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions", "navigation_agent", "hitbox")]
 collision_layer = 2
-collision_mask = 65
+collision_mask = 64
 motion_mode = 1
 script = ExtResource("1_2883y")
 blackboard = SubResource("Resource_fxtxh")
 controls = NodePath("NpcControls")
 garbage = true
-garbage_time = 0.5
+garbage_time = 0.25
 die_explosions = [NodePath("EnemyKilledExplosion")]
+drop_items = Array[String](["coin_1", "heart"])
 navigation_agent = NodePath("NavigationAgent2D")
+hitbox = NodePath("Hitbox")
 metadata/_custom_type_script = "uid://om5mwrgyg8u7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533761963]
@@ -98,6 +105,16 @@ metadata/_custom_type_script = "uid://conxtgxbjjak8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470119857]
 shape = SubResource("RectangleShape2D_fxtxh")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=289147002]
+collision_layer = 16
+script = ExtResource("4_othl5")
+damage = 5
+metadata/_custom_type_script = "uid://chj8v1sp4qgus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=340916530]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cd8g5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1892765473]
 material = SubResource("ShaderMaterial_fxtxh")
@@ -123,7 +140,6 @@ speed = 50.0
 metadata/_custom_type_script = "uid://d2r7135pju422"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=194493816]
-avoidance_enabled = true
 
 [node name="AnimationSpriteResolver" type="Node" parent="." unique_id=1675968784]
 script = ExtResource("10_w3gne")

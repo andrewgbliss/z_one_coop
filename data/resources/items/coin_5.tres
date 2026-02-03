@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Currency" format=3 uid="uid://b2wtvasp0su2m"]
+
+[ext_resource type="Script" uid="uid://2lu5800u41l5" path="res://scenes/core/items/resources/currency.gd" id="1_fi2fo"]
+[ext_resource type="Texture2D" uid="uid://ndh2twhobtg2" path="res://assets/packs/games/zelda/coin_5.png" id="2_fi2fo"]
+
+[resource]
+script = ExtResource("1_fi2fo")
+amount = 5
+name = "Blue Rupee"
+texture = ExtResource("2_fi2fo")
+metadata/_custom_type_script = "uid://2lu5800u41l5"

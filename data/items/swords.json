@@ -1,0 +1,31 @@
+{
+  "spriteSheet": {
+    "name": "Swords",
+    "atlas": {
+      "path": "res://assets/packs/games/zelda/swords.png",
+      "cell_size": 16,
+      "hframes": 4,
+      "vframes": 4
+    }
+  },
+  "items": [
+    {
+      "frame": 1,
+      "type": "weapon",
+      "name": "wood sword",
+      "slot": "hand"
+    },
+    {
+      "frame": 5,
+      "type": "weapon",
+      "name": "master sword",
+      "slot": "hand"
+    },
+    {
+      "frame": 9,
+      "type": "weapon",
+      "name": "white sword",
+      "slot": "hand"
+    }
+  ]
+}

@@ -18,8 +18,6 @@ enum CharacterGender {Male, Female}
 @export var level: int = 0
 @export var health: int = 0
 @export var max_health: int = 0
-@export var armor: int = 0
-@export var max_armor: int = 0
 @export var mana: int = 0
 @export var max_mana: int = 0
 @export var stamina: int = 0
@@ -39,11 +37,12 @@ enum CharacterGender {Male, Female}
 @export var attack: int = 0
 
 signal health_changed(health_change: int, max_health: int)
-signal armor_changed(armor_change: int, max_armor: int)
 signal mana_changed(mana_change: int, max_mana: int)
 signal stamina_changed(stamina_change: int, max_stamina: int)
 signal special_changed(special_change: int, max_special: int)
 signal alignment_changed(alignment: float)
+signal inventory_changed
+signal equipment_changed
 signal level_changed(level: int)
 
 @export_group("Physics")
@@ -63,12 +62,62 @@ signal level_changed(level: int)
 @export_group("Inventory")
 @export var inventory: Inventory
 @export var equipment: Equipment
-@export var item_belt: ItemBelt
+
+func restore():
+	restore_blackboard()
+
+func save_blackboard():
+	if not inventory:
+		inventory = Inventory.new()
+		inventory_changed.emit()
+	if not equipment:
+		equipment = Equipment.new()
+		equipment_changed.emit()
+	var data = {
+		"inventory": inventory.save(),
+		"equipment": equipment.save(),
+		"blackboard": serialize(),
+	}
+	FilesUtil.save(FilesUtil.get_save_path() + "blackboard.json", data)
+
+func restore_blackboard():
+	var save_path = FilesUtil.get_save_path() + "blackboard.json"
+
+	if FileAccess.file_exists(save_path):
+		var data = FilesUtil.restore(save_path)
+		if data:
+			if not inventory:
+				inventory = Inventory.new()
+			inventory.restore(data["inventory"])
+			inventory_changed.emit()
+			if not equipment:
+				equipment = Equipment.new()
+			equipment.restore(data["equipment"])
+			equipment_changed.emit()
+			deserialize(data["blackboard"])
+			print("[Blackboard] Restored from %s" % save_path)
+		else:
+			print("[Blackboard] Failed to parse save file: %s" % save_path)
+	else:
+		print("[Blackboard] No save file found, creating new blackboard at %s" % save_path)
+		FilesUtil.verify_save_dir(FilesUtil.get_save_path())
+		save_blackboard()
+		print("[Blackboard] Created initial save file")
 
 func reset():
-	level = 0
-	health = 0
-	max_health = 0
+	health = max_health
+	mana = max_mana
+	stamina = max_stamina
+	special = max_special
+	health_changed.emit(health, max_health)
+	mana_changed.emit(mana, max_mana)
+	stamina_changed.emit(stamina, max_stamina)
+	special_changed.emit(special, max_special)
+
+func full_reset():
+	level = 1
+	health = 30
+	max_health = 30
 	mana = 0
 	max_mana = 0
 	stamina = 0
@@ -83,10 +132,14 @@ func reset():
 	charisma = 0
 	attack = 0
 	health_changed.emit(health, max_health)
-	armor_changed.emit(armor, max_armor)
 	mana_changed.emit(mana, max_mana)
 	stamina_changed.emit(stamina, max_stamina)
 	special_changed.emit(special, max_special)
+	inventory = Inventory.new()
+	equipment = Equipment.new()
+	inventory_changed.emit()
+	equipment_changed.emit()
+	save_blackboard()
 
 func spawn_reset():
 	health = max_health
@@ -97,11 +150,6 @@ func spawn_reset():
 	stamina_changed.emit(stamina, max_stamina)
 
 func take_damage(amount: int):
-	if armor > 0:
-		armor -= amount
-		armor_changed.emit(armor, max_armor)
-		if armor > 0:
-			return
 	health -= amount
 	health_changed.emit(health, max_health)
 	if health <= 0:
@@ -152,10 +200,11 @@ func set_health(value: int):
 	health = clamp(value, 0, max_health)
 	health_changed.emit(health, max_health)
 	
-func set_armor(value: int):
-	armor = clamp(value, 0, max_armor)
-	armor_changed.emit(armor, max_armor)
-
+func add_max_health(value: int):
+	max_health = max_health + value
+	health = max_health
+	health_changed.emit(health, max_health)
+	
 func set_mana(value: int):
 	mana = clamp(value, 0, max_mana)
 	mana_changed.emit(mana, max_mana)
@@ -188,12 +237,7 @@ func add_xp(value: int):
 func add_level(value: int):
 	level += value
 	level_changed.emit(level)
-
-func add_armor(value: int):
-	armor += value
-	if armor > max_armor:
-		armor = max_armor
-	armor_changed.emit(armor, max_armor)
+	add_max_health(10)
 
 func serialize():
 	var data = {
@@ -211,8 +255,6 @@ func serialize():
 		"attack": attack,
 		"health": health,
 		"max_health": max_health,
-		"armor": armor,
-		"max_armor": max_armor,
 		"mana": mana,
 		"max_mana": max_mana,
 		"stamina": stamina,
@@ -267,10 +309,6 @@ func deserialize(data):
 		health = data.get("health")
 	if data.has("max_health"):
 		max_health = data.get("max_health")
-	if data.has("armor"):
-		armor = data.get("armor")
-	if data.has("max_armor"):
-		max_armor = data.get("max_armor")
 	if data.has("mana"):
 		mana = data.get("mana")
 	if data.has("max_mana"):

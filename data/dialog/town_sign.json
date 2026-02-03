@@ -1,0 +1,11 @@
+[
+  {
+    "name": "TownSign",
+    "type": "sign",
+    "dialog": [
+      {
+        "text": "Welcome to the town of Riverwood."
+      }
+    ]
+  }
+]

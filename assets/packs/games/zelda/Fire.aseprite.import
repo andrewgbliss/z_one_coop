@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bsdtdx7q1wqtu"
+path="res://.godot/imported/Fire.aseprite-f58a1b2a11953c617b0e34d739ada437.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/Fire.aseprite"
+dest_files=["res://.godot/imported/Fire.aseprite-f58a1b2a11953c617b0e34d739ada437.res"]
+
+[params]
+

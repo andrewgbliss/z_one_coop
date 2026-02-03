@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d3dc5c4i1346h"
+path="res://.godot/imported/octorok_blue.aseprite-0436c155ba397dec389aa32b3d715664.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/octorok_blue.aseprite"
+dest_files=["res://.godot/imported/octorok_blue.aseprite-0436c155ba397dec389aa32b3d715664.res"]
+
+[params]
+

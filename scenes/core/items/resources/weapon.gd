@@ -1,4 +1,6 @@
-class_name Weapon extends Resource
+@tool
+
+class_name Weapon extends Equipable
 
 @export var damage_min: int = 0
 @export var damage_max: int = 0

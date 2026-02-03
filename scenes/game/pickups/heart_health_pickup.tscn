@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://5jtdv18jb5lj"]
+
+[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="1_jbsqe"]
+[ext_resource type="Resource" uid="uid://d2gpfjjtlco0f" path="res://data/resources/items/heart_health.tres" id="2_jbsqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leuas"]
+size = Vector2(7, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iadyv"]
+load_path = "res://.godot/imported/heart.png-c18779543fb9c2effc5b893dbe7a2b63.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbsqe"]
+atlas = SubResource("CompressedTexture2D_iadyv")
+region = Rect2(32, 0, 16, 16)
+
+[node name="HeartHealthPickup" type="Area2D" unique_id=2043579514]
+collision_layer = 4
+script = ExtResource("1_jbsqe")
+text = "+1 Rupee"
+offset = Vector2(-8, -16)
+item = ExtResource("2_jbsqe")
+audio_name = "Pickup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=828301093]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_leuas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641733285]
+z_index = 5
+position = Vector2(0, 1.19209e-07)
+texture = SubResource("AtlasTexture_jbsqe")

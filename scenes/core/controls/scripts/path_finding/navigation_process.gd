@@ -3,7 +3,7 @@ class_name NavigationProcess extends CharacterBaseNode
 @export var speed: float = 100.0
 
 func _physics_process(_delta: float) -> void:
-	if parent.navigation_agent == null:
+	if parent.navigation_agent == null or not parent.is_alive:
 		return
   
 	# Do not query when the map has never synchronized and is empty.

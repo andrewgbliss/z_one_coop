@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Consumable" format=3 uid="uid://ct4rm1ed3doj6"]
+
+[ext_resource type="Script" uid="uid://dfarl1fr76j2f" path="res://scenes/core/items/resources/consumable.gd" id="1_ui4sn"]
+[ext_resource type="Texture2D" uid="uid://bidg06jp7mt38" path="res://assets/packs/games/zelda/heart_container.png" id="2_xjpno"]
+
+[resource]
+script = ExtResource("1_ui4sn")
+level = 1
+consume_on_pickup = true
+name = "Heart Container"
+is_game_unique = true
+texture = ExtResource("2_xjpno")
+metadata/_custom_type_script = "uid://dfarl1fr76j2f"

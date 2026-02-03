@@ -28,9 +28,8 @@ enum EquipmentSlotType {
 @export var left_hand: Equipable
 @export var right_hand: Equipable
 
-signal equipment_change
+signal equipment_changed
 
-							
 func equip(item: Item, equipment_slot_type: EquipmentSlotType):
 	match equipment_slot_type:
 		EquipmentSlotType.HELMET:
@@ -53,7 +52,7 @@ func equip(item: Item, equipment_slot_type: EquipmentSlotType):
 			left_finger = item
 		EquipmentSlotType.RIGHT_FINGER:
 			right_finger = item
-	equipment_change.emit()
+	equipment_changed.emit()
 	
 func unequip(equipment_slot_type: EquipmentSlotType):
 	match equipment_slot_type:
@@ -77,7 +76,7 @@ func unequip(equipment_slot_type: EquipmentSlotType):
 			left_finger = null
 		EquipmentSlotType.RIGHT_FINGER:
 			right_finger = null
-	equipment_change.emit()
+	equipment_changed.emit()
 
 func get_slot_type(slot_type: Equipable.EquipableSlotType) -> EquipmentSlotType:
 	if slot_type == Equipable.EquipableSlotType.HELMET:
@@ -106,41 +105,62 @@ func get_slot_type(slot_type: Equipable.EquipableSlotType) -> EquipmentSlotType:
 
 
 func save():
-	var data = {
-		"head": head,
-		"neck": neck,
-		"chest": chest,
-		"waist": waist,
-		"legs": legs,
-		"feet": feet,
-		"hand": hand,
-		"left_finger": left_finger,
-		"right_finger": right_finger,
-		"left_hand": left_hand,
-		"right_hand": right_hand
-	}
+	var data = {}
+	if head:
+		data["head"] = head.save()
+	if neck:
+		data["neck"] = neck.save()
+	if chest:
+		data["chest"] = chest.save()
+	if waist:
+		data["waist"] = waist.save()
+	if legs:
+		data["legs"] = legs.save()
+	if feet:
+		data["feet"] = feet.save()
+	if hand:
+		data["hand"] = hand.save()
+	if left_finger:
+		data["left_finger"] = left_finger.save()
+	if right_finger:
+		data["right_finger"] = right_finger.save()
+	if left_hand:
+		data["left_hand"] = left_hand.save()
+	if right_hand:
+		data["right_hand"] = right_hand.save()
 	return data
 
 func restore(data):
 	if data.has("head"):
-		head = data["head"]
+		head = Armor.new()
+		head.restore(data["head"])
 	if data.has("neck"):
-		neck = data["neck"]
+		neck = Armor.new()
+		neck.restore(data["neck"])
 	if data.has("chest"):
-		chest = data["chest"]
+		chest = Armor.new()
+		chest.restore(data["chest"])
 	if data.has("waist"):
-		waist = data["waist"]
+		waist = Armor.new()
+		waist.restore(data["waist"])
 	if data.has("legs"):
-		legs = data["legs"]
+		legs = Armor.new()
+		legs.restore(data["legs"])
 	if data.has("feet"):
-		feet = data["feet"]
+		feet = Armor.new()
+		feet.restore(data["feet"])
 	if data.has("hand"):
-		hand = data["hand"]
+		hand = Armor.new()
+		hand.restore(data["hand"])
 	if data.has("left_finger"):
-		left_finger = data["left_finger"]
+		left_finger = Armor.new()
+		left_finger.restore(data["left_finger"])
 	if data.has("right_finger"):
-		right_finger = data["right_finger"]
+		right_finger = Armor.new()
+		right_finger.restore(data["right_finger"])
 	if data.has("left_hand"):
-		left_hand = data["left_hand"]
+		left_hand = Weapon.new()
+		left_hand.restore(data["left_hand"])
 	if data.has("right_hand"):
-		right_hand = data["right_hand"]
+		right_hand = Weapon.new()
+		right_hand.restore(data["right_hand"])

@@ -114,3 +114,6 @@ static func find_files(path: String, file_ext: String = "", base_path: String = 
 	else:
 		print("An error occurred when trying to access the path: " + path)
 	return all_files
+
+static func get_save_path() -> String:
+	return "user://saves/"

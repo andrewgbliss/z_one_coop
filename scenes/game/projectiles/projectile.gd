@@ -23,6 +23,7 @@ var time_elapsed = 0
 
 var current_weight
 var angular_velocity
+var parent
 
 func start(_position, _direction):
 	position = _position
@@ -32,7 +33,6 @@ func start(_position, _direction):
 		velocity = _direction.normalized() * speed
 	else:
 		velocity = Vector2.ZERO
-
 
 	if audio != null:
 		var rand_level = randf_range(min_audio_level, max_audio_level)
@@ -56,9 +56,10 @@ func start(_position, _direction):
 	time_elapsed = time_to_live
 
 func _ready():
+	parent = get_parent()
 	hitbox.collided.connect(_on_hitbox_collided)
 	
-func _physics_process(delta):
+func _physics_process(delta):		
 	if gravity != 0:
 		velocity.y += gravity * delta
 
@@ -84,4 +85,4 @@ func die():
 	
 func _on_hitbox_collided(_pos: Vector2):
 	if destroy_on_collide:
-		call_deferred("queue_free")
+		die()

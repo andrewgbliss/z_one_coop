@@ -1,0 +1,30 @@
+[
+  {
+    "quest_id": "get_shotgun",
+    "quest_name": "Get Shotgun",
+    "quest_description": "Get a shotgun",
+    "quest_status": "none",
+    "quest_checkpoints": [
+      {
+        "quest_checkpoint_id": "talk_with_man",
+        "quest_checkpoint_name": "Talk with man",
+        "points": 1
+      },
+      {
+        "quest_checkpoint_id": "go_to_area",
+        "quest_checkpoint_name": "Go to area with shotgun",
+        "points": 1
+      },
+      {
+        "quest_checkpoint_id": "kill_enemies",
+        "quest_checkpoint_name": "Kill enemies",
+        "points": 1
+      },
+      {
+        "quest_checkpoint_id": "get_shotgun",
+        "quest_checkpoint_name": "Get shotgun",
+        "points": 1
+      }
+    ]
+  }
+]
