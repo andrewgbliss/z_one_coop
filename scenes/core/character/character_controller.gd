@@ -261,7 +261,12 @@ func pulse_health():
 func flip_h():
 	animated_sprite.flip_h = not is_facing_right
 
-func item_pickup(item: Item):
+func item_pickup(item: Item) -> bool:
+	if item.sell_price > 0:
+		if blackboard.inventory.gold >= item.sell_price:
+			blackboard.inventory.subtract_gold(item.sell_price)
+		else:
+			return false
 	if item is Currency:
 		blackboard.inventory.add_gold(item)
 	elif item is Equipable:
@@ -278,6 +283,7 @@ func item_pickup(item: Item):
 				blackboard.add_stamina(item.sp)
 			if item.level > 0:
 				blackboard.add_level(item.level)
+	return true
 		
 func focus():
 	if camera:

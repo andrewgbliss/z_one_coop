@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://vemj2nstubev" path="res://scenes/game/terrains/zelda_2_worldprocgen_2.tscn" id="5_rsfbm"]
 [ext_resource type="PackedScene" uid="uid://c5crrb1erwhvc" path="res://scenes/game/ui/hud/hud.tscn" id="7_7tlh7"]
 [ext_resource type="PackedScene" uid="uid://dci8qiogae2pi" path="res://scenes/game/doors/door.tscn" id="8_8l6u3"]
-[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="8_80em8"]
 [ext_resource type="PackedScene" uid="uid://c0dld7b5t88m" path="res://scenes/game/doors/cave.tscn" id="8_a8jd1"]
-[ext_resource type="Resource" uid="uid://d2gpfjjtlco0f" path="res://data/resources/items/heart_health.tres" id="9_a8jd1"]
+[ext_resource type="PackedScene" uid="uid://v76i6msp3ueh" path="res://scenes/game/pickups/coin_1_pickup.tscn" id="9_a8jd1"]
+[ext_resource type="PackedScene" uid="uid://c4c1088je742y" path="res://scenes/game/pickups/coin_5_pickup.tscn" id="10_x7vk6"]
 
 [sub_resource type="Resource" id="Resource_80em8"]
 script = ExtResource("5_7tlh7")
@@ -19,9 +19,6 @@ size = Vector2(2561, 2560)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8jd1"]
 size = Vector2(320, 752)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7vk6"]
-size = Vector2(8, 16)
 
 [node name="Overworld" type="Node2D" unique_id=795329044 node_paths=PackedStringArray("player_one_spawner", "player_two_spawner", "camera", "phantom_camera", "hud")]
 script = ExtResource("1_srsdh")
@@ -64,8 +61,6 @@ tween_resource = SubResource("Resource_80em8")
 auto_zoom = true
 auto_zoom_max = 2.0
 auto_zoom_margin = Vector4(48, 48, 48, 48)
-dead_zone_width = 0.25
-dead_zone_height = 0.25
 draw_limits = true
 limit_target = NodePath("../CameraArea2D/CollisionShape2D")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
@@ -134,32 +129,56 @@ monitorable = false
 position = Vector2(160, -200)
 shape = SubResource("RectangleShape2D_a8jd1")
 
-[node name="HeartPickup" type="Area2D" parent="." unique_id=1670175910]
-position = Vector2(352, 712)
-script = ExtResource("8_80em8")
-text = "Heart"
-item = ExtResource("9_a8jd1")
-audio_name = "Pickup"
-metadata/_custom_type_script = "uid://dy55lqpe5tllk"
+[node name="Coin1Pickup" parent="." unique_id=2043579514 instance=ExtResource("9_a8jd1")]
+position = Vector2(96, 704)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HeartPickup" unique_id=1054444881]
-shape = SubResource("RectangleShape2D_x7vk6")
+[node name="Coin5Pickup" parent="." unique_id=1248232712 instance=ExtResource("10_x7vk6")]
+position = Vector2(360, 232)
 
-[node name="Sprite2D" type="Sprite2D" parent="HeartPickup" unique_id=1529510676]
-z_index = 5
-position = Vector2(0, 1.19209e-07)
+[node name="Coin1Pickup2" parent="." unique_id=1266768387 instance=ExtResource("9_a8jd1")]
+position = Vector2(64, 1008)
 
-[node name="HeartPickup2" type="Area2D" parent="." unique_id=1123003601]
-position = Vector2(288, 800)
-script = ExtResource("8_80em8")
-text = "Heart"
-item = ExtResource("9_a8jd1")
-audio_name = "Pickup"
-metadata/_custom_type_script = "uid://dy55lqpe5tllk"
+[node name="Coin1Pickup3" parent="." unique_id=336468960 instance=ExtResource("9_a8jd1")]
+position = Vector2(296, 1000)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HeartPickup2" unique_id=1670001693]
-shape = SubResource("RectangleShape2D_x7vk6")
+[node name="Coin1Pickup4" parent="." unique_id=986293672 instance=ExtResource("9_a8jd1")]
+position = Vector2(512, 1000)
 
-[node name="Sprite2D" type="Sprite2D" parent="HeartPickup2" unique_id=89643676]
-z_index = 5
-position = Vector2(0, 1.19209e-07)
+[node name="Coin5Pickup2" parent="." unique_id=1610060295 instance=ExtResource("10_x7vk6")]
+position = Vector2(632, 984)
+
+[node name="Coin5Pickup3" parent="." unique_id=2023805178 instance=ExtResource("10_x7vk6")]
+position = Vector2(608, 984)
+
+[node name="Coin5Pickup4" parent="." unique_id=44472477 instance=ExtResource("10_x7vk6")]
+position = Vector2(584, 984)
+
+[node name="Coin5Pickup5" parent="." unique_id=1268494277 instance=ExtResource("10_x7vk6")]
+position = Vector2(560, 984)
+
+[node name="Coin1Pickup5" parent="." unique_id=1313990774 instance=ExtResource("9_a8jd1")]
+position = Vector2(520, 480)
+
+[node name="Coin5Pickup6" parent="." unique_id=1443693166 instance=ExtResource("10_x7vk6")]
+position = Vector2(896, 224)
+
+[node name="Coin1Pickup6" parent="." unique_id=800305555 instance=ExtResource("9_a8jd1")]
+position = Vector2(608, 152)
+
+[node name="Coin1Pickup7" parent="." unique_id=537571688 instance=ExtResource("9_a8jd1")]
+position = Vector2(1032, 200)
+
+[node name="Coin1Pickup8" parent="." unique_id=683072607 instance=ExtResource("9_a8jd1")]
+position = Vector2(1032, 240)
+
+[node name="Coin1Pickup9" parent="." unique_id=1890427988 instance=ExtResource("9_a8jd1")]
+position = Vector2(1032, 280)
+
+[node name="Coin5Pickup7" parent="." unique_id=84372391 instance=ExtResource("10_x7vk6")]
+position = Vector2(1032, 320)
+
+[node name="Coin1Pickup10" parent="." unique_id=908022338 instance=ExtResource("9_a8jd1")]
+position = Vector2(528, 808)
+
+[node name="Coin1Pickup11" parent="." unique_id=1670330049 instance=ExtResource("9_a8jd1")]
+position = Vector2(168, 936)

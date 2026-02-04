@@ -135,7 +135,9 @@ func full_reset():
 	mana_changed.emit(mana, max_mana)
 	stamina_changed.emit(stamina, max_stamina)
 	special_changed.emit(special, max_special)
+	var gold = inventory.gold
 	inventory = Inventory.new()
+	inventory.gold = gold
 	equipment = Equipment.new()
 	inventory_changed.emit()
 	equipment_changed.emit()

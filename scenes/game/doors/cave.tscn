@@ -28,6 +28,9 @@ sources/0 = SubResource("TileSetAtlasSource_qhsgi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcspe"]
 size = Vector2(8, 16)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i6kyw"]
+load_path = "res://.godot/imported/heart_container.png-04f00febbf54ea732bff8f009f29658a.ctex"
+
 [node name="Cave" type="Node2D" unique_id=279969993]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=622411025]
@@ -41,20 +44,24 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = SubResource("TileSet_ek2k8")
 
 [node name="WhiteSwordPickup" parent="." unique_id=1815426670 instance=ExtResource("9_i43sv")]
-position = Vector2(224, -56)
+position = Vector2(224, -120)
+respawn_time = 1.0
 
 [node name="MasterSwordPickup" parent="." unique_id=424918187 instance=ExtResource("10_rcc6b")]
-position = Vector2(96, -56)
+position = Vector2(96, -120)
+respawn_time = 1.0
 
 [node name="WoodSwordPickup" parent="." unique_id=1449844744 instance=ExtResource("9_fcspe")]
-position = Vector2(160, 112)
+position = Vector2(160, 72)
+respawn_time = 1.0
 
 [node name="HeartPickup" type="Area2D" parent="." unique_id=672801822]
-position = Vector2(224, 0)
+position = Vector2(224, -64)
 script = ExtResource("11_j783a")
 text = "Heart"
 item = ExtResource("11_dndco")
 audio_name = "Pickup"
+respawn_time = 1.0
 metadata/_custom_type_script = "uid://dy55lqpe5tllk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeartPickup" unique_id=1175617202]
@@ -65,11 +72,12 @@ z_index = 5
 position = Vector2(0, 1.19209e-07)
 
 [node name="HeartContainerPickup" type="Area2D" parent="." unique_id=765638527]
-position = Vector2(96, 0)
+position = Vector2(96, -64)
 script = ExtResource("11_j783a")
 text = "Heart"
 item = ExtResource("12_j783a")
 audio_name = "Pickup"
+respawn_time = 1.0
 metadata/_custom_type_script = "uid://dy55lqpe5tllk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeartContainerPickup" unique_id=1966330036]
@@ -78,12 +86,13 @@ shape = SubResource("RectangleShape2D_fcspe")
 [node name="Sprite2D" type="Sprite2D" parent="HeartContainerPickup" unique_id=2029927469]
 z_index = 5
 position = Vector2(0, 1.19209e-07)
+texture = SubResource("CompressedTexture2D_i6kyw")
 
 [node name="Wizard1" parent="." unique_id=1486150566 instance=ExtResource("5_tk5vu")]
-position = Vector2(160, 72)
+position = Vector2(160, 32)
 
 [node name="Fire" parent="." unique_id=1186502192 instance=ExtResource("4_r8l16")]
-position = Vector2(80, 72)
+position = Vector2(80, 32)
 
 [node name="Fire2" parent="." unique_id=1303541696 instance=ExtResource("4_r8l16")]
-position = Vector2(240, 72)
+position = Vector2(240, 32)

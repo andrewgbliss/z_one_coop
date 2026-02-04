@@ -22,6 +22,11 @@ enum Rarity {
 @export var hframes: int = 1
 @export var vframes: int = 1
 @export var rarity: Rarity = Rarity.COMMON
+@export var weight: int = 0
+@export var durability: int = 0
+@export var sell_price: int = 0
+@export var buy_price: int = 0
+@export var level_requirement: int = 0
 
 func save():
 	var data = {
@@ -35,8 +40,13 @@ func save():
 		"frame": frame,
 		"hframes": hframes,
 		"vframes": vframes,
-		"rarity": rarity,
+		"rarity": rarity
 	}
+	data["weight"] = weight
+	data["durability"] = durability
+	data["sell_price"] = sell_price
+	data["buy_price"] = buy_price
+	data["level_requirement"] = level_requirement
 	return data
 
 func restore(data):
@@ -62,3 +72,13 @@ func restore(data):
 		vframes = data["vframes"]
 	if data.has("rarity"):
 		rarity = data["rarity"]
+	if data.has("weight"):
+		weight = data["weight"]
+	if data.has("durability"):
+		durability = data["durability"]
+	if data.has("sell_price"):
+		sell_price = data["sell_price"]
+	if data.has("buy_price"):
+		buy_price = data["buy_price"]
+	if data.has("level_requirement"):
+		level_requirement = data["level_requirement"]

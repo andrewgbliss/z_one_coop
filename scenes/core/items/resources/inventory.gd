@@ -52,6 +52,13 @@ func add_gold(item: Item):
 	if gold > max_gold:
 		gold = max_gold
 	gold_changed.emit(gold)
+
+func subtract_gold(amount: int):
+	gold = clamp(gold - amount, 0, max_gold)
+	gold_changed.emit(gold)
+
+func has_gold(amount: int):
+	return gold >= amount
 	
 func in_inventory(item: Item):
 	var index = items.find(item)

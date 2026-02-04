@@ -65,10 +65,12 @@ func _set_camera():
 		else:
 			phantom_camera.follow_mode = PhantomCamera2D.FollowMode.FRAMED
 			phantom_camera.follow_target = player_one
-			phantom_camera.dead_zone_width = 0.25
-			phantom_camera.dead_zone_height = 0.25
+			phantom_camera.dead_zone_width = 0.15
+			phantom_camera.dead_zone_height = 0.15
 			phantom_camera.zoom = zoom
+		phantom_camera.teleport_position()
 	camera.make_current()
 
 func change_camera_area(area: Area2D):
 	phantom_camera.limit_target = area.get_child(0).get_path()
+	_set_camera()

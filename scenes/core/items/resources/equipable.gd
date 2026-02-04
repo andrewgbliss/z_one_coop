@@ -28,11 +28,6 @@ enum EquipableEffect {
 	XP_GAIN
 }
 
-@export var weight: int = 0
-@export var durability: int = 0
-@export var sell_price: int = 0
-@export var buy_price: int = 0
-@export var level_requirement: int = 0
 @export var slot: EquipableSlotType
 @export var equip_on_pickup: bool = false
 @export var handed: int = 1
@@ -82,11 +77,7 @@ func save_slot_type(s: EquipableSlotType):
 
 func save():
 	var data = super.save()
-	data["weight"] = weight
-	data["durability"] = durability
-	data["sell_price"] = sell_price
-	data["buy_price"] = buy_price
-	data["level_requirement"] = level_requirement
+	
 	data["slot"] = save_slot_type(slot)
 	data["equip_on_pickup"] = equip_on_pickup
 	data["effect"] = effect
@@ -94,16 +85,6 @@ func save():
 
 func restore(data):
 	super.restore(data)
-	if data.has("weight"):
-		weight = data["weight"]
-	if data.has("durability"):
-		durability = data["durability"]
-	if data.has("sell_price"):
-		sell_price = data["sell_price"]
-	if data.has("buy_price"):
-		buy_price = data["buy_price"]
-	if data.has("level_requirement"):
-		level_requirement = data["level_requirement"]
 	if data.has("slot"):
 		slot = get_slot_type(data["slot"])
 	if data.has("equip_on_pickup"):
