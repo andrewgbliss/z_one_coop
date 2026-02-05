@@ -22,7 +22,7 @@ var buttons_just_pressed = {}
 
 func _ready():
 	super ()
-	device_index = str(parent.device_index)
+	device_index = "0"
 	move_right = "move_right_" + device_index
 	move_left = "move_left_" + device_index
 	move_down = "move_down_" + device_index

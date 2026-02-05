@@ -54,7 +54,6 @@ func _on_quit_button_pressed() -> void:
 func setup_player_ui(player: CharacterController):
 	players.append(player)
 	if player == players[0]:
-		player.died.connect(_on_player_one_died)
 		player.blackboard.inventory.gold_changed.connect(_on_player_one_coins_changed)
 		player.blackboard.health_changed.connect(_on_player_one_health_changed)
 		_update_hearts_container(player, player_one_hearts)
@@ -68,7 +67,7 @@ func setup_player_ui(player: CharacterController):
 		_update_hearts_container(player, player_two_hearts)
 		_on_player_two_coins_changed(player.blackboard.inventory.gold)
 
-func _on_player_one_died(_pos: Vector2):
+func show_game_over(_pos: Vector2):
 	restart_button.grab_focus()
 	animation_player.play("die_fade_in")
 

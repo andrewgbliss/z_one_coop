@@ -14,9 +14,11 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterController:
-		if body.device_index == 0:
-			body.global_position = player_one_door_to.player_one_door_spawn_position.global_position
-		elif body.device_index == 1:
-			body.global_position = player_two_door_to.player_two_door_spawn_position.global_position
+		for i in range(level.players.size()):
+			var player = level.players[i]
+			if i == 0:
+				player.global_position = player_one_door_to.player_one_door_spawn_position.global_position
+			elif i == 1:
+				player.global_position = player_two_door_to.player_two_door_spawn_position.global_position
 		if change_camera_area:
 			level.change_camera_area(change_camera_area)

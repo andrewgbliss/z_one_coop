@@ -30,10 +30,10 @@ camera_target = NodePath("CameraArea2D/CollisionShape2D")
 hud = NodePath("Hud")
 
 [node name="PlayerOneSpawner" type="Node2D" parent="." unique_id=1449642310]
-position = Vector2(407, 678)
+position = Vector2(392, 728)
 
 [node name="PlayerTwoSpawner" type="Node2D" parent="." unique_id=214637466]
-position = Vector2(342, 773)
+position = Vector2(352, 728)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=397562598]
 top_level = true
@@ -145,16 +145,16 @@ position = Vector2(296, 1000)
 position = Vector2(512, 1000)
 
 [node name="Coin5Pickup2" parent="." unique_id=1610060295 instance=ExtResource("10_x7vk6")]
-position = Vector2(632, 984)
+position = Vector2(648, 976)
 
 [node name="Coin5Pickup3" parent="." unique_id=2023805178 instance=ExtResource("10_x7vk6")]
-position = Vector2(608, 984)
+position = Vector2(624, 976)
 
 [node name="Coin5Pickup4" parent="." unique_id=44472477 instance=ExtResource("10_x7vk6")]
-position = Vector2(584, 984)
+position = Vector2(600, 976)
 
 [node name="Coin5Pickup5" parent="." unique_id=1268494277 instance=ExtResource("10_x7vk6")]
-position = Vector2(560, 984)
+position = Vector2(576, 976)
 
 [node name="Coin1Pickup5" parent="." unique_id=1313990774 instance=ExtResource("9_a8jd1")]
 position = Vector2(520, 480)

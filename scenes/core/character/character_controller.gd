@@ -12,10 +12,8 @@ enum CameraBoundsType {
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox: Hurtbox = $Hurtbox
 
-
 @export var blackboard: CharacterBlackboard
 @export var controls: CharacterControls
-@export var device_index: int = 0
 @export var is_facing_right: bool = true
 
 @export_group("Clean Up")

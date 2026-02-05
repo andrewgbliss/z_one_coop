@@ -832,6 +832,16 @@ script = ExtResource("7_a02qa")
 menu_stack = NodePath("../../../..")
 how_many_players = 2
 
+[node name="ButtonTwoPlayer2" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=559117633 node_paths=PackedStringArray("menu_stack")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonQuit")
+focus_neighbor_right = NodePath("../ButtonSettings")
+theme_override_font_sizes/font_size = 32
+text = "Nega"
+script = ExtResource("7_a02qa")
+menu_stack = NodePath("../../../..")
+how_many_players = 3
+
 [node name="ButtonSettings" type="Button" parent="MainMenu/Control/HBoxContainer" unique_id=1974396545 node_paths=PackedStringArray("menu_stack", "to_menu")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ButtonOnePlayer")

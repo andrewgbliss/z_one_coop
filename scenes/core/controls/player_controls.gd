@@ -2,8 +2,8 @@ class_name PlayerControls extends CharacterControls
 
 @export var mouse_cursor: Texture2D
 @export var touch_sprite: Sprite2D
+@export var device_index: int = 0
 
-var device_index
 var move_right
 var move_left
 var move_up
@@ -34,7 +34,7 @@ var last_aim_direction: Vector2 = Vector2.RIGHT
 func _ready():
 	super ()
 	_detect_input_method()
-	set_device_index(parent.device_index)
+	set_device_index(device_index)
 	if mouse_cursor:
 		Input.set_custom_mouse_cursor(mouse_cursor, Input.CURSOR_ARROW, Vector2(16, 16))
 		
@@ -79,22 +79,23 @@ func _process(_delta: float) -> void:
 	_touch_trigger_left()
 
 func set_device_index(index: int):
-	device_index = str(index)
-	move_right = "move_right_" + device_index
-	move_left = "move_left_" + device_index
-	move_down = "move_down_" + device_index
-	move_up = "move_up_" + device_index
-	aim_right = "aim_right_" + device_index
-	aim_left = "aim_left_" + device_index
-	aim_down = "aim_down_" + device_index
-	aim_up = "aim_up_" + device_index
-	double_tap = "double_tap_" + device_index
-	dash = "dash_" + device_index
-	run = "run_" + device_index
-	trigger_left = "trigger_left_" + device_index
-	trigger_right = "trigger_right_" + device_index
-	bumper_left = "bumper_left_" + device_index
-	bumper_right = "bumper_right_" + device_index
+	device_index = index
+	var device_index_string = str(device_index)
+	move_right = "move_right_" + device_index_string
+	move_left = "move_left_" + device_index_string
+	move_down = "move_down_" + device_index_string
+	move_up = "move_up_" + device_index_string
+	aim_right = "aim_right_" + device_index_string
+	aim_left = "aim_left_" + device_index_string
+	aim_down = "aim_down_" + device_index_string
+	aim_up = "aim_up_" + device_index_string
+	double_tap = "double_tap_" + device_index_string
+	dash = "dash_" + device_index_string
+	run = "run_" + device_index_string
+	trigger_left = "trigger_left_" + device_index_string
+	trigger_right = "trigger_right_" + device_index_string
+	bumper_left = "bumper_left_" + device_index_string
+	bumper_right = "bumper_right_" + device_index_string
 
 func _touch_trigger_left():
 	if trigger_type == INPUT_TYPE.TOUCH and is_touching:

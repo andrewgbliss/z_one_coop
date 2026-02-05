@@ -13,10 +13,13 @@ class_name Level extends Node2D
 var player_one: CharacterController
 var player_two: CharacterController
 
+var players: Array[CharacterController] = []
+
 func _ready() -> void:
 	call_deferred("_after_ready")
 
 func _after_ready():
+	players = []
 	if GameManager.game_state != GameManager.GAME_STATE.GAME_PLAY:
 		GameManager.set_state(GameManager.GAME_STATE.GAME_PLAY)
 		_spawn_players(true)
@@ -33,6 +36,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _spawn_players(reset_player = false):
 	player_one = SpawnManager.spawn("link", player_one_spawner.global_position, self)
+	player_one.died.connect(_on_player_died)
 	if reset_player:
 		player_one.blackboard.full_reset()
 	else:
@@ -40,16 +44,22 @@ func _spawn_players(reset_player = false):
 	if hud:
 		hud.setup_player_ui(player_one)
 	player_one.controls.set_device_index(0)
+	players.append(player_one)
 	
-	if GameManager.how_many_players == 2:
+	if GameManager.how_many_players == 2 or GameManager.how_many_players == 3:
 		player_two = SpawnManager.spawn("link", player_two_spawner.global_position, self)
+		player_two.died.connect(_on_player_died)
 		if reset_player:
 			player_two.blackboard.full_reset()
 		else:
 			player_two.blackboard.restore()
 		if hud:
 			hud.setup_player_ui(player_two)
-		player_two.controls.set_device_index(1)
+		if GameManager.how_many_players == 3:
+			player_two.controls.set_device_index(0)
+		else:
+			player_two.controls.set_device_index(1)
+		players.append(player_two)
 	call_deferred("_set_camera")
 	
 	if show_hud:
@@ -57,20 +67,29 @@ func _spawn_players(reset_player = false):
 	
 func _set_camera():
 	if follow:
-		if player_two:
-			phantom_camera.follow_mode = PhantomCamera2D.FollowMode.GROUP
-			var players: Array[Node2D] = [player_one, player_two]
-			phantom_camera.follow_targets = players
-			phantom_camera.follow_target = null
-		else:
+		if players.size() == 1:
 			phantom_camera.follow_mode = PhantomCamera2D.FollowMode.FRAMED
-			phantom_camera.follow_target = player_one
+			phantom_camera.follow_target = players[0]
 			phantom_camera.dead_zone_width = 0.15
 			phantom_camera.dead_zone_height = 0.15
 			phantom_camera.zoom = zoom
+		elif players.size() == 2:
+			phantom_camera.follow_mode = PhantomCamera2D.FollowMode.GROUP
+			phantom_camera.follow_targets = [players[0], players[1]]
+			phantom_camera.follow_target = null
 		phantom_camera.teleport_position()
 	camera.make_current()
 
 func change_camera_area(area: Area2D):
 	phantom_camera.limit_target = area.get_child(0).get_path()
 	_set_camera()
+
+func _on_player_died(pos: Vector2):
+	var temp: Array[CharacterController] = []
+	for player in players:
+		if player.is_alive:
+			temp.append(player)
+	players = temp
+	_set_camera()
+	if players.size() == 0:
+		hud.show_game_over(pos)
