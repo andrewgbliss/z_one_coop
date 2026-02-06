@@ -30,7 +30,11 @@ enum EquipmentSlotType {
 
 signal equipment_changed
 
-func equip(item: Item, equipment_slot_type: EquipmentSlotType):
+func equip(item: Item, equipment_slot_type: EquipmentSlotType, force: bool = false):
+	if equipment_slot_type == EquipmentSlotType.LEFT_HAND and left_hand and not force:
+		equipment_slot_type = EquipmentSlotType.RIGHT_HAND
+	if equipment_slot_type == EquipmentSlotType.RIGHT_HAND and right_hand and not force:
+		return
 	match equipment_slot_type:
 		EquipmentSlotType.HELMET:
 			head = item

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ceib3wjvjp5hf"
+path="res://.godot/imported/fairy.aseprite-7f66663bea740cea87e30cec2dac784b.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/fairy.aseprite"
+dest_files=["res://.godot/imported/fairy.aseprite-7f66663bea740cea87e30cec2dac784b.res"]
+
+[params]
+

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djv3guo38f817" path="res://scenes/game/pickups/white_sword_pickup.tscn" id="9_i43sv"]
 [ext_resource type="PackedScene" uid="uid://c2y5gv5i28kqi" path="res://scenes/game/pickups/master_sword_pickup.tscn" id="10_rcc6b"]
 [ext_resource type="Resource" uid="uid://d2gpfjjtlco0f" path="res://data/resources/items/heart_health.tres" id="11_dndco"]
+[ext_resource type="PackedScene" uid="uid://ittctvhp38ng" path="res://scenes/game/pickups/fairy_health_pickup.tscn" id="11_fcspe"]
 [ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="11_j783a"]
 [ext_resource type="Resource" uid="uid://ct4rm1ed3doj6" path="res://data/resources/items/heart_container.tres" id="12_j783a"]
 
@@ -44,19 +45,19 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = SubResource("TileSet_ek2k8")
 
 [node name="WhiteSwordPickup" parent="." unique_id=1815426670 instance=ExtResource("9_i43sv")]
-position = Vector2(224, -120)
+position = Vector2(224, -64)
 respawn_time = 1.0
 
 [node name="MasterSwordPickup" parent="." unique_id=424918187 instance=ExtResource("10_rcc6b")]
-position = Vector2(96, -120)
+position = Vector2(96, -64)
 respawn_time = 1.0
 
 [node name="WoodSwordPickup" parent="." unique_id=1449844744 instance=ExtResource("9_fcspe")]
-position = Vector2(160, 72)
+position = Vector2(160, -32)
 respawn_time = 1.0
 
 [node name="HeartPickup" type="Area2D" parent="." unique_id=672801822]
-position = Vector2(224, -64)
+position = Vector2(224, -112)
 script = ExtResource("11_j783a")
 text = "Heart"
 item = ExtResource("11_dndco")
@@ -72,7 +73,7 @@ z_index = 5
 position = Vector2(0, 1.19209e-07)
 
 [node name="HeartContainerPickup" type="Area2D" parent="." unique_id=765638527]
-position = Vector2(96, -64)
+position = Vector2(96, -112)
 script = ExtResource("11_j783a")
 text = "Heart"
 item = ExtResource("12_j783a")
@@ -89,10 +90,20 @@ position = Vector2(0, 1.19209e-07)
 texture = SubResource("CompressedTexture2D_i6kyw")
 
 [node name="Wizard1" parent="." unique_id=1486150566 instance=ExtResource("5_tk5vu")]
-position = Vector2(160, 32)
+position = Vector2(160, 72)
 
 [node name="Fire" parent="." unique_id=1186502192 instance=ExtResource("4_r8l16")]
-position = Vector2(80, 32)
+position = Vector2(80, 72)
 
 [node name="Fire2" parent="." unique_id=1303541696 instance=ExtResource("4_r8l16")]
-position = Vector2(240, 32)
+position = Vector2(240, 72)
+
+[node name="Label" type="Label" parent="." unique_id=88820329]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 197.0
+offset_bottom = 56.0
+text = "Welcome to my shop"
+
+[node name="FairyHealthPickup" parent="." unique_id=2043579514 instance=ExtResource("11_fcspe")]
+position = Vector2(224, -152)

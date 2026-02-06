@@ -11,16 +11,34 @@ class_name Pickup extends Area2D
 @export var garbage: bool = true
 @export var garbage_time: float = 1.0
 @export var respawn_time: float = 0.0
+@export var animated_sprite: AnimatedSprite2D
+@export var radius: float = 0.0
+@export var orbit_duration: float = 2.0
 
 var enabled = true
 var label
+var _orbit_tween: Tween
+var _orbit_center: Vector2
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	_setup_sprite()
-	_setup_cost_label()
+	set_cost_label()
+	if radius > 0:
+		_start_orbit()
 
-func _setup_cost_label():
+func _start_orbit() -> void:
+	_orbit_center = position
+	if _orbit_tween:
+		_orbit_tween.kill()
+	_orbit_tween = create_tween()
+	_orbit_tween.set_loops()
+	_orbit_tween.tween_method(_apply_orbit, 0.0, TAU, orbit_duration)
+
+func _apply_orbit(angle: float) -> void:
+	position = _orbit_center + Vector2(cos(angle), sin(angle)) * radius
+
+func set_cost_label():
 	if item and item.sell_price > 0:
 		label = Label.new()
 		label.text = str(item.sell_price)
@@ -28,7 +46,7 @@ func _setup_cost_label():
 		add_child(label)
 
 func _setup_sprite() -> void:
-	if item:
+	if item and item.texture:
 		sprite.texture = item.texture
 		sprite.hframes = item.hframes
 		sprite.vframes = item.vframes
@@ -50,6 +68,8 @@ func _clean_up():
 		sprite.hide()
 	if label:
 		label.hide()
+	if animated_sprite:
+		animated_sprite.hide()
 	SpawnManager.float_text(text, global_position + offset, duration, null, color)
 	AudioManager.play(audio_name)
 
@@ -74,3 +94,5 @@ func show_pickup():
 		sprite.show()
 	if label:
 		label.show()
+	if radius > 0:
+		_start_orbit()

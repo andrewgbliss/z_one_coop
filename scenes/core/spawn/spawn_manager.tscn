@@ -16,13 +16,17 @@
 [ext_resource type="PackedScene" uid="uid://d1s3pc6tjqad3" path="res://scenes/game/projectiles/white_sword_shoot.tscn" id="14_01npx"]
 [ext_resource type="PackedScene" uid="uid://83yahgq3gexl" path="res://scenes/game/projectiles/master_sword.tscn" id="15_srpbc"]
 [ext_resource type="PackedScene" uid="uid://c5rl46cmfo2mj" path="res://scenes/game/projectiles/master_sword_shoot.tscn" id="16_kjyse"]
+[ext_resource type="PackedScene" uid="uid://b40vkja4tqcie" path="res://scenes/game/characters/boss_1.tscn" id="17_01npx"]
+[ext_resource type="PackedScene" uid="uid://ittctvhp38ng" path="res://scenes/game/pickups/fairy_health_pickup.tscn" id="18_srpbc"]
 
 [node name="SpawnManager" type="Node2D" unique_id=600587778]
 script = ExtResource("1_b7hal")
 entities = Dictionary[String, PackedScene]({
+"boss_1": ExtResource("17_01npx"),
 "coin_1": ExtResource("9_q5ooc"),
 "coin_5": ExtResource("10_82vro"),
 "enemy_killed_explosion": ExtResource("7_gw8sj"),
+"fairy": ExtResource("18_srpbc"),
 "heart": ExtResource("11_al1ou"),
 "heart_container": ExtResource("12_w1heu"),
 "link": ExtResource("2_ox1rk"),

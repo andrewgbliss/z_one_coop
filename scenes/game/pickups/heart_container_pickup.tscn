@@ -10,7 +10,7 @@ size = Vector2(14, 15)
 [node name="HeartContainerPickup" type="Area2D" unique_id=2043579514]
 collision_layer = 4
 script = ExtResource("1_eujvx")
-text = "+1 Rupee"
+text = "+1 Heart Container"
 offset = Vector2(-8, -16)
 item = ExtResource("2_b2b06")
 audio_name = "Pickup"

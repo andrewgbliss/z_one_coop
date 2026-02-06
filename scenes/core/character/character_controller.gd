@@ -201,8 +201,18 @@ func die():
 	for explosion in die_explosions:
 		explosion.run()
 	if drop_items.size() > 0:
-		var item = drop_items.pick_random()
-		SpawnManager.spawn(item, global_position, get_parent())
+		# Always drop at least the first item; walk backwards with 25% per slot, default to first
+		var item = drop_items[0]
+		for i in range(drop_items.size() - 1, 0, -1):
+			if randf() < 0.15:
+				item = drop_items[i]
+				break
+		var new_item = SpawnManager.spawn(item, global_position, get_parent())
+		if new_item.item:
+			new_item.respawn_time = 0.0
+			new_item.item.sell_price = 0
+			if new_item.label:
+				new_item.label.hide()
 	if garbage:
 		await get_tree().create_timer(garbage_time).timeout
 		call_deferred("queue_free")

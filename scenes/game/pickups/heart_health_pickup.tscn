@@ -16,7 +16,7 @@ region = Rect2(32, 0, 16, 16)
 [node name="HeartHealthPickup" type="Area2D" unique_id=2043579514]
 collision_layer = 4
 script = ExtResource("1_jbsqe")
-text = "+1 Rupee"
+text = "+1 Heart"
 offset = Vector2(-8, -16)
 item = ExtResource("2_jbsqe")
 audio_name = "Pickup"

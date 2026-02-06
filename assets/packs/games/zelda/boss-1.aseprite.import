@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c3fhr4k6j3xma"
+path="res://.godot/imported/boss-1.aseprite-0692a1464229044328ded92147eb9a95.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/boss-1.aseprite"
+dest_files=["res://.godot/imported/boss-1.aseprite-0692a1464229044328ded92147eb9a95.res"]
+
+[params]
+

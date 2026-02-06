@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://c8wbfqp4accut" path="res://scenes/game/ui/hud/hud.gd" id="1_4jqwt"]
 [ext_resource type="Texture2D" uid="uid://cuaemmusujclh" path="res://assets/packs/games/zelda/heart.png" id="2_sdl82"]
 [ext_resource type="Texture2D" uid="uid://b7lkeempj2qsb" path="res://assets/packs/games/zelda/Ui-Coin.png" id="3_jdapi"]
+[ext_resource type="Texture2D" uid="uid://bq2wblupc2a3y" path="res://assets/packs/games/zelda/blue_blox.png" id="4_pe00u"]
+[ext_resource type="Texture2D" uid="uid://dxigfhjocmrir" path="res://assets/packs/games/zelda/big_blue_blox.png" id="5_a4j7x"]
+[ext_resource type="Script" uid="uid://cdga2nfbqm4jg" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/item_texture_rect.gd" id="6_a4j7x"]
+[ext_resource type="Script" uid="uid://b8lgffyrtngo7" path="res://scenes/core/items/ui/menus/menu/inventory/inventory/item_button.gd" id="7_3h8sk"]
 [ext_resource type="Shader" uid="uid://6uph4m6ym2yk" path="res://shaders/color_overlay.gdshader" id="7_gonto"]
 
 [sub_resource type="Animation" id="Animation_s5utl"]
@@ -151,6 +155,28 @@ tracks/12/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("PlayerBar/CanvasLayer/Control:position:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("PlayerBar/CanvasLayer/Control:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_5atvc"]
 resource_name = "die_fade_in"
@@ -211,6 +237,32 @@ tracks/4/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_3h8sk"]
+resource_name = "hide_inventory"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBar/CanvasLayer/Control:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.083333336, 0, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBar/CanvasLayer/Control:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(167, -0.083333336, -27.833334, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
 [sub_resource type="Animation" id="Animation_bkoqt"]
 resource_name = "hide_message"
 length = 0.5
@@ -262,6 +314,32 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_a660p"]
 resource_name = "hide_mobile_controls"
 length = 0.5
+
+[sub_resource type="Animation" id="Animation_a4j7x"]
+resource_name = "show_inventory"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBar/CanvasLayer/Control:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBar/CanvasLayer/Control:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 167, -0.083333336, -27.833334, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
 
 [sub_resource type="Animation" id="Animation_l0aiv"]
 resource_name = "show_message"
@@ -414,8 +492,10 @@ tracks/3/keys = {
 _data = {
 &"RESET": SubResource("Animation_s5utl"),
 &"die_fade_in": SubResource("Animation_5atvc"),
+&"hide_inventory": SubResource("Animation_3h8sk"),
 &"hide_message": SubResource("Animation_bkoqt"),
 &"hide_mobile_controls": SubResource("Animation_a660p"),
+&"show_inventory": SubResource("Animation_a4j7x"),
 &"show_message": SubResource("Animation_l0aiv"),
 &"show_mobile_controls": SubResource("Animation_swth0"),
 &"transition_in": SubResource("Animation_j2i3k"),
@@ -438,7 +518,7 @@ shader_parameter/color = Color(0.341176, 0.286275, 0.113725, 0.47451)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5atvc"]
 
-[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button")]
+[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button", "player_one_b", "player_one_a", "player_two_b", "player_two_a", "player_one_inventory_grid", "player_two_inventory_grid")]
 process_mode = 3
 script = ExtResource("1_4jqwt")
 player_one_coins_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/CoinLabel")
@@ -447,6 +527,12 @@ player_one_hearts = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/Con
 player_two_hearts = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/Container")
 heart_texture = ExtResource("2_sdl82")
 restart_button = NodePath("DieOverlay/CanvasLayer/Control/Control/RestartButton")
+player_one_b = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect/TextureRect")
+player_one_a = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect2/TextureRect")
+player_two_b = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect/TextureRect")
+player_two_a = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect2/TextureRect")
+player_one_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer")
+player_two_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer")
 metadata/_custom_type_script = "uid://c8wbfqp4accut"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1262092961]
@@ -463,12 +549,14 @@ custom_minimum_size = Vector2(100, 25)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 25.000042
 grow_horizontal = 2
 
 [node name="BlackBg" type="TextureRect" parent="PlayerBar/CanvasLayer/Control" unique_id=1524764056]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = -275.0
 offset_bottom = 43.0
 grow_horizontal = 2
 texture = SubResource("GradientTexture1D_sdl82")
@@ -480,10 +568,11 @@ offset_bottom = 40.0
 
 [node name="Container" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=500348912]
 layout_mode = 1
-offset_left = 2.0
-offset_right = 175.0
-offset_bottom = 34.0
-theme_override_constants/h_separation = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 176.0
+offset_bottom = 36.0
+theme_override_constants/h_separation = -2
 theme_override_constants/v_separation = -5
 columns = 6
 
@@ -547,14 +636,269 @@ texture = ExtResource("3_jdapi")
 [node name="CoinLabel" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=836434245]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 26.0
+offset_top = 27.0
 offset_right = 106.0
-offset_bottom = 43.0
+offset_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 18
 text = "256"
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=1771930924]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -10.0
+offset_right = 138.0
+offset_bottom = 54.0
+texture = ExtResource("4_pe00u")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect" unique_id=1837863729]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=940038310]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -10.0
+offset_right = 176.0
+offset_bottom = 54.0
+texture = ExtResource("4_pe00u")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect2" unique_id=1105031331]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=431275063]
+layout_mode = 0
+offset_left = -85.0
+offset_top = -145.0
+offset_right = 335.0
+offset_bottom = -39.0
+texture = ExtResource("5_a4j7x")
+expand_mode = 1
+
+[node name="InventoryContainer" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=946967316]
+layout_mode = 0
+offset_left = 29.0
+offset_top = -112.0
+offset_right = 149.0
+offset_bottom = -57.0
+columns = 6
+
+[node name="Button" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=776425684]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button" unique_id=500751935]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button2" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1094258683]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button2" unique_id=349943010]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button3" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1028116412]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button3" unique_id=1463327947]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button4" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1147737215]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button4" unique_id=1657696649]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button5" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=67257463]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button5" unique_id=465189951]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button6" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=403862388]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button6" unique_id=813865309]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button7" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1801243350]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button7" unique_id=1957671269]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button8" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=373055728]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button8" unique_id=1553348858]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button9" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1382122137]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button9" unique_id=8146237]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button10" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1112288886]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button10" unique_id=1070943775]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button11" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1599566108]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button11" unique_id=1176946953]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button12" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer" unique_id=1486433537]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer/Button12" unique_id=828975042]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
 
 [node name="PlayerTwoControl" type="Control" parent="PlayerBar/CanvasLayer/Control" unique_id=499949790]
 layout_mode = 1
@@ -567,10 +911,11 @@ grow_horizontal = 0
 
 [node name="Container" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=580238499]
 layout_mode = 1
-offset_left = -59.0
-offset_right = 114.0
-offset_bottom = 34.0
-theme_override_constants/h_separation = 0
+offset_left = -48.0
+offset_top = 2.0
+offset_right = 125.0
+offset_bottom = 36.0
+theme_override_constants/h_separation = -2
 theme_override_constants/v_separation = -5
 columns = 6
 
@@ -634,14 +979,287 @@ texture = ExtResource("3_jdapi")
 [node name="CoinLabel" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=547529741]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 26.0
+offset_top = 27.0
 offset_right = 108.0
-offset_bottom = 43.0
+offset_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 18
 text = "256"
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=1563404341]
+layout_mode = 0
+offset_left = -136.0
+offset_top = -10.0
+offset_right = -72.0
+offset_bottom = 54.0
+texture = ExtResource("4_pe00u")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect" unique_id=430816728]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=647814513]
+layout_mode = 0
+offset_left = -98.0
+offset_top = -10.0
+offset_right = -34.0
+offset_bottom = 54.0
+texture = ExtResource("4_pe00u")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect2" unique_id=606411643]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=1778484002]
+layout_mode = 0
+offset_left = -232.0
+offset_top = -142.0
+offset_right = 204.0
+offset_bottom = -41.0
+texture = ExtResource("5_a4j7x")
+expand_mode = 1
+
+[node name="InventoryContainer" type="GridContainer" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=1337221882]
+layout_mode = 0
+offset_left = -114.0
+offset_top = -112.0
+offset_right = 6.0
+offset_bottom = -57.0
+columns = 6
+
+[node name="Button" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=783014538]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button" unique_id=1531845022]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button2" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=1221102038]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button2" unique_id=1383401086]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button3" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=1927301019]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button3" unique_id=521935239]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button4" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=1773540549]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button4" unique_id=343148192]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button5" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=340654019]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button5" unique_id=1098151246]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button6" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=1086297634]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button6" unique_id=1439387282]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button7" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=849276718]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button7" unique_id=156853444]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button8" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=818371816]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button8" unique_id=658581096]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button9" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=2058309734]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button9" unique_id=1596257450]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button10" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=450284636]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button10" unique_id=1903244147]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button11" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=1764569567]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button11" unique_id=216677630]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button12" type="Button" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer" unique_id=430282007]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+button_mask = 3
+script = ExtResource("7_3h8sk")
+metadata/_custom_type_script = "uid://b8lgffyrtngo7"
+
+[node name="ItemTextureRect" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer/Button12" unique_id=1293208159]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jdapi")
+stretch_mode = 2
+script = ExtResource("6_a4j7x")
+metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="Button" type="Button" parent="PlayerBar/CanvasLayer/Control" unique_id=1867705553]
+layout_mode = 0
+offset_left = 335.0
+offset_top = -158.0
+offset_right = 357.0
+offset_bottom = -134.0
+text = "Quit
+"
+
+[node name="Button2" type="Button" parent="PlayerBar/CanvasLayer/Control" unique_id=880532377]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -158.0
+offset_right = 326.0
+offset_bottom = -134.0
+text = "Audio
+"
 
 [node name="DieOverlay" type="Node" parent="." unique_id=192002190]
 
@@ -802,5 +1420,7 @@ text = "Ready 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="PlayerBar/CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PlayerBar/CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="DieOverlay/CanvasLayer/Control/Control/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="DieOverlay/CanvasLayer/Control/Control/QuitButton" to="." method="_on_quit_button_pressed"]

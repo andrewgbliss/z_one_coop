@@ -32,7 +32,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd8g5"]
-size = Vector2(16, 15)
+size = Vector2(14, 13)
 
 [sub_resource type="Shader" id="Shader_efxgm"]
 code = "shader_type canvas_item;
@@ -89,7 +89,7 @@ controls = NodePath("NpcControls")
 garbage = true
 garbage_time = 0.25
 die_explosions = [NodePath("EnemyKilledExplosion")]
-drop_items = Array[String](["coin_1"])
+drop_items = Array[String](["coin_1", "heart"])
 navigation_agent = NodePath("NavigationAgent2D")
 hitbox = NodePath("Hitbox")
 metadata/_custom_type_script = "uid://om5mwrgyg8u7"

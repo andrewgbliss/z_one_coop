@@ -15,7 +15,7 @@ extends Node2D
 
 var _spawn_timer: float = 0.0
 var _walkable_polygons: Array[PackedVector2Array] = []
-
+var finished = false
 
 func _get_navigation_region_child() -> NavigationRegion2D:
 	for child in get_children():
@@ -47,6 +47,8 @@ func _build_walkable_polygons(nav_poly: NavigationPolygon) -> void:
 
 
 func _process(delta: float) -> void:
+	if finished:
+		return
 	if _walkable_polygons.is_empty():
 		return
 	var player := _get_player()
@@ -118,4 +120,6 @@ func _try_spawn_near_player(player_local: Vector2) -> void:
 		if entity_blue_name != "" and randf() < entity_blue_chance:
 			name_to_spawn = entity_blue_name
 		SpawnManager.spawn(name_to_spawn, global_pos, parent)
+		if spawn_interval == 0.0:
+			finished = true
 		return

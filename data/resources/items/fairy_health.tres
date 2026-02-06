@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Consumable" format=3 uid="uid://co1j14sv2fnva"]
+
+[ext_resource type="Script" uid="uid://dfarl1fr76j2f" path="res://scenes/core/items/resources/consumable.gd" id="1_alqb4"]
+
+[resource]
+script = ExtResource("1_alqb4")
+hp = 240
+consume_on_pickup = true
+name = "Heart"
+sell_price = 20
+metadata/_custom_type_script = "uid://dfarl1fr76j2f"

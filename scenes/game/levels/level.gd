@@ -26,14 +26,6 @@ func _after_ready():
 	elif GameManager.game_state == GameManager.GAME_STATE.GAME_PLAY:
 		_spawn_players(false)
 		
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
-		GameManager.toggle_pause()
-		if GameManager.is_paused:
-			UiManager.game_menus.push("PauseMenu")
-		else:
-			UiManager.game_menus.pop_all()
-
 func _spawn_players(reset_player = false):
 	player_one = SpawnManager.spawn("link", player_one_spawner.global_position, self)
 	player_one.died.connect(_on_player_died)

@@ -74,6 +74,8 @@ func get_slot_index(item: Item):
 	return items.find(item)
 	
 func get_next_available_slot():
+	if items.size() == 0:
+		items.resize(max_slots)
 	for i in items.size():
 		if items[i] == null:
 			return i

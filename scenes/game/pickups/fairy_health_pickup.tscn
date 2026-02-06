@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ittctvhp38ng"]
+
+[ext_resource type="Script" uid="uid://dy55lqpe5tllk" path="res://scenes/core/areas/pickup.gd" id="1_mq2gi"]
+[ext_resource type="Resource" uid="uid://co1j14sv2fnva" path="res://data/resources/items/fairy_health.tres" id="2_yyryq"]
+[ext_resource type="SpriteFrames" uid="uid://e48egqkecnv0" path="res://assets/packs/games/zelda/fairy.res" id="3_yyryq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leuas"]
+size = Vector2(7, 14)
+
+[node name="FairyHealthPickup" type="Area2D" unique_id=2043579514 node_paths=PackedStringArray("animated_sprite")]
+collision_layer = 4
+script = ExtResource("1_mq2gi")
+text = "+12 Hearts"
+offset = Vector2(-8, -16)
+item = ExtResource("2_yyryq")
+audio_name = "Pickup"
+respawn_time = 1.0
+animated_sprite = NodePath("AnimatedSprite2D")
+radius = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=828301093]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_leuas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641733285]
+z_index = 5
+position = Vector2(0, 1.19209e-07)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=176644180]
+sprite_frames = ExtResource("3_yyryq")
+autoplay = "default"
