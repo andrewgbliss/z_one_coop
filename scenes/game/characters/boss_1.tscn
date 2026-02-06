@@ -81,7 +81,7 @@ shader_parameter/mode = 0
 
 [node name="Boss1" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions", "navigation_agent", "hitbox")]
 collision_layer = 2
-collision_mask = 64
+collision_mask = 192
 motion_mode = 1
 script = ExtResource("1_qyv87")
 blackboard = SubResource("Resource_fxtxh")
@@ -119,6 +119,7 @@ shape = SubResource("RectangleShape2D_xcxfd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1892765473]
 material = SubResource("ShaderMaterial_fxtxh")
 sprite_frames = ExtResource("5_qyv87")
+autoplay = "default"
 
 [node name="EnemyKilledExplosion" parent="." unique_id=372614873 instance=ExtResource("6_7kjl7")]
 run_on_ready = false

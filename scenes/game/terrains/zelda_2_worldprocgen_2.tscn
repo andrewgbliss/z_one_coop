@@ -4,16 +4,6 @@
 [ext_resource type="Script" uid="uid://dfp07djigitpu" path="res://scenes/core/generation/tile_map_layer_advanced.gd" id="2_i557e"]
 [ext_resource type="Script" uid="uid://d1fd54ch3frow" path="res://scenes/game/levels/entity_spawner.gd" id="3_i557e"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ru2io"]
-vertices = PackedVector2Array(1971.9375, 618.9219, 1968.0469, 1349.9766, 1172.9375, 1349.0078, 1169.0469, 613.0703)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1159, 603, 1163, 1359, 1978, 1360, 1982, 609)])
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_i557e"]
-vertices = PackedVector2Array(2507, 538, 2052, 538, 2052, 66.953125, 2507, 65.03906)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2042, 57, 2042, 548, 2517, 548, 2517, 55)])
-
 [node name="zelda1worldprocgen2" type="Node2D" unique_id=9247481]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=16158161]
@@ -50,19 +40,15 @@ repeat_y = 5
 metadata/_custom_type_script = "uid://dfp07djigitpu"
 
 [node name="EntitySpawner" type="Node2D" parent="." unique_id=331875766 node_paths=PackedStringArray("dont_spawn_on_tiles")]
+position = Vector2(1566, 953)
 script = ExtResource("3_i557e")
 spawn_interval = 1.0
 dont_spawn_on_tiles = [NodePath("../Water"), NodePath("../Mountains")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="EntitySpawner" unique_id=1612188717]
-navigation_polygon = SubResource("NavigationPolygon_ru2io")
-
 [node name="EntitySpawner2" type="Node2D" parent="." unique_id=14719943 node_paths=PackedStringArray("dont_spawn_on_tiles")]
+position = Vector2(2263, 297)
 script = ExtResource("3_i557e")
 entity_name = "boss_1"
 entity_blue_name = ""
 spawn_interval = 0.0
 dont_spawn_on_tiles = [NodePath("../Water"), NodePath("../Mountains")]
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="EntitySpawner2" unique_id=1226786585]
-navigation_polygon = SubResource("NavigationPolygon_i557e")

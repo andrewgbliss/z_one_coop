@@ -304,6 +304,7 @@ pointing/emulate_mouse_from_touch=false
 2d_physics/layer_5="enemy_projectile"
 2d_physics/layer_6="ground"
 2d_physics/layer_7="terrain"
+2d_physics/layer_8="water"
 
 [physics]
 

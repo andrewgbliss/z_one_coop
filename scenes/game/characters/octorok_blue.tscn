@@ -81,7 +81,7 @@ shader_parameter/mode = 0
 
 [node name="OctorokBlue" type="CharacterBody2D" unique_id=557682104 node_paths=PackedStringArray("controls", "die_explosions", "navigation_agent", "hitbox")]
 collision_layer = 2
-collision_mask = 64
+collision_mask = 192
 motion_mode = 1
 script = ExtResource("1_8ip15")
 blackboard = SubResource("Resource_fxtxh")

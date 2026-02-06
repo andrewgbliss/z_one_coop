@@ -14,7 +14,6 @@ text = "+12 Hearts"
 offset = Vector2(-8, -16)
 item = ExtResource("2_yyryq")
 audio_name = "Pickup"
-respawn_time = 1.0
 animated_sprite = NodePath("AnimatedSprite2D")
 radius = 16.0
 

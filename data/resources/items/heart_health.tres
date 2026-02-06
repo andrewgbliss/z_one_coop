@@ -9,7 +9,7 @@ region = Rect2(32, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_ojtyw")
-hp = 240
+hp = 10
 consume_on_pickup = true
 name = "Heart"
 texture = SubResource("AtlasTexture_u5qt2")

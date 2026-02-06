@@ -15,6 +15,8 @@ var player_two: CharacterController
 
 var players: Array[CharacterController] = []
 
+signal loaded
+
 func _ready() -> void:
 	call_deferred("_after_ready")
 
@@ -56,6 +58,11 @@ func _spawn_players(reset_player = false):
 	
 	if show_hud:
 		hud.show_hud()
+		
+	call_deferred("_loaded")
+	
+func _loaded():
+	loaded.emit()
 	
 func _set_camera():
 	if follow:
