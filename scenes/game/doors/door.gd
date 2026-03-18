@@ -2,23 +2,22 @@ class_name Door extends Node2D
 
 @onready var area: Area2D = $Area2D
 
-@export var player_one_door_to: Door
-@export var player_one_door_spawn_position: Node2D
-@export var player_two_door_to: Door
-@export var player_two_door_spawn_position: Node2D
-@export var change_camera_area: Area2D
-@export var level: Level
+enum DoorType {
+	CAVE,
+	OVERWORLD
+}
+
+@export var door_type: DoorType = DoorType.OVERWORLD
+
+var level: Level
 
 func _ready() -> void:
+	level = get_tree().root.get_node("Overworld")
 	area.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterController:
-		for i in range(level.players.size()):
-			var player = level.players[i]
-			if i == 0:
-				player.global_position = player_one_door_to.player_one_door_spawn_position.global_position
-			elif i == 1:
-				player.global_position = player_two_door_to.player_two_door_spawn_position.global_position
-		if change_camera_area:
-			level.change_camera_area(change_camera_area)
+		if door_type == DoorType.OVERWORLD:
+			level.teleport_to_cave(global_position)
+		elif door_type == DoorType.CAVE:
+			level.teleport_back_to_pos()

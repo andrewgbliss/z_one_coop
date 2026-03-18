@@ -9,13 +9,15 @@ class_name EntitySpawner extends Node2D
 @export var viewport_margin: float = 32.0 ## Spawn at least this far outside visible viewport (so they don't magically appear)
 @export var dont_spawn_on_tiles: Array[TileMapLayer] = [] ## TileMapLayers to treat as blocked; spawn position is skipped if inside any tile
 @export var player_group: StringName = &"player"
-@export var level: Level
+
 
 var _spawn_timer: float = 0.0
 var finished = false
 var players = []
+var level
 
 func _ready() -> void:
+	level = get_tree().root.get_node("Overworld")
 	level.loaded.connect(_on_level_loaded)
 	
 func _on_level_loaded():
@@ -31,7 +33,6 @@ func _process(delta: float) -> void:
 	if _spawn_timer <= 0.0:
 		_spawn_timer = spawn_interval
 		_try_spawn_near_player(player.global_position)
-
 
 func _get_player_in_range() -> Node2D:
 	var spawner_pos := global_position
@@ -67,7 +68,6 @@ func _is_outside_viewport(global_pos: Vector2) -> bool:
 
 
 func _try_spawn_near_player(player_global: Vector2) -> void:
-	var parent := get_parent()
 	const max_attempts := 30
 	for _attempt in max_attempts:
 		var angle := randf() * TAU
@@ -81,7 +81,7 @@ func _try_spawn_near_player(player_global: Vector2) -> void:
 		var name_to_spawn := entity_name
 		if entity_blue_name != "" and randf() < entity_blue_chance:
 			name_to_spawn = entity_blue_name
-		SpawnManager.spawn(name_to_spawn, global_pos, parent)
+		SpawnManager.spawn(name_to_spawn, global_pos, level)
 		if spawn_interval == 0.0:
 			finished = true
 		return

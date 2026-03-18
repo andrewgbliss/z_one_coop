@@ -20,14 +20,20 @@ enum TerrainType {
 @export var generation_width: int = 100
 @export var generation_height: int = 100
 
-@export var repeat_on_ready: bool = false
-@export var repeat_x: int = 1
-@export var repeat_y: int = 1
+@export var maze_layer_group: MazeLayerGroup
+
+@export_group("Generation Bounds")
+@export var min_offset: Vector2i = Vector2i(0, 0)
+@export var max_offset: Vector2i = Vector2i(0, 0)
+
+@export_group("Overlap Control")
+@export var avoid_overlap_layers: Array[TileMapLayerAdvanced] = []
 
 @export_group("Environmental Noise")
-@export var temperature: FastNoiseLite
-@export var moisture: FastNoiseLite
-@export var altitude: FastNoiseLite
+@export_range(0.0, 1.0) var temperature: float = 0.6
+@export_range(0.0, 1.0) var moisture: float = 0.7
+@export_range(0.0, 1.0) var altitude: float = 0.4
+@export var noise: FastNoiseLite
 
 @export_group("Breakable")
 @export var is_breakable: bool = false
@@ -42,8 +48,8 @@ var cell_altitude_dict: Dictionary = {}
 @export_group("Actions")
 @export_tool_button("Generate Noise from Terrain Type", "Callable") var generate_noise_action = generate_noise_from_terrain_type
 @export_tool_button("Generate Terrain Now", "Callable") var generate_terrain_action = generate_terrain_now
+@export_tool_button("Generate Solid Terrain", "Callable") var generate_solid_action = generate_solid_terrain
 @export_tool_button("Clear Terrain", "Callable") var clear_terrain_action = clear_terrain
-@export_tool_button("Repeat Tiles Now", "Callable") var repeat_tiles_action = repeat_tiles
 
 func generate_noise_from_terrain_type():
 	print("Generating noise configuration for terrain type: ", terrain_name)
@@ -51,151 +57,115 @@ func generate_noise_from_terrain_type():
 	match default_terrain_type:
 		TerrainType.WATER:
 			# Water needs low altitude, medium temperature, variable moisture
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.02
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.015
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			altitude.frequency = 0.025
-			altitude.seed = randi()
+			temperature = 0.5
+			moisture = 0.5
+			altitude = 0.2
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.02
+			noise.seed = randi()
 			
 		TerrainType.SAND:
 			# Desert needs low moisture, high temperature, varied altitude
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.015
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.02
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_PERLIN
-			altitude.frequency = 0.01
-			altitude.seed = randi()
+			temperature = 0.8
+			moisture = 0.2
+			altitude = 0.5
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.015
+			noise.seed = randi()
 			
 		TerrainType.GRASS:
 			# Grass needs moderate moisture, moderate temperature, low altitude
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.02
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.025
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			altitude.frequency = 0.015
-			altitude.seed = randi()
+			temperature = 0.6
+			moisture = 0.7
+			altitude = 0.4
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.025
+			noise.seed = randi()
 			
 		TerrainType.PLAINS:
 			# Plains need moderate conditions all around
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.018
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.022
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			altitude.frequency = 0.012
-			altitude.seed = randi()
+			temperature = 0.5
+			moisture = 0.6
+			altitude = 0.4
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.018
+			noise.seed = randi()
 			
 		TerrainType.MOUNTAINS:
 			# Mountains need high altitude with dramatic changes
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.02
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.015
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_PERLIN
-			altitude.frequency = 0.008
-			altitude.fractal_octaves = 4
-			altitude.seed = randi()
+			temperature = 0.4
+			moisture = 0.5
+			altitude = 0.8
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_PERLIN
+			noise.frequency = 0.008
+			noise.fractal_octaves = 4
+			noise.seed = randi()
 			
 		TerrainType.SNOW:
 			# Snow needs low temperature, high altitude
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.025
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.02
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_PERLIN
-			altitude.frequency = 0.01
-			altitude.fractal_octaves = 3
-			altitude.seed = randi()
+			temperature = 0.2
+			moisture = 0.5
+			altitude = 0.9
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_PERLIN
+			noise.frequency = 0.01
+			noise.fractal_octaves = 3
+			noise.seed = randi()
 			
 		TerrainType.DIRT:
 			# Ground is a general terrain with balanced settings
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.02
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.02
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			altitude.frequency = 0.02
-			altitude.seed = randi()
+			temperature = 0.5
+			moisture = 0.5
+			altitude = 0.5
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.02
+			noise.seed = randi()
 			
 		TerrainType.PLATFORM, TerrainType.BACKGROUND:
 			# Platform and background use simple noise patterns
-			temperature = FastNoiseLite.new()
-			temperature.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			temperature.frequency = 0.03
-			temperature.seed = randi()
-			
-			moisture = FastNoiseLite.new()
-			moisture.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			moisture.frequency = 0.03
-			moisture.seed = randi()
-			
-			altitude = FastNoiseLite.new()
-			altitude.noise_type = FastNoiseLite.TYPE_SIMPLEX
-			altitude.frequency = 0.025
-			altitude.seed = randi()
+			temperature = 0.5
+			moisture = 0.5
+			altitude = 0.5
+			noise = FastNoiseLite.new()
+			noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+			noise.frequency = 0.03
+			noise.seed = randi()
 	
 	print("Noise configuration generated successfully!")
-	print("  Temperature frequency: ", str(temperature.frequency) if temperature else "none")
-	print("  Moisture frequency: ", str(moisture.frequency) if moisture else "none")
-	print("  Altitude frequency: ", str(altitude.frequency) if altitude else "none")
+	print("  Temperature: ", temperature)
+	print("  Moisture: ", moisture)
+	print("  Altitude: ", altitude)
+	print("  Noise frequency: ", str(noise.frequency) if noise else "none")
 
 func reset_seed():
-	temperature.seed = randi()
-	moisture.seed = randi()
-	altitude.seed = randi()
+	if noise:
+		noise.seed = randi()
+
+func _get_generation_bounds(width: int, height: int) -> Rect2i:
+	var min_off := min_offset
+	var max_off := max_offset
+
+	var start := Vector2i(
+		clamp(min_off.x, 0, width),
+		clamp(min_off.y, 0, height)
+	)
+	var end := Vector2i(
+		clamp(width - max_off.x, 0, width),
+		clamp(height - max_off.y, 0, height)
+	)
+
+	# Ensure non-negative size even if offsets overlap
+	var size := Vector2i(
+		max(0, end.x - start.x),
+		max(0, end.y - start.y)
+	)
+	return Rect2i(start, size)
 
 func generate_terrain_now():
 	print("Generating terrain in editor...")
@@ -207,87 +177,37 @@ func generate_terrain_now():
 	cell_hp_dict.clear()
 	generate_terrain_by_type_auto(generation_width, generation_height, default_terrain_type)
 
+func generate_solid_terrain():
+	print("Generating solid terrain...")
+	clear()
+	generate_terrain_by_type_solid(generation_width, generation_height, default_terrain_type)
+
 func clear_terrain():
 	print("Clearing terrain...")
-	clear()
-	cell_temperature_dict.clear()
-	cell_moisture_dict.clear()
-	cell_altitude_dict.clear()
-	cell_hp_dict.clear()
-
-# Repeat existing tiles in a grid pattern
-func repeat_tiles():
-	if repeat_x <= 0 or repeat_y <= 0:
-		push_warning("TileMapLayerAdvanced: repeat_x and repeat_y must be greater than 0")
-		return
-	
-	# Get all existing cells and store their data
-	var original_cells = get_used_cells()
-	
-	if original_cells.is_empty():
-		push_warning("TileMapLayerAdvanced: No tiles to repeat")
-		return
-	
-	# Store cell data for all original cells
-	var cell_data_map: Dictionary = {}
-	for cell_coords in original_cells:
-		var source_id = get_cell_source_id(cell_coords)
-		var atlas_coords = get_cell_atlas_coords(cell_coords)
-		var alternative_tile = get_cell_alternative_tile(cell_coords)
-		
-		cell_data_map[cell_coords] = {
-			"source_id": source_id,
-			"atlas_coords": atlas_coords,
-			"alternative_tile": alternative_tile
-		}
-	
-	# Use generation_width and generation_height for separation
-	print("Repeating tiles: using separation ", generation_width, "x", generation_height, " with repeats ", repeat_x, "x", repeat_y)
-	
-	# Repeat the pattern across the grid
-	for repeat_x_idx in range(repeat_x):
-		for repeat_y_idx in range(repeat_y):
-			# Skip the original (0,0) position
-			if repeat_x_idx == 0 and repeat_y_idx == 0:
-				continue
+	# Only clear inside the generation-bounds area
+	var bounds := _get_generation_bounds(generation_width, generation_height)
+	var positions: Array[Vector2i] = []
+	for x in range(bounds.position.x, bounds.position.x + bounds.size.x):
+		for y in range(bounds.position.y, bounds.position.y + bounds.size.y):
+			var cell_coords := Vector2i(x, y)
+			positions.append(cell_coords)
 			
-			# Calculate the offset for this repetition using generation dimensions
-			var offset_x = repeat_x_idx * generation_width
-			var offset_y = repeat_y_idx * generation_height
-			
-			# Copy each cell to the new position
-			for cell_coords in original_cells:
-				var new_coords = Vector2i(
-					cell_coords.x + offset_x,
-					cell_coords.y + offset_y
-				)
-				
-				var cell_info = cell_data_map[cell_coords]
-				set_cell(
-					new_coords,
-					cell_info["source_id"],
-					cell_info["atlas_coords"],
-					cell_info["alternative_tile"]
-				)
-				
-				# Copy environmental data if it exists
-				if cell_temperature_dict.has(cell_coords):
-					cell_temperature_dict[new_coords] = cell_temperature_dict[cell_coords]
-				if cell_moisture_dict.has(cell_coords):
-					cell_moisture_dict[new_coords] = cell_moisture_dict[cell_coords]
-				if cell_altitude_dict.has(cell_coords):
-					cell_altitude_dict[new_coords] = cell_altitude_dict[cell_coords]
-				if cell_hp_dict.has(cell_coords):
-					cell_hp_dict[new_coords] = cell_hp_dict[cell_coords]
+			if cell_temperature_dict.has(cell_coords):
+				cell_temperature_dict.erase(cell_coords)
+			if cell_moisture_dict.has(cell_coords):
+				cell_moisture_dict.erase(cell_coords)
+			if cell_altitude_dict.has(cell_coords):
+				cell_altitude_dict.erase(cell_coords)
+			if cell_hp_dict.has(cell_coords):
+				cell_hp_dict.erase(cell_coords)
 	
-	print("Tile repetition complete!")
+	# Clear terrain in bulk (terrain_id = -1 means "no terrain")
+	if positions.size() > 0:
+		set_cells_terrain_connect(positions, 0, -1, false)
 
 func _ready():
 	if generate_on_ready and not Engine.is_editor_hint():
 		generate_terrain_by_type_auto(generation_width, generation_height, default_terrain_type)
-	
-	if repeat_on_ready and not Engine.is_editor_hint():
-		repeat_tiles()
 
 func handle_collision(collision: KinematicCollision2D, blast_radius: float):
 	if is_breakable:
@@ -348,6 +268,13 @@ func apply_break_to_tile(tile_position: Vector2, cell_data, break_progress):
 	cell_data.material.set_shader_parameter("target_screen_max", screen_max)
 	cell_data.material.set_shader_parameter("break_progress", break_progress)
 
+# Check if a cell is occupied in any avoid-overlap layer
+func _is_cell_occupied_in_avoid_layers(cell_coords: Vector2i) -> bool:
+	for layer in avoid_overlap_layers:
+		if layer and layer.get_cell_source_id(cell_coords) != -1:
+			return true
+	return false
+
 # Generate environmental values for a specific cell position
 func generate_cell_environment(cell_coords: Vector2i):
 	var world_pos = map_to_local(cell_coords)
@@ -356,9 +283,10 @@ func generate_cell_environment(cell_coords: Vector2i):
 	var scaled_x = world_pos.x * 0.1
 	var scaled_y = world_pos.y * 0.1
 
-	cell_temperature_dict[cell_coords] = temperature.get_noise_2d(scaled_x, scaled_y)
-	cell_moisture_dict[cell_coords] = moisture.get_noise_2d(scaled_x, scaled_y)
-	cell_altitude_dict[cell_coords] = altitude.get_noise_2d(scaled_x, scaled_y)
+	var noise_value = noise.get_noise_2d(scaled_x, scaled_y) * 0.5 if noise else 0.0
+	cell_temperature_dict[cell_coords] = clamp(temperature + noise_value, 0.0, 1.0)
+	cell_moisture_dict[cell_coords] = clamp(moisture + noise_value, 0.0, 1.0)
+	cell_altitude_dict[cell_coords] = clamp(altitude + noise_value, 0.0, 1.0)
 
 # Generate environmental values for all cells in use
 func generate_all_cell_environments():
@@ -420,47 +348,46 @@ func get_terrain_condition(terrain_type: TerrainType) -> Callable:
 		TerrainType.BASE:
 			return func(_temp, _moist, _alt): return true
 		TerrainType.WATER:
-			return func(_temp, _moist, alt): return alt < -0.3
+			return func(_temp, _moist, alt): return alt < 0.35
 		TerrainType.DIRT:
-			return func(_temp, _moist, alt): return alt > 0.3 and alt < 0.3
+			return func(_temp, _moist, alt): return alt >= 0.35 and alt <= 0.65
 		TerrainType.SAND:
-			return func(temp, moist, alt): return moist < -0.3 and temp > 0.3 and alt >= -0.3 and alt <= 0.6
+			return func(temp, moist, alt): return moist < 0.35 and temp > 0.65 and alt >= 0.35 and alt <= 0.8
 		TerrainType.GRASS:
-			return func(temp, moist, alt): return moist > 0.3 and temp > 0.1 and alt >= -0.3 and alt <= 0.6
+			return func(temp, moist, alt): return moist > 0.65 and temp > 0.55 and alt >= 0.35 and alt <= 0.8
 		TerrainType.PLAINS:
-			return func(temp, moist, alt): return moist > 0.1 and temp > -0.2 and alt >= -0.3 and alt <= 0.6
+			return func(temp, moist, alt): return moist > 0.55 and temp > 0.4 and alt >= 0.35 and alt <= 0.8
 		TerrainType.MOUNTAINS:
-			return func(_temp, _moist, alt): return alt > 0.3
+			return func(_temp, _moist, alt): return alt > 0.65
 		TerrainType.SNOW:
-			return func(temp, _moist, alt): return alt > 0.6 and temp < -0.2
+			return func(temp, _moist, alt): return alt > 0.8 and temp < 0.4
 		TerrainType.PLATFORM:
-			return func(_temp, _moist, alt): return alt > 0.3
+			return func(_temp, _moist, alt): return alt > 0.65
 		TerrainType.BACKGROUND:
 			return func(_temp, _moist, _alt): return true
 		_:
 			return func(_temp, _moist, _alt): return false
 
 # Generate terrain for the entire region without noise
-func generate_terrain(width: int, height: int, terrain_set_id: int, terrain_id: int):
-	var positions: Array[Vector2i] = []
-	
-	for x in range(width):
-		for y in range(height):
-			var cell_coords = Vector2i(x, y)
-			positions.append(cell_coords)
-	
-	# Place terrain tiles
-	if positions.size() > 0:
-		set_cells_terrain_connect(positions, terrain_set_id, terrain_id, false)
+func generate_terrain(width: int, height: int, _terrain_set_id: int, _terrain_id: int):
+	var bounds := _get_generation_bounds(width, height)
+	for x in range(bounds.position.x, bounds.position.x + bounds.size.x):
+		for y in range(bounds.position.y, bounds.position.y + bounds.size.y):
+			set_cell(Vector2i(x, y), 0, Vector2i(0, 0), 0)
 
 # Generate terrain for a region based on environmental conditions
 # Similar to WorldGenerator's logic
 func generate_terrain_from_environment(width: int, height: int, terrain_set_id: int, terrain_id: int, condition_func: Callable):
 	var positions: Array[Vector2i] = []
 
-	for x in range(width):
-		for y in range(height):
+	var bounds := _get_generation_bounds(width, height)
+	for x in range(bounds.position.x, bounds.position.x + bounds.size.x):
+		for y in range(bounds.position.y, bounds.position.y + bounds.size.y):
 			var cell_coords = Vector2i(x, y)
+
+			# Skip cells that are already occupied on any overlap-avoidance layer
+			if _is_cell_occupied_in_avoid_layers(cell_coords):
+				continue
 
 			# Generate environmental values
 			generate_cell_environment(cell_coords)
@@ -477,16 +404,25 @@ func generate_terrain_from_environment(width: int, height: int, terrain_set_id: 
 	if positions.size() > 0:
 		set_cells_terrain_connect(positions, terrain_set_id, terrain_id, false)
 
+# Generate a completely solid area of the given terrain (no noise / thresholds)
+func generate_terrain_solid_fill(width: int, height: int, terrain_set_id: int, terrain_id: int):
+	var positions: Array[Vector2i] = []
+	var bounds := _get_generation_bounds(width, height)
+	for x in range(bounds.position.x, bounds.position.x + bounds.size.x):
+		for y in range(bounds.position.y, bounds.position.y + bounds.size.y):
+			var cell_coords := Vector2i(x, y)
+			# Skip cells that are already occupied on any overlap-avoidance layer
+			if _is_cell_occupied_in_avoid_layers(cell_coords):
+				continue
+			positions.append(cell_coords)
+	if positions.size() > 0:
+		set_cells_terrain_connect(positions, terrain_set_id, terrain_id, false)
+
 # Convenience function to generate terrain using TerrainType enum
 func generate_terrain_by_type(width: int, height: int, terrain_set_id: int, terrain_id: int, terrain_type: TerrainType):
-	if temperature != null and moisture != null and altitude != null:
-		print("Generating terrain from environment noise")
-		var condition = get_terrain_condition(terrain_type)
-		print("Condition: ", condition)
-		generate_terrain_from_environment(width, height, terrain_set_id, terrain_id, condition)
-	else:
-		print("Generating terrain without environment noise")
-		generate_terrain(width, height, terrain_set_id, terrain_id)
+	print("Generating terrain")
+	var condition_func := get_terrain_condition(terrain_type)
+	generate_terrain_from_environment(width, height, terrain_set_id, terrain_id, condition_func)
 
 # Automatically find terrain IDs and generate terrain
 func generate_terrain_by_type_auto(width: int, height: int, terrain_type: TerrainType):
@@ -497,3 +433,12 @@ func generate_terrain_by_type_auto(width: int, height: int, terrain_type: Terrai
 		return
 	
 	generate_terrain_by_type(width, height, terrain_info["set_id"], terrain_info["terrain_id"], terrain_type)
+
+func generate_terrain_by_type_solid(width: int, height: int, _terrain_type: TerrainType):
+	var terrain_info = find_terrain_ids(terrain_name)
+		
+	if terrain_info["set_id"] == -1 or terrain_info["terrain_id"] == -1:
+		push_error("TileMapLayerAdvanced: Failed to find terrain IDs for '%s'" % terrain_name)
+		return
+	
+	generate_terrain_solid_fill(width, height, terrain_info["set_id"], terrain_info["terrain_id"])

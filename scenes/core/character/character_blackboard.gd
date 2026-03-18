@@ -14,6 +14,11 @@ enum CharacterGender {Male, Female}
 @export var gender: CharacterGender = CharacterGender.Male
 @export_range(-1.0, 1.0) var alignment: float = 0.0
 
+@export_group("Spawn")
+# Used by the level to keep the player respawn location stable across
+# full reset / restore cycles.
+@export var last_spawn_point: Vector2 = Vector2.ZERO
+
 @export_group("Points")
 @export var level: int = 0
 @export var health: int = 0
@@ -264,6 +269,8 @@ func serialize():
 		"special": special,
 		"max_special": max_special,
 		"alignment": alignment,
+		"last_spawn_point_x": last_spawn_point.x,
+		"last_spawn_point_y": last_spawn_point.y,
 		"speed": speed,
 		"acceleration": acceleration,
 		"friction": friction,
@@ -325,6 +332,8 @@ func deserialize(data):
 		max_special = data.get("max_special")
 	if data.has("alignment"):
 		alignment = data.get("alignment")
+	if data.has("last_spawn_point_x") and data.has("last_spawn_point_y"):
+		last_spawn_point = Vector2(data["last_spawn_point_x"], data["last_spawn_point_y"])
 	if data.has("speed"):
 		speed = data["speed"]
 	if data.has("acceleration"):
