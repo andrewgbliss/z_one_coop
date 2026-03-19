@@ -8,6 +8,9 @@ class_name MazeBuilder extends Node2D
 ## Godot units per block (one cell). Used to position each tilemap layer so they don't overlap.
 @export var block_size_units: int = 1024
 
+@export var navigation_region: NavigationRegion2D
+@export var level: int = 0
+
 @export_tool_button("Generate Maze", "Callable")
 var generate_maze_action = generate_maze
 
@@ -19,6 +22,8 @@ signal maze_generated(start_tile: Vector2i)
 @export var tile_map_layers: Array[TileMapLayerAdvanced] = []
 ## Used during generation; first layer is used for get_tile_by_pos / get_tiles_by_type when array is non-empty.
 var _current_tile_map_layer: TileMapLayerAdvanced
+## The TileMapLayer currently parented under `navigation_region` for navigation baking/queries.
+var _navigation_active_layer: TileMapLayerAdvanced = null
 ## Map offset for current layer.
 ## Kept at (0,0) so generated tile coordinates always start from the layer's origin.
 var _current_layer_map_offset: Vector2i = Vector2i(0, 0)
@@ -85,6 +90,94 @@ func get_tiles_by_type(type: String) -> Array[TileInfo]:
 
 func _ready() -> void:
 	pass
+
+func enable_area(layer_index: int = -1, debug_prints: bool = true) -> void:
+	if tile_map_layers.is_empty():
+		if debug_prints:
+			print("MazeBuilder.enable_area: no tile_map_layers")
+		return
+
+	var target_index := layer_index
+	if target_index < 0:
+		target_index = int(level)
+
+	if debug_prints:
+		print("MazeBuilder.enable_area: target_index=", target_index, " layers=", tile_map_layers.size())
+
+	for layer in tile_map_layers:
+		if layer:
+			layer.process_mode = Node.PROCESS_MODE_DISABLED
+
+	if target_index < 0 or target_index >= tile_map_layers.size():
+		if debug_prints:
+			print("MazeBuilder.enable_area: target_index out of range")
+		return
+
+	# Enable previous, current, and next layer (so transitions/preloads can run).
+	for idx in [target_index - 1, target_index, target_index + 1]:
+		if idx < 0 or idx >= tile_map_layers.size():
+			if debug_prints:
+				print("MazeBuilder.enable_area: skip idx=", idx, " (out of range)")
+			continue
+		var layer := tile_map_layers[idx]
+		if layer:
+			layer.process_mode = Node.PROCESS_MODE_INHERIT
+			if debug_prints:
+				print("MazeBuilder.enable_area: enabled idx=", idx, " name=", layer.name)
+		elif debug_prints:
+			print("MazeBuilder.enable_area: idx=", idx, " is null")
+
+	if debug_prints:
+		for i in range(tile_map_layers.size()):
+			var l := tile_map_layers[i]
+			if not l:
+				print("MazeBuilder.enable_area: layer[", i, "] = null")
+				continue
+			print("MazeBuilder.enable_area: layer[", i, "] name=", l.name, " process_mode=", l.process_mode)
+
+func set_navigation_active_layer(_layer_index: int) -> void:
+	# this will just enable / diable the region as needed already pre baked
+	pass
+	# if not navigation_region:
+	# 	return
+	# if tile_map_layers.is_empty():
+	# 	return
+	# if layer_index < 0 or layer_index >= tile_map_layers.size():
+	# 	return
+
+	# var target: TileMapLayerAdvanced = tile_map_layers[layer_index]
+	# if not target:
+	# 	return
+
+	# # Move any existing TileMapLayerAdvanced children of the navigation region back under the builder.
+	# # This keeps the region owning exactly one active layer at a time.
+	# for child in navigation_region.get_children():
+	# 	if child is TileMapLayerAdvanced:
+	# 		var existing: TileMapLayerAdvanced = child
+	# 		if existing != target:
+	# 			existing.reparent(self , true)
+
+	# # If our tracked active layer is different, ensure it's also moved out.
+	# if _navigation_active_layer and is_instance_valid(_navigation_active_layer) and _navigation_active_layer != target:
+	# 	if _navigation_active_layer.get_parent() == navigation_region:
+	# 		_navigation_active_layer.reparent(self , true)
+
+	# # Finally, move the requested layer under the navigation region.
+	# if target.get_parent() != navigation_region:
+	# 	target.reparent(navigation_region, true)
+	# _navigation_active_layer = target
+	# call_deferred("_bake_navigation_deferred")
+
+func _bake_navigation_deferred() -> void:
+	if not navigation_region:
+		return
+	# This function is invoked via `call_deferred()`, then we wait one more frame
+	# so reparenting/tile updates have fully applied before baking.
+	# await get_tree().create_timer(1.0).timeout
+	# if navigation_region.has_method("bake_navigation_polygon_async"):
+	# 	navigation_region.bake_navigation_polygon_async()
+	# elif navigation_region.has_method("bake_navigation_polygon"):
+	# 	navigation_region.bake_navigation_polygon()
 
 func _main_layer() -> TileMapLayerAdvanced:
 	if tile_map_layers.is_empty():
@@ -590,7 +683,10 @@ func generate_maze() -> Vector2i:
 		if layer_index == 1:
 			first_start_tile = Vector2i(start_cell.x * cell_size, start_cell.y * cell_size)
 
-	_apply_layer_positions()
+		_apply_layer_positions()
+	# After generation, parent the exported level's layer under the navigation region
+	# so navigation can be generated/queried for that active layer immediately.
+	set_navigation_active_layer(int(level) if level != null else 0)
 	maze_generated.emit(first_start_tile)
 	return first_start_tile
 

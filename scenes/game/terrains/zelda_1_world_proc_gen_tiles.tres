@@ -30,6 +30,54 @@ tile_data = PackedInt32Array(0, 196608, 11, 65536, 196608, 12, 1, 327680, 11, 65
 [sub_resource type="TileMapPattern" id="TileMapPattern_cok0c"]
 tile_data = PackedInt32Array(0, 0, 8, 65536, 0, 8, 131072, 0, 8, 196608, 0, 8, 262144, 0, 8, 327680, 0, 8, 393216, 0, 8, 458752, 0, 8, 1, 0, 8, 65537, 0, 8, 131073, 0, 8, 196609, 65536, 8, 262145, 131072, 65545, 327681, 65536, 9, 393217, 0, 8, 458753, 0, 8, 2, 0, 8, 65538, 0, 8, 131074, 65536, 8, 196610, 131072, 196617, 262146, 131072, 196617, 327682, 131072, 9, 393218, 0, 8, 458754, 0, 8, 3, 0, 8, 65539, 0, 8, 131075, 131072, 8, 196611, 131072, 196617, 262147, 131072, 196617, 327683, 131072, 9, 393219, 0, 8, 458755, 0, 8, 4, 0, 8, 65540, 0, 8, 131076, 131072, 8, 196612, 131072, 196617, 262148, 131072, 196617, 327684, 1, 65536, 393220, 0, 8, 458756, 0, 8, 5, 0, 8, 65541, 0, 8, 131077, 196608, 8, 196613, 131072, 196617, 262149, 131072, 196617, 327685, 131072, 9, 393221, 0, 8, 458757, 0, 8, 6, 0, 8, 65542, 0, 8, 131078, 0, 8, 196614, 196608, 8, 262150, 131072, 131081, 327686, 196608, 9, 393222, 0, 8, 458758, 0, 8, 7, 0, 8, 65543, 0, 8, 131079, 0, 8, 196615, 0, 8, 262151, 0, 8, 327687, 0, 8, 393223, 0, 8, 458759, 0, 8)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b1ibg"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gc5ub"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_blqd7"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k3m0y"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g8mng"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m18pj"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w25iw"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cok0c"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ih80t"]
 texture = ExtResource("1_evhox")
 0:0/0 = 0
@@ -175,6 +223,7 @@ texture = ExtResource("1_evhox")
 7:4/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:4/0 = 0
 9:4/0 = 0
+9:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_cok0c")
 10:4/0 = 0
 11:4/0 = 0
 12:4/0 = 0
@@ -188,6 +237,7 @@ texture = ExtResource("1_evhox")
 15:4/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:4/0 = 0
 17:4/0 = 0
+17:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_m18pj")
 18:4/0 = 0
 19:4/0 = 0
 20:4/0 = 0
@@ -201,6 +251,7 @@ texture = ExtResource("1_evhox")
 23:4/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 24:4/0 = 0
 25:4/0 = 0
+25:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_w25iw")
 26:4/0 = 0
 27:4/0 = 0
 28:4/0 = 0
@@ -574,6 +625,7 @@ texture = ExtResource("1_evhox")
 0:8/0/terrains_peering_bit/top_left_corner = 2
 0:8/0/terrains_peering_bit/top_side = 2
 0:8/0/terrains_peering_bit/top_right_corner = 2
+0:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_b1ibg")
 1:8/0 = 0
 1:8/0/terrain_set = 0
 1:8/0/terrain = 1
@@ -635,6 +687,7 @@ texture = ExtResource("1_evhox")
 0:9/0/terrains_peering_bit/top_left_corner = 3
 0:9/0/terrains_peering_bit/top_side = 3
 0:9/0/terrains_peering_bit/top_right_corner = 3
+0:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gc5ub")
 1:9/0 = 0
 1:9/0/terrain_set = 0
 1:9/0/terrain = 1
@@ -822,8 +875,11 @@ texture = ExtResource("1_evhox")
 14:10/0 = 0
 14:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:11/0 = 0
+12:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_blqd7")
 13:11/0 = 0
+13:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k3m0y")
 14:11/0 = 0
+14:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_g8mng")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_gc5ub"]
 resource_name = "Door"
@@ -847,6 +903,7 @@ terrain_set_0/terrain_5/name = "MountainsGraveYard"
 terrain_set_0/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
 terrain_set_0/terrain_6/name = "MountainsLast"
 terrain_set_0/terrain_6/color = Color(0.25, 0.5, 0.40625, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ih80t")
 sources/1 = SubResource("TileSetScenesCollectionSource_gc5ub")
 pattern_0 = SubResource("TileMapPattern_ef8n2")

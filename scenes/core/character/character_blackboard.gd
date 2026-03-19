@@ -120,7 +120,7 @@ func reset():
 	special_changed.emit(special, max_special)
 
 func full_reset():
-	level = 1
+	level = 0
 	health = 30
 	max_health = 30
 	mana = 0
@@ -241,10 +241,9 @@ func add_xp(value: int):
 		max_xp = 100
 		health_changed.emit(health, max_health)
 
-func add_level(value: int):
-	level += value
+func change_level(value: int):
+	level = value
 	level_changed.emit(level)
-	add_max_health(10)
 
 func serialize():
 	var data = {

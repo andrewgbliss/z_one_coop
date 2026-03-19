@@ -518,7 +518,7 @@ shader_parameter/color = Color(0.341176, 0.286275, 0.113725, 0.47451)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5atvc"]
 
-[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button", "player_one_b", "player_one_a", "player_two_b", "player_two_a", "player_one_inventory_grid", "player_two_inventory_grid")]
+[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button", "player_one_b", "player_one_a", "player_two_b", "player_two_a", "player_one_inventory_grid", "player_two_inventory_grid", "level_label")]
 process_mode = 3
 script = ExtResource("1_4jqwt")
 player_one_coins_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/CoinLabel")
@@ -533,6 +533,7 @@ player_two_b = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureR
 player_two_a = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect2/TextureRect")
 player_one_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer")
 player_two_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer")
+level_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/LevelLabel")
 metadata/_custom_type_script = "uid://c8wbfqp4accut"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1262092961]
@@ -899,6 +900,14 @@ texture = ExtResource("3_jdapi")
 stretch_mode = 2
 script = ExtResource("6_a4j7x")
 metadata/_custom_type_script = "uid://cdga2nfbqm4jg"
+
+[node name="LevelLabel" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=470684847]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 28.0
+offset_right = 207.0
+offset_bottom = 44.0
+text = "Level 0"
 
 [node name="PlayerTwoControl" type="Control" parent="PlayerBar/CanvasLayer/Control" unique_id=499949790]
 layout_mode = 1

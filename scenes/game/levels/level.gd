@@ -30,6 +30,15 @@ func _after_ready():
 	elif GameManager.game_state == GameManager.GAME_STATE.GAME_PLAY:
 		_spawn_players(false)
 
+func _on_player_level_changed(new_level: int) -> void:
+	if not build_level:
+		return
+	print("Level._on_player_level_changed: new_level=", new_level)
+	# `new_level` is already a 0-based index into MazeBuilder.tile_map_layers.
+	build_level.level = new_level
+	build_level.enable_area(new_level, true)
+	# build_level.set_navigation_active_layer(new_level)
+
 func _pick_random_spawn_point_in_first_layer(rng: RandomNumberGenerator, first_start_tile: Vector2i) -> Vector2:
 	# Spawn relative to the shop template placed on the entry layer (layer index `1`).
 	# If the shop record isn't available, fall back to the original "inside entrance block" logic.
@@ -158,6 +167,10 @@ func _spawn_players(reset_player = false):
 	# then we override position after blackboard restore if needed.
 	player_one = SpawnManager.spawn("link", player_one_pos, self )
 	player_one.died.connect(_on_player_died)
+	if player_one and player_one.blackboard:
+		player_one.blackboard.level_changed.connect(_on_player_level_changed)
+		# Ensure navigation uses the player's current level immediately.
+		_on_player_level_changed(player_one.blackboard.level)
 	if reset_player:
 		if player_one.blackboard:
 			player_one.blackboard.last_spawn_point = player_one_pos
@@ -174,6 +187,8 @@ func _spawn_players(reset_player = false):
 	if GameManager.how_many_players == 2 or GameManager.how_many_players == 3:
 		player_two = SpawnManager.spawn("link", player_two_pos, self )
 		player_two.died.connect(_on_player_died)
+		if player_two and player_two.blackboard:
+			player_two.blackboard.level_changed.connect(_on_player_level_changed)
 		if reset_player:
 			if player_two.blackboard:
 				player_two.blackboard.last_spawn_point = player_two_pos

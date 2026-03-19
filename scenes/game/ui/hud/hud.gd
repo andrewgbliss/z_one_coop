@@ -20,6 +20,7 @@ const HEART_HALF_HP := 5
 @export var player_two_a: TextureRect
 @export var player_one_inventory_grid: GridContainer
 @export var player_two_inventory_grid: GridContainer
+@export var level_label: Label
 
 var players: Array[CharacterController] = []
 var _heart_full: AtlasTexture
@@ -98,6 +99,7 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.inventory.gold_changed.connect(_on_player_one_coins_changed)
 		player.blackboard.equipment.equipment_changed.connect(_on_player_one_equipment_changed)
 		player.blackboard.health_changed.connect(_on_player_one_health_changed)
+		player.blackboard.level_changed.connect(_on_player_one_level_changed)
 		_update_hearts_container(player, player_one_hearts)
 		_on_player_one_coins_changed(player.blackboard.inventory.gold)
 		_on_player_one_inventory_changed(null)
@@ -109,9 +111,17 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.inventory.gold_changed.connect(_on_player_two_coins_changed)
 		player.blackboard.equipment.equipment_changed.connect(_on_player_two_equipment_changed)
 		player.blackboard.health_changed.connect(_on_player_two_health_changed)
+		player.blackboard.level_changed.connect(_on_player_two_level_changed)
 		_update_hearts_container(player, player_two_hearts)
 		_on_player_two_coins_changed(player.blackboard.inventory.gold)
 		_on_player_two_inventory_changed(null)
+
+
+func _on_player_one_level_changed(level: int):
+	level_label.text = "Level: " + str(level)
+
+func _on_player_two_level_changed(level: int):
+	level_label.text = "Level: " + str(level)
 
 func _on_player_one_equipment_changed():
 	if players[0].blackboard.equipment.left_hand:

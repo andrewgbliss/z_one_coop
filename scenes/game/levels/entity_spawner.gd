@@ -7,8 +7,8 @@ class_name EntitySpawner extends Node2D
 @export var spawn_interval: float = 3.0 ## Seconds between spawn attempts
 @export var spawn_margin: float = 32.0 ## Minimum distance from spawn point
 @export var viewport_margin: float = 32.0 ## Spawn at least this far outside visible viewport (so they don't magically appear)
-@export var dont_spawn_on_tiles: Array[TileMapLayer] = [] ## TileMapLayers to treat as blocked; spawn position is skipped if inside any tile
 @export var player_group: StringName = &"player"
+@export var navigation_region: NavigationRegion2D
 
 
 var _spawn_timer: float = 0.0
@@ -44,17 +44,6 @@ func _get_player_in_range() -> Node2D:
 	return null
 
 
-func _is_position_on_forbidden_tile(global_pos: Vector2) -> bool:
-	for layer in dont_spawn_on_tiles:
-		if layer == null:
-			continue
-		var local_pos: Vector2 = layer.to_local(global_pos)
-		var cell := layer.local_to_map(local_pos)
-		if layer.get_cell_tile_data(cell) != null:
-			return true
-	return false
-
-
 func _get_visible_world_rect() -> Rect2:
 	var viewport := get_viewport()
 	var visible_rect := viewport.get_visible_rect()
@@ -66,6 +55,25 @@ func _get_visible_world_rect() -> Rect2:
 func _is_outside_viewport(global_pos: Vector2) -> bool:
 	return not _get_visible_world_rect().has_point(global_pos)
 
+func _snap_to_navigation(global_pos: Vector2) -> Vector2:
+	if navigation_region == null:
+		return global_pos
+
+	var map_rid: RID
+	if navigation_region.has_method("get_navigation_map"):
+		map_rid = navigation_region.get_navigation_map()
+
+	if map_rid.is_valid():
+		return NavigationServer2D.map_get_closest_point(map_rid, global_pos)
+
+	# Fallback: if the region isn't on a valid map yet, snap to the polygon.
+	var poly := navigation_region.navigation_polygon
+	if poly == null:
+		return global_pos
+	if poly.has_method("get_closest_point"):
+		return poly.get_closest_point(global_pos)
+	return global_pos
+
 
 func _try_spawn_near_player(player_global: Vector2) -> void:
 	const max_attempts := 30
@@ -73,9 +81,8 @@ func _try_spawn_near_player(player_global: Vector2) -> void:
 		var angle := randf() * TAU
 		var dist := randf_range(spawn_margin, spawn_radius)
 		var offset := Vector2.from_angle(angle) * dist
-		var global_pos := player_global + offset
-		if _is_position_on_forbidden_tile(global_pos):
-			continue
+		var candidate_pos := player_global + offset
+		var global_pos := _snap_to_navigation(candidate_pos)
 		if not _is_outside_viewport(global_pos):
 			continue
 		var name_to_spawn := entity_name
@@ -85,3 +92,8 @@ func _try_spawn_near_player(player_global: Vector2) -> void:
 		if spawn_interval == 0.0:
 			finished = true
 		return
+
+func get_random_point_on_navigation_region() -> Vector2:
+	var navigation_polygon := navigation_region.navigation_polygon
+	var random_point := navigation_polygon.get_random_point() as Vector2
+	return random_point

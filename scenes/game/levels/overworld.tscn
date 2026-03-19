@@ -22,10 +22,6 @@ cave_shop = NodePath("CaveShop")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=397562598]
 top_level = true
 position = Vector2(352, 736)
-limit_left = 3056
-limit_top = 496
-limit_right = 4080
-limit_bottom = 1520
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=1151054556]
@@ -53,55 +49,45 @@ heart_empty_region = Rect2(-0.115, 0, 16, 16)
 [node name="BuildLevel" parent="." unique_id=290448617 instance=ExtResource("15_p5ctg")]
 position = Vector2(3056, 496)
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer1" parent_id_path=PackedInt32Array(290448617, 1409741919) index="0" unique_id=1315965477 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D/TileMapLayer1" parent_id_path=PackedInt32Array(290448617, 1409741919) index="0" unique_id=1315965477]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer2" parent_id_path=PackedInt32Array(290448617, 359096247) index="0" unique_id=818640830 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer4" parent_id_path=PackedInt32Array(290448617, 2085410294) index="0" unique_id=1658544444]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer3" parent_id_path=PackedInt32Array(290448617, 503331523) index="0" unique_id=937907100 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer5" parent_id_path=PackedInt32Array(290448617, 751222148) index="0" unique_id=1994702969]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer4" parent_id_path=PackedInt32Array(290448617, 2085410294) index="0" unique_id=1658544444 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer6" parent_id_path=PackedInt32Array(290448617, 1345622446) index="0" unique_id=1461201916]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer5" parent_id_path=PackedInt32Array(290448617, 751222148) index="0" unique_id=1994702969 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer7" parent_id_path=PackedInt32Array(290448617, 1671073041) index="0" unique_id=2070153256]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer6" parent_id_path=PackedInt32Array(290448617, 1345622446) index="0" unique_id=1461201916 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer8" parent_id_path=PackedInt32Array(290448617, 1013859009) index="0" unique_id=456065862]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer7" parent_id_path=PackedInt32Array(290448617, 1671073041) index="0" unique_id=2070153256 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer9" parent_id_path=PackedInt32Array(290448617, 499910406) index="0" unique_id=1512192155]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer8" parent_id_path=PackedInt32Array(290448617, 1013859009) index="0" unique_id=456065862 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer10" parent_id_path=PackedInt32Array(290448617, 109948264) index="0" unique_id=1913408054]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer9" parent_id_path=PackedInt32Array(290448617, 499910406) index="0" unique_id=1512192155 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer2" parent_id_path=PackedInt32Array(290448617, 359096247) index="0" unique_id=818640830]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer10" parent_id_path=PackedInt32Array(290448617, 109948264) index="0" unique_id=1913408054 node_paths=PackedStringArray("camera")]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer3" parent_id_path=PackedInt32Array(290448617, 503331523) index="0" unique_id=937907100]
 monitoring = true
 monitorable = true
-camera = NodePath("../../../../PhantomCamera2D")
 
 [node name="CaveShop" parent="." unique_id=279969993 instance=ExtResource("7_8l6u3")]
 position = Vector2(96, -7160)
