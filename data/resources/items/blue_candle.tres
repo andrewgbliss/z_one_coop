@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://cx0t5oa103vpx"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_0uspq"]
+[ext_resource type="Texture2D" uid="uid://b21adbymyunyp" path="res://assets/packs/games/zelda/blue_candle.png" id="2_0uspq"]
+
+[resource]
+script = ExtResource("1_0uspq")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "blue_candle"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Blue Candle"
+is_game_unique = true
+texture = ExtResource("2_0uspq")
+weight = 1
+durability = 1
+sell_price = 1
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dweucmcnsrwbh"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_v48jd"]
+[ext_resource type="Texture2D" uid="uid://cgnc7gm08m2qy" path="res://assets/packs/games/zelda/red_candle.png" id="2_v48jd"]
+
+[resource]
+script = ExtResource("1_v48jd")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "candle"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Candle"
+is_game_unique = true
+texture = ExtResource("2_v48jd")
+weight = 1
+durability = 1
+sell_price = 1
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

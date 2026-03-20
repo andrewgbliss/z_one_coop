@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://w88ogoehgr31"
+path="res://.godot/imported/blue_candle.aseprite-635a85b226c13bed5bcb1d5fb483f337.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/blue_candle.aseprite"
+dest_files=["res://.godot/imported/blue_candle.aseprite-635a85b226c13bed5bcb1d5fb483f337.res"]
+
+[params]
+

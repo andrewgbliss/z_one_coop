@@ -21,14 +21,34 @@
 [ext_resource type="PackedScene" uid="uid://n3xg63vlrpgp" path="res://scenes/game/projectiles/bomb_explosion_shoot.tscn" id="20_27g8l"]
 [ext_resource type="PackedScene" path="res://scenes/game/effects/small_explosion.tscn" id="21_0mitn"]
 [ext_resource type="PackedScene" uid="uid://dq32a0auwmk4j" path="res://scenes/game/effects/small_explosion_immediate.tscn" id="22_gxqml"]
+[ext_resource type="PackedScene" uid="uid://duudmmjj6n2rg" path="res://scenes/game/projectiles/boomerang.tscn" id="23_8yrbp"]
 [ext_resource type="PackedScene" uid="uid://csrl22pkygp4l" path="res://scenes/game/projectiles/super_bomb_explosion_shoot.tscn" id="23_gxqml"]
+[ext_resource type="PackedScene" uid="uid://jtkcdpx3tmkn" path="res://scenes/game/projectiles/blue_boomerang.tscn" id="24_8yrbp"]
+[ext_resource type="PackedScene" uid="uid://ctu8g6frc8w0" path="res://scenes/game/projectiles/arrow.tscn" id="25_wso5f"]
+[ext_resource type="PackedScene" uid="uid://b16pvugi1d4uh" path="res://scenes/game/projectiles/blue_arrow.tscn" id="26_lmq4s"]
+[ext_resource type="PackedScene" uid="uid://bkuhpc2500ayi" path="res://scenes/game/projectiles/wand.tscn" id="27_lmq4s"]
+[ext_resource type="PackedScene" uid="uid://cyqi07srx8nr5" path="res://scenes/game/projectiles/wand_blast.tscn" id="28_7a2c2"]
+[ext_resource type="PackedScene" uid="uid://d2p2wcby0mg84" path="res://scenes/game/projectiles/candle_fire.tscn" id="29_4tief"]
+[ext_resource type="PackedScene" uid="uid://d3xa1fg63pm33" path="res://scenes/game/projectiles/blue_candle_fire.tscn" id="30_r7wu4"]
 
 [node name="SpawnManager" type="Node2D" unique_id=600587778]
 script = ExtResource("1_b7hal")
 entities = Dictionary[String, PackedScene]({
+"arrow": ExtResource("25_wso5f"),
+"arrow_shoot": ExtResource("25_wso5f"),
+"blue_arrow": ExtResource("26_lmq4s"),
+"blue_arrow_shoot": ExtResource("26_lmq4s"),
+"blue_boomerang": ExtResource("24_8yrbp"),
+"blue_boomerang_shoot": ExtResource("24_8yrbp"),
+"blue_candle": ExtResource("30_r7wu4"),
+"blue_candle_shoot": ExtResource("30_r7wu4"),
 "bomb_explosion": ExtResource("20_27g8l"),
 "bomb_explosion_shoot": ExtResource("20_27g8l"),
+"boomerang": ExtResource("23_8yrbp"),
+"boomerang_shoot": ExtResource("23_8yrbp"),
 "boss_1": ExtResource("17_01npx"),
+"candle": ExtResource("29_4tief"),
+"candle_shoot": ExtResource("29_4tief"),
 "coin_1": ExtResource("9_q5ooc"),
 "coin_5": ExtResource("10_82vro"),
 "enemy_killed_explosion": ExtResource("7_gw8sj"),
@@ -46,6 +66,9 @@ entities = Dictionary[String, PackedScene]({
 "super_bomb_explosion_shoot": ExtResource("23_gxqml"),
 "sword_hit": ExtResource("6_b7sl6"),
 "sword_shoot": ExtResource("4_uyff0"),
+"wand": ExtResource("27_lmq4s"),
+"wand_blast": ExtResource("28_7a2c2"),
+"wand_shoot": ExtResource("27_lmq4s"),
 "white_sword": ExtResource("13_8j0h7"),
 "white_sword_shoot": ExtResource("14_01npx"),
 "wood_sword": ExtResource("11_82vro"),

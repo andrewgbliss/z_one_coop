@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://b5fipjjblgyql"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_bumi8"]
+[ext_resource type="Texture2D" uid="uid://dnqh0ib4u4x8t" path="res://assets/packs/games/zelda/arrows-Sheet.png" id="2_bumi8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wc40"]
+atlas = ExtResource("2_bumi8")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_bumi8")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "arrow"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Arrow"
+is_game_unique = true
+texture = SubResource("AtlasTexture_7wc40")
+weight = 1
+durability = 1
+sell_price = 1
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

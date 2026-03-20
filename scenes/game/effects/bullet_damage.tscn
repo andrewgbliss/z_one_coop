@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bx50yljm0va54"]
+[gd_scene format=3 uid="uid://dehl6u5trkeod"]
 
 [ext_resource type="Script" uid="uid://ov6feib5gflg" path="res://scenes/game/effects/explosion.gd" id="1_1uobg"]
 [ext_resource type="Texture2D" uid="uid://c48ohcm666uis" path="res://assets/img/explosions/BulletDamage-Sheet.png" id="2_f581y"]
@@ -81,6 +81,7 @@ _data = {
 [node name="BulletDamage" type="Node2D" unique_id=2106190302 node_paths=PackedStringArray("animation_player", "audio")]
 script = ExtResource("1_1uobg")
 animation_player = NodePath("AnimationPlayer")
+animation_name = "Explode"
 audio = NodePath("AudioStreamPlayer2D")
 run_on_ready = true
 
@@ -96,7 +97,6 @@ libraries/ = SubResource("AnimationLibrary_uhncy")
 stream = ExtResource("3_4pgbi")
 volume_db = -20.0
 autoplay = true
-bus = &"Effects"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1276304885]
 enabled = false

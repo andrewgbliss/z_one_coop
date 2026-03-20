@@ -18,6 +18,10 @@
 [ext_resource type="Script" uid="uid://ci717yr4o1mq3" path="res://scenes/core/areas/camera_area_2d.gd" id="13_qqv7x"]
 [ext_resource type="PackedScene" uid="uid://187xeht0uvwj" path="res://scenes/game/pickups/blue_boomerang_pickup.tscn" id="15_6khxl"]
 [ext_resource type="PackedScene" uid="uid://6wg4mb83leo4" path="res://scenes/game/pickups/wand_pickup.tscn" id="16_6khxl"]
+[ext_resource type="PackedScene" uid="uid://c6fm1c1tev5p6" path="res://scenes/game/pickups/arrow_pickup.tscn" id="17_2pwyv"]
+[ext_resource type="PackedScene" uid="uid://cnvfqcdtbwlpo" path="res://scenes/game/pickups/blue_arrow_pickup.tscn" id="18_rep2e"]
+[ext_resource type="PackedScene" uid="uid://bfqqo1m0i8kvd" path="res://scenes/game/pickups/candle_pickup.tscn" id="19_i43tb"]
+[ext_resource type="PackedScene" uid="uid://belet033dblu1" path="res://scenes/game/pickups/blue_candle_pickup.tscn" id="20_08ap5"]
 
 [sub_resource type="Gradient" id="Gradient_6glth"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -145,6 +149,18 @@ respawn_time = 1.0
 [node name="WandPickup" parent="Pickups" unique_id=1039072600 instance=ExtResource("16_6khxl")]
 position = Vector2(224, -192)
 respawn_time = 1.0
+
+[node name="ArrowPickup" parent="Pickups" unique_id=55482411 instance=ExtResource("17_2pwyv")]
+position = Vector2(224, -232)
+
+[node name="BlueArrowPickup" parent="Pickups" unique_id=2138970420 instance=ExtResource("18_rep2e")]
+position = Vector2(224, -272)
+
+[node name="CandlePickup" parent="Pickups" unique_id=1135159306 instance=ExtResource("19_i43tb")]
+position = Vector2(224, -312)
+
+[node name="BlueCandlePickup" parent="Pickups" unique_id=1362181330 instance=ExtResource("20_08ap5")]
+position = Vector2(224, -352)
 
 [node name="Door1" parent="." unique_id=1345818104 instance=ExtResource("11_rep2e")]
 position = Vector2(151, 170)

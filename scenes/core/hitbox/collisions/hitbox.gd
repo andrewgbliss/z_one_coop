@@ -3,7 +3,7 @@ class_name Hitbox extends Area2D
 @export var damage: int = 1
 @export var collide_effect: PackedScene
 
-signal collided(pos: Vector2)
+signal collided(collision_point: Vector2, direction: Vector2)
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -15,7 +15,8 @@ func _on_body_entered(body):
 		var effect = collide_effect.instantiate()
 		effect.global_position = collide_position
 		get_tree().current_scene.add_child(effect)
-	collided.emit(collide_position)
+	var direction = (body.global_position - global_position).normalized()
+	collided.emit(collide_position, direction)
 
 func _on_area_entered(area: Area2D) -> void:
 	var collide_position = get_collision_point(area)
@@ -23,7 +24,8 @@ func _on_area_entered(area: Area2D) -> void:
 		var effect = collide_effect.instantiate()
 		effect.global_position = collide_position
 		get_tree().current_scene.add_child(effect)
-	collided.emit(collide_position)
+	var direction = (area.global_position - global_position).normalized()
+	collided.emit(collide_position, direction)
 
 func get_collision_point(body) -> Vector2:
 	# Calculate the contact point between hitbox and body

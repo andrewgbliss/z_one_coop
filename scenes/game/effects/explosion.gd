@@ -5,6 +5,7 @@ class_name Explosion extends Node2D
 @export var audio: AudioStreamPlayer2D
 @export var run_on_ready: bool = false
 @export var animated_sprite: AnimatedSprite2D
+@export var time_to_live: float = 0.0
 
 func _ready():
 	hide()
@@ -23,8 +24,15 @@ func run():
 		audio.play()
 	if animation_player:
 		animation_player.play(animation_name)
-		await animation_player.animation_finished
+		if time_to_live > 0.0:
+			await get_tree().create_timer(time_to_live).timeout
+		else:
+			await animation_player.animation_finished
 	if animated_sprite:
 		animated_sprite.play(animation_name)
-		await animated_sprite.animation_finished
+		if time_to_live > 0.0:
+			await get_tree().create_timer(time_to_live).timeout
+		else:
+			await animated_sprite.animation_finished
+	
 	call_deferred("queue_free")

@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://b3cqe6squodif"]
+
+[ext_resource type="Script" uid="uid://ov6feib5gflg" path="res://scenes/game/effects/explosion.gd" id="1_tyyrg"]
+[ext_resource type="AudioStream" uid="uid://c6v21hgbo25y6" path="res://assets/audio/effects/explosion.wav" id="2_nter8"]
+[ext_resource type="Texture2D" uid="uid://0rwwny341kjg" path="res://assets/img/background/LightMask.png" id="3_psw18"]
+[ext_resource type="Texture2D" uid="uid://b82rbu1so45vu" path="res://assets/packs/games/zelda/BlueFire.png" id="4_tyyrg"]
+[ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="5_v8xpc"]
+
+[sub_resource type="Animation" id="Animation_iw1c0"]
+resource_name = "Explode"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_pl3uk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhncy"]
+_data = {
+&"Explode": SubResource("Animation_iw1c0"),
+&"RESET": SubResource("Animation_pl3uk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xegtp"]
+size = Vector2(16, 16)
+
+[node name="BlueCandleFireExplosion" type="Node2D" unique_id=372614873 node_paths=PackedStringArray("animation_player", "audio")]
+z_index = 50
+script = ExtResource("1_tyyrg")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "Explode"
+audio = NodePath("AudioStreamPlayer2D")
+run_on_ready = true
+time_to_live = 2.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=149811016]
+libraries/ = SubResource("AnimationLibrary_uhncy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=66857742]
+stream = ExtResource("2_nter8")
+volume_db = -10.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1764603680]
+enabled = false
+color = Color(1.3, 1, 2, 1)
+range_layer_min = -100
+range_layer_max = 100
+shadow_enabled = true
+texture = ExtResource("3_psw18")
+
+[node name="Fire" type="Sprite2D" parent="." unique_id=1401532719]
+texture = ExtResource("4_tyyrg")
+hframes = 2
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=188993517]
+collision_layer = 8
+collision_mask = 66
+script = ExtResource("5_v8xpc")
+damage = 5
+collide_effect = null
+metadata/_custom_type_script = "uid://chj8v1sp4qgus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1938575405]
+shape = SubResource("RectangleShape2D_xegtp")

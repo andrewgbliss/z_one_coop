@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://c3lt1kc4boekn"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_mr2re"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sj8tf"]
+load_path = "res://.godot/imported/arrows-Sheet.png-fc7876853047f0eaa9188891f5565fee.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr2re"]
+atlas = SubResource("CompressedTexture2D_sj8tf")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_mr2re")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "blue_arrow"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Silver Arrow"
+is_game_unique = true
+texture = SubResource("AtlasTexture_mr2re")
+weight = 1
+durability = 1
+sell_price = 1
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

@@ -1,13 +1,11 @@
 [gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://bne4pmarbwcj4"]
 
 [ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_7aaf2"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2rma7"]
-load_path = "res://.godot/imported/boomerang-Sheet.png-6cd17163bda5eb9734b418e2b8a077cb.ctex"
+[ext_resource type="Texture2D" uid="uid://dhhiiah41p8ac" path="res://assets/packs/games/zelda/boomerang-Sheet.png" id="2_7aaf2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7aaf2"]
-atlas = SubResource("CompressedTexture2D_2rma7")
-region = Rect2(48, 0, 16, 16)
+atlas = ExtResource("2_7aaf2")
+region = Rect2(80, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_7aaf2")
@@ -25,7 +23,7 @@ is_game_unique = true
 texture = SubResource("AtlasTexture_7aaf2")
 weight = 1
 durability = 1
-sell_price = 100
+sell_price = 1
 buy_price = 1
 level_requirement = 5
 metadata/_custom_type_script = "uid://dps8sxdkteuwk"
