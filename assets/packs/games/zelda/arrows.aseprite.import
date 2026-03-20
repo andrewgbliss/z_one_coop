@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ejdwtfi62tlt"
+path="res://.godot/imported/arrows.aseprite-83ff8aca4b846de6a9d2dc09903d93bd.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/arrows.aseprite"
+dest_files=["res://.godot/imported/arrows.aseprite-83ff8aca4b846de6a9d2dc09903d93bd.res"]
+
+[params]
+

@@ -18,10 +18,16 @@
 [ext_resource type="PackedScene" uid="uid://c5rl46cmfo2mj" path="res://scenes/game/projectiles/master_sword_shoot.tscn" id="16_kjyse"]
 [ext_resource type="PackedScene" uid="uid://b40vkja4tqcie" path="res://scenes/game/characters/boss_1.tscn" id="17_01npx"]
 [ext_resource type="PackedScene" uid="uid://ittctvhp38ng" path="res://scenes/game/pickups/fairy_health_pickup.tscn" id="18_srpbc"]
+[ext_resource type="PackedScene" uid="uid://n3xg63vlrpgp" path="res://scenes/game/projectiles/bomb_explosion_shoot.tscn" id="20_27g8l"]
+[ext_resource type="PackedScene" path="res://scenes/game/effects/small_explosion.tscn" id="21_0mitn"]
+[ext_resource type="PackedScene" uid="uid://dq32a0auwmk4j" path="res://scenes/game/effects/small_explosion_immediate.tscn" id="22_gxqml"]
+[ext_resource type="PackedScene" uid="uid://csrl22pkygp4l" path="res://scenes/game/projectiles/super_bomb_explosion_shoot.tscn" id="23_gxqml"]
 
 [node name="SpawnManager" type="Node2D" unique_id=600587778]
 script = ExtResource("1_b7hal")
 entities = Dictionary[String, PackedScene]({
+"bomb_explosion": ExtResource("20_27g8l"),
+"bomb_explosion_shoot": ExtResource("20_27g8l"),
 "boss_1": ExtResource("17_01npx"),
 "coin_1": ExtResource("9_q5ooc"),
 "coin_5": ExtResource("10_82vro"),
@@ -34,6 +40,10 @@ entities = Dictionary[String, PackedScene]({
 "master_sword_shoot": ExtResource("16_kjyse"),
 "octorok": ExtResource("5_1ywyu"),
 "octorok_blue": ExtResource("8_1ls2g"),
+"small_explosion": ExtResource("21_0mitn"),
+"small_explosion_immediate": ExtResource("22_gxqml"),
+"super_bomb_explosion": ExtResource("23_gxqml"),
+"super_bomb_explosion_shoot": ExtResource("23_gxqml"),
 "sword_hit": ExtResource("6_b7sl6"),
 "sword_shoot": ExtResource("4_uyff0"),
 "white_sword": ExtResource("13_8j0h7"),

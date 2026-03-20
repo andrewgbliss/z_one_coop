@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://btaotswbwqha1"
+path="res://.godot/imported/goriya_blue.aseprite-bf85b886fd708cba6d7fea33aeb406bc.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/goriya_blue.aseprite"
+dest_files=["res://.godot/imported/goriya_blue.aseprite-bf85b886fd708cba6d7fea33aeb406bc.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d4jagnxcvqns7"
+path="res://.godot/imported/ghost.aseprite-de0c9a29fe23a1dc606f7f2dec4a1001.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/ghost.aseprite"
+dest_files=["res://.godot/imported/ghost.aseprite-de0c9a29fe23a1dc606f7f2dec4a1001.res"]
+
+[params]
+

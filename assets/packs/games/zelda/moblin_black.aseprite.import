@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://diodqiaya6esi"
+path="res://.godot/imported/moblin_black.aseprite-2b1924e49c1f81239af422513fa9f51b.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/moblin_black.aseprite"
+dest_files=["res://.godot/imported/moblin_black.aseprite-2b1924e49c1f81239af422513fa9f51b.res"]
+
+[params]
+

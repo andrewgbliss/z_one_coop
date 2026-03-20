@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dhd1tx503fabu"
+path="res://.godot/imported/meat.aseprite-c453d7101472437da7d6f50afbcebf44.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/meat.aseprite"
+dest_files=["res://.godot/imported/meat.aseprite-c453d7101472437da7d6f50afbcebf44.res"]
+
+[params]
+

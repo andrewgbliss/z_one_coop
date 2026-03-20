@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://nrxssx6r5hos"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_uqqm0"]
+[ext_resource type="Texture2D" uid="uid://dlbem6te7qf4o" path="res://assets/packs/games/zelda/bomb.png" id="2_im5ah"]
+
+[resource]
+script = ExtResource("1_uqqm0")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "bomb_explosion"
+max_ammo = 10
+ammo = 10
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Bomb"
+is_game_unique = true
+is_stackable = true
+max_stackable_count = 10
+texture = ExtResource("2_im5ah")
+weight = 1
+durability = 1
+sell_price = 10
+buy_price = 1
+quantity = null
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

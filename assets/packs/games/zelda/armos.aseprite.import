@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cjop8f2oebg2l"
+path="res://.godot/imported/armos.aseprite-9c266668b941eafdf69d8aeb91ea4346.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/armos.aseprite"
+dest_files=["res://.godot/imported/armos.aseprite-9c266668b941eafdf69d8aeb91ea4346.res"]
+
+[params]
+

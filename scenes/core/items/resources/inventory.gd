@@ -12,19 +12,7 @@ signal gold_changed(gold: int)
 	
 func add(new_item: Item):
 	var item = new_item.duplicate()
-	# Duplicate the resource to make a brand new instance to put into inventory
-	# The bad side of this will make the in_inventory function not work
-	# since its checking the actual object and not some id
-	
-	if in_inventory(item) and item.has("is_unique") and item.is_unique:
-		print("Item is unique")
-		return
 		
-	if in_inventory(item) and item.has("is_stackable") and item.has("max_stackable_count") and item.is_stackable and item.quantity < item.max_stackable_count:
-		print("Add quantity")
-		add_quantity(item, item.quantity)
-		return
-
 	var slot_index = get_next_available_slot()
 	if slot_index >= 0:
 		if items[slot_index] == null:
@@ -60,18 +48,22 @@ func subtract_gold(amount: int):
 func has_gold(amount: int):
 	return gold >= amount
 	
-func in_inventory(item: Item):
-	var index = items.find(item)
-	return index != -1
-	
+func in_inventory(item: Item) -> bool:
+	return get_slot_index(item) != -1
+
 func get_slot(slot_index: int) -> Item:
 	if items.size() > 0 and slot_index < items.size():
 		return items[slot_index]
 	else:
 		return null
 			
-func get_slot_index(item: Item):
-	return items.find(item)
+func get_slot_index(item: Item) -> int:
+	var key = item.inventory_key()
+	for i in items.size():
+		var slot_item = items[i]
+		if slot_item and slot_item.inventory_key() == key:
+			return i
+	return -1
 	
 func get_next_available_slot():
 	if items.size() == 0:

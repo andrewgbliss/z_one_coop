@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dgp6tnnmemqaq"
+path="res://.godot/imported/leever_blue.aseprite-a182e26053b653c7a1ec5c2f17512a1a.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/leever_blue.aseprite"
+dest_files=["res://.godot/imported/leever_blue.aseprite-a182e26053b653c7a1ec5c2f17512a1a.res"]
+
+[params]
+

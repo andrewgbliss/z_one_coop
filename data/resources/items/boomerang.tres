@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dbf4qfv7h8dff"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_rxo33"]
+[ext_resource type="Texture2D" uid="uid://dhhiiah41p8ac" path="res://assets/packs/games/zelda/boomerang-Sheet.png" id="2_rxo33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybln2"]
+atlas = ExtResource("2_rxo33")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_rxo33")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "boomerang"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Boomerang"
+is_game_unique = true
+texture = SubResource("AtlasTexture_ybln2")
+weight = 1
+durability = 1
+sell_price = 50
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

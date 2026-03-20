@@ -12,7 +12,12 @@
 [ext_resource type="Resource" uid="uid://ct4rm1ed3doj6" path="res://data/resources/items/heart_container.tres" id="9_yhxpa"]
 [ext_resource type="PackedScene" uid="uid://ittctvhp38ng" path="res://scenes/game/pickups/fairy_health_pickup.tscn" id="10_2pwyv"]
 [ext_resource type="PackedScene" uid="uid://dci8qiogae2pi" path="res://scenes/game/doors/door.tscn" id="11_rep2e"]
+[ext_resource type="PackedScene" uid="uid://dn2nxju6atd8n" path="res://scenes/game/pickups/bomb_pickup.tscn" id="12_lm23l"]
+[ext_resource type="PackedScene" uid="uid://ch7mptae1r86p" path="res://scenes/game/pickups/boomerang_pickup.tscn" id="12_s0024"]
+[ext_resource type="PackedScene" uid="uid://bwtni1m325r73" path="res://scenes/game/pickups/super_bomb_pickup.tscn" id="13_ou0sj"]
 [ext_resource type="Script" uid="uid://ci717yr4o1mq3" path="res://scenes/core/areas/camera_area_2d.gd" id="13_qqv7x"]
+[ext_resource type="PackedScene" uid="uid://187xeht0uvwj" path="res://scenes/game/pickups/blue_boomerang_pickup.tscn" id="15_6khxl"]
+[ext_resource type="PackedScene" uid="uid://6wg4mb83leo4" path="res://scenes/game/pickups/wand_pickup.tscn" id="16_6khxl"]
 
 [sub_resource type="Gradient" id="Gradient_6glth"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -27,6 +32,7 @@ texture = ExtResource("1_xajed")
 
 [sub_resource type="TileSet" id="TileSet_ek2k8"]
 physics_layer_0/collision_layer = 64
+physics_layer_0/collision_mask = 9
 sources/0 = SubResource("TileSetAtlasSource_qhsgi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcspe"]
@@ -119,6 +125,25 @@ texture = SubResource("CompressedTexture2D_i6kyw")
 
 [node name="FairyHealthPickup" parent="Pickups" unique_id=2043579514 instance=ExtResource("10_2pwyv")]
 position = Vector2(224, -152)
+respawn_time = 1.0
+
+[node name="BoomerangPickup" parent="Pickups" unique_id=1016284983 instance=ExtResource("12_s0024")]
+position = Vector2(96, -232)
+
+[node name="BombPickup" parent="Pickups" unique_id=2004788002 instance=ExtResource("12_lm23l")]
+position = Vector2(96, -152)
+respawn_time = 1.0
+
+[node name="SuperBombPickup" parent="Pickups" unique_id=1155598460 instance=ExtResource("13_ou0sj")]
+position = Vector2(96, -192)
+respawn_time = 1.0
+
+[node name="BlueBoomerangPickup" parent="Pickups" unique_id=1809708367 instance=ExtResource("15_6khxl")]
+position = Vector2(96, -272)
+respawn_time = 1.0
+
+[node name="WandPickup" parent="Pickups" unique_id=1039072600 instance=ExtResource("16_6khxl")]
+position = Vector2(224, -192)
 respawn_time = 1.0
 
 [node name="Door1" parent="." unique_id=1345818104 instance=ExtResource("11_rep2e")]

@@ -14,6 +14,7 @@ class_name Projectile extends Node2D
 @export var audio: AudioStreamPlayer2D
 @export_range(-100.0, 0) var min_audio_level: float = -20
 @export_range(-100.0, 0) var max_audio_level: float = -5
+@export var disable_rotation: bool = false
 
 var target: Node2D
 var closest_target: Node2D
@@ -27,7 +28,8 @@ var parent
 
 func start(_position, _direction):
 	position = _position
-	rotation = _direction.angle()
+	if not disable_rotation:
+		rotation = _direction.angle()
 	position += Vector2.from_angle(rotation) * offset
 	if speed > 0:
 		velocity = _direction.normalized() * speed
@@ -39,7 +41,8 @@ func start(_position, _direction):
 		audio.volume_db = rand_level
 		audio.play()
 
-	animation_player.play(animation_name)
+	if animation_player:
+		animation_player.play(animation_name)
 	
 	if follow_group_name:
 		var targets = get_tree().get_nodes_in_group(follow_group_name)

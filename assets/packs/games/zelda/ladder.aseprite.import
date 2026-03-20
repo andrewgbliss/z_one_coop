@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://36t8m8adeo7h"
+path="res://.godot/imported/ladder.aseprite-4174f319eb79f50063d7d5aad0537611.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/ladder.aseprite"
+dest_files=["res://.godot/imported/ladder.aseprite-4174f319eb79f50063d7d5aad0537611.res"]
+
+[params]
+

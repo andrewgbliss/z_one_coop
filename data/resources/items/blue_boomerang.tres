@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://bne4pmarbwcj4"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_7aaf2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2rma7"]
+load_path = "res://.godot/imported/boomerang-Sheet.png-6cd17163bda5eb9734b418e2b8a077cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aaf2"]
+atlas = SubResource("CompressedTexture2D_2rma7")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_7aaf2")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "blue_boomerang"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Boomerang"
+is_game_unique = true
+texture = SubResource("AtlasTexture_7aaf2")
+weight = 1
+durability = 1
+sell_price = 100
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"

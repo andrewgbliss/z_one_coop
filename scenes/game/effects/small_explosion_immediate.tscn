@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://xx24tkvnxb27"]
+[gd_scene format=3 uid="uid://dq32a0auwmk4j"]
 
 [ext_resource type="Script" uid="uid://ov6feib5gflg" path="res://scenes/game/effects/explosion.gd" id="1_5l6ym"]
 [ext_resource type="Texture2D" uid="uid://df8ci74l7g4qg" path="res://assets/img/explosions/SmallExplosion-Sheet.png" id="2_xsriw"]
@@ -79,11 +79,11 @@ _data = {
 }
 
 [node name="SmallExplosion" type="Node2D" unique_id=372614873 node_paths=PackedStringArray("animation_player", "audio")]
-z_index = 5
+z_index = 50
 script = ExtResource("1_5l6ym")
 animation_player = NodePath("AnimationPlayer")
+animation_name = "Explode"
 audio = NodePath("AudioStreamPlayer2D")
-screen_shake_amount = 5.0
 run_on_ready = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=371093482]
@@ -97,7 +97,6 @@ libraries/ = SubResource("AnimationLibrary_uhncy")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=66857742]
 stream = ExtResource("3_6nper")
 volume_db = -10.0
-bus = &"Effects"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1764603680]
 enabled = false

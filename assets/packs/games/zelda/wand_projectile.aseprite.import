@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c005ipp8uoa80"
+path="res://.godot/imported/wand_projectile.aseprite-f5dafe7170bbe16ea3c0687cbc18bfdf.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/wand_projectile.aseprite"
+dest_files=["res://.godot/imported/wand_projectile.aseprite-f5dafe7170bbe16ea3c0687cbc18bfdf.res"]
+
+[params]
+

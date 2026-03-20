@@ -281,6 +281,10 @@ func item_pickup(item: Item) -> bool:
 		if item.equip_on_pickup:
 			blackboard.equipment.equip(item, blackboard.equipment.get_slot_type(item.slot))
 		blackboard.inventory.add(item)
+		if item is Weapon:
+			item.add_ammo(item.max_ammo)
+			blackboard.equipment.ammo_changed_left_hand.emit(item.ammo, item.max_ammo)
+			blackboard.equipment.ammo_changed_right_hand.emit(item.ammo, item.max_ammo)
 	elif item is Consumable:
 		if item.consume_on_pickup:
 			if item.hp > 0:
@@ -289,8 +293,6 @@ func item_pickup(item: Item) -> bool:
 				blackboard.add_mana(item.mp)
 			if item.sp > 0:
 				blackboard.add_stamina(item.sp)
-			if item.level > 0:
-				blackboard.add_level(item.level)
 	return true
 		
 func focus():

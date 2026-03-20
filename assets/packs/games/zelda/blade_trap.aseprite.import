@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bvkbjxgiilmou"
+path="res://.godot/imported/blade_trap.aseprite-2f5e48ce8a9eb109aceb61f96f63247c.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/blade_trap.aseprite"
+dest_files=["res://.godot/imported/blade_trap.aseprite-2f5e48ce8a9eb109aceb61f96f63247c.res"]
+
+[params]
+

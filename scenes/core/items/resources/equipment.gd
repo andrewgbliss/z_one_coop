@@ -29,6 +29,8 @@ enum EquipmentSlotType {
 @export var right_hand: Equipable
 
 signal equipment_changed
+signal ammo_changed_left_hand(ammo: int, max_ammo: int)
+signal ammo_changed_right_hand(ammo: int, max_ammo: int)
 
 func equip(item: Item, equipment_slot_type: EquipmentSlotType, force: bool = false):
 	if equipment_slot_type == EquipmentSlotType.LEFT_HAND and left_hand and not force:

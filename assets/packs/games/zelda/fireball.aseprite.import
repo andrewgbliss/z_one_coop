@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cc85xt8d0bxwf"
+path="res://.godot/imported/fireball.aseprite-b3b6affb8fc3dc0aacc68f6aa9da5860.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/fireball.aseprite"
+dest_files=["res://.godot/imported/fireball.aseprite-b3b6affb8fc3dc0aacc68f6aa9da5860.res"]
+
+[params]
+

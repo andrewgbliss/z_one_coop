@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://doh0yjjw4nn2g"
+path="res://.godot/imported/tektite.aseprite-e8beb8878c2c45be7b6c9ed387dca5f1.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/tektite.aseprite"
+dest_files=["res://.godot/imported/tektite.aseprite-e8beb8878c2c45be7b6c9ed387dca5f1.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cyh414732kmh8"
+path="res://.godot/imported/keese.aseprite-d547ecea07fb0eef929e60c240ec964c.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/keese.aseprite"
+dest_files=["res://.godot/imported/keese.aseprite-d547ecea07fb0eef929e60c240ec964c.res"]
+
+[params]
+

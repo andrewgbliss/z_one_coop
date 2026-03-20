@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dtwot2ivb7ssy"
+path="res://.godot/imported/dodongo.aseprite-c00915763f2cbdb72011ce53067ad5e8.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/dodongo.aseprite"
+dest_files=["res://.godot/imported/dodongo.aseprite-c00915763f2cbdb72011ce53067ad5e8.res"]
+
+[params]
+

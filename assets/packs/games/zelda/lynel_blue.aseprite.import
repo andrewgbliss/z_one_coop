@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cumc4aka7avvp"
+path="res://.godot/imported/lynel_blue.aseprite-1bdee43fe0f77febe058001e4fed8039.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/lynel_blue.aseprite"
+dest_files=["res://.godot/imported/lynel_blue.aseprite-1bdee43fe0f77febe058001e4fed8039.res"]
+
+[params]
+

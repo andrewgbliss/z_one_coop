@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d4gp3sg4vr1rf"
+path="res://.godot/imported/gannon.aseprite-eb9ae7437f1c3c255a1f634ddea45729.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/gannon.aseprite"
+dest_files=["res://.godot/imported/gannon.aseprite-eb9ae7437f1c3c255a1f634ddea45729.res"]
+
+[params]
+

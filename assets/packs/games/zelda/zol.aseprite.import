@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ceuq73ehfinal"
+path="res://.godot/imported/zol.aseprite-420434619986cc8db4ee5cd62ce8c19b.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/zol.aseprite"
+dest_files=["res://.godot/imported/zol.aseprite-420434619986cc8db4ee5cd62ce8c19b.res"]
+
+[params]
+

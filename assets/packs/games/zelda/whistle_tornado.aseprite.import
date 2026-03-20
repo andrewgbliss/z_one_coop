@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bvkbvomujj0b8"
+path="res://.godot/imported/whistle_tornado.aseprite-055f2ac90ff5c5dbb2e82ecb75587ffc.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/whistle_tornado.aseprite"
+dest_files=["res://.godot/imported/whistle_tornado.aseprite-055f2ac90ff5c5dbb2e82ecb75587ffc.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://p3h57hfdiadh"
+path="res://.godot/imported/darknut.aseprite-b315352c26de552640a6b994e46b95bc.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/darknut.aseprite"
+dest_files=["res://.godot/imported/darknut.aseprite-b315352c26de552640a6b994e46b95bc.res"]
+
+[params]
+

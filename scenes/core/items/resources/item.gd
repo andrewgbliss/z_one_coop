@@ -11,6 +11,8 @@ enum Rarity {
 }
 
 @export var package: String = ""
+## If set, used with inventory to match item type (stacking, duplicates). Otherwise `name` is used.
+@export var id: String = ""
 @export var name: String = ""
 @export var description: String = ""
 @export var is_level_unique: bool = false
@@ -27,9 +29,14 @@ enum Rarity {
 @export var sell_price: int = 0
 @export var buy_price: int = 0
 @export var level_requirement: int = 0
+@export var quantity: int = 0
+
+func inventory_key() -> String:
+	return id if not id.is_empty() else name
 
 func save():
 	var data = {
+		"id": id,
 		"name": name,
 		"description": description,
 		"is_level_unique": is_level_unique,
@@ -47,9 +54,12 @@ func save():
 	data["sell_price"] = sell_price
 	data["buy_price"] = buy_price
 	data["level_requirement"] = level_requirement
+	data["quantity"] = quantity
 	return data
 
 func restore(data):
+	if data.has("id"):
+		id = data["id"]
 	if data.has("name"):
 		name = data["name"]
 	if data.has("description"):
@@ -82,3 +92,5 @@ func restore(data):
 		buy_price = data["buy_price"]
 	if data.has("level_requirement"):
 		level_requirement = data["level_requirement"]
+	if data.has("quantity"):
+		quantity = data["quantity"]

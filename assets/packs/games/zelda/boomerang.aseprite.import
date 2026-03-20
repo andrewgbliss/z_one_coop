@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b6nt266qt1fn4"
+path="res://.godot/imported/boomerang.aseprite-f00e966c1b10532906a293ac189811df.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/boomerang.aseprite"
+dest_files=["res://.godot/imported/boomerang.aseprite-f00e966c1b10532906a293ac189811df.res"]
+
+[params]
+

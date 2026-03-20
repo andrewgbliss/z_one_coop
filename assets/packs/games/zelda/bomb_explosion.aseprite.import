@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cdyj5scscih2o"
+path="res://.godot/imported/bomb_explosion.aseprite-8e633d6f24b12fff4efb88ab9ce5ea9a.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/bomb_explosion.aseprite"
+dest_files=["res://.godot/imported/bomb_explosion.aseprite-8e633d6f24b12fff4efb88ab9ce5ea9a.res"]
+
+[params]
+

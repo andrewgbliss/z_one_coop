@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dxcapsp4pemsk"
+path="res://.godot/imported/rope.aseprite-acc6215926a087f615eed0bd713297b0.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/rope.aseprite"
+dest_files=["res://.godot/imported/rope.aseprite-acc6215926a087f615eed0bd713297b0.res"]
+
+[params]
+

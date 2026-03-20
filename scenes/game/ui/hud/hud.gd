@@ -21,6 +21,11 @@ const HEART_HALF_HP := 5
 @export var player_one_inventory_grid: GridContainer
 @export var player_two_inventory_grid: GridContainer
 @export var level_label: Label
+@export var fps_label: Label
+@export var player_one_left_hand_ammo_label: Label
+@export var player_one_right_hand_ammo_label: Label
+@export var player_two_left_hand_ammo_label: Label
+@export var player_two_right_hand_ammo_label: Label
 
 var players: Array[CharacterController] = []
 var _heart_full: AtlasTexture
@@ -55,6 +60,12 @@ func _ready():
 		_heart_full = _make_heart_atlas(heart_full_region)
 		_heart_half = _make_heart_atlas(heart_half_region)
 		_heart_empty = _make_heart_atlas(heart_empty_region)
+	player_one_left_hand_ammo_label.text = ""
+	player_one_right_hand_ammo_label.text = ""
+	player_two_left_hand_ammo_label.text = ""
+	player_two_right_hand_ammo_label.text = ""
+func _process(_delta):
+	fps_label.text = "fps: " + str(Engine.get_frames_per_second())
 
 func _make_heart_atlas(region: Rect2) -> AtlasTexture:
 	var at := AtlasTexture.new()
@@ -100,6 +111,8 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.equipment.equipment_changed.connect(_on_player_one_equipment_changed)
 		player.blackboard.health_changed.connect(_on_player_one_health_changed)
 		player.blackboard.level_changed.connect(_on_player_one_level_changed)
+		player.blackboard.equipment.ammo_changed_left_hand.connect(_on_player_one_left_hand_ammo_changed)
+		player.blackboard.equipment.ammo_changed_right_hand.connect(_on_player_one_right_hand_ammo_changed)
 		_update_hearts_container(player, player_one_hearts)
 		_on_player_one_coins_changed(player.blackboard.inventory.gold)
 		_on_player_one_inventory_changed(null)
@@ -113,9 +126,34 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.health_changed.connect(_on_player_two_health_changed)
 		player.blackboard.level_changed.connect(_on_player_two_level_changed)
 		_update_hearts_container(player, player_two_hearts)
+		player.blackboard.equipment.ammo_changed_left_hand.connect(_on_player_two_left_hand_ammo_changed)
+		player.blackboard.equipment.ammo_changed_right_hand.connect(_on_player_two_right_hand_ammo_changed)
 		_on_player_two_coins_changed(player.blackboard.inventory.gold)
 		_on_player_two_inventory_changed(null)
 
+func _on_player_one_left_hand_ammo_changed(ammo: int, _max_ammo: int):
+	if players[0].blackboard.equipment.left_hand and not players[0].blackboard.equipment.left_hand.unlimited_ammo:
+		player_one_left_hand_ammo_label.text = str(ammo)
+	else:
+		player_one_left_hand_ammo_label.text = ""
+
+func _on_player_one_right_hand_ammo_changed(ammo: int, _max_ammo: int):
+	if players[0].blackboard.equipment.right_hand and not players[0].blackboard.equipment.right_hand.unlimited_ammo:
+		player_one_right_hand_ammo_label.text = str(ammo)
+	else:
+		player_one_right_hand_ammo_label.text = ""
+
+func _on_player_two_left_hand_ammo_changed(ammo: int, _max_ammo: int):
+	if players[1].blackboard.equipment.left_hand and not players[1].blackboard.equipment.left_hand.unlimited_ammo:
+		player_two_left_hand_ammo_label.text = str(ammo)
+	else:
+		player_two_left_hand_ammo_label.text = ""
+	
+func _on_player_two_right_hand_ammo_changed(ammo: int, _max_ammo: int):
+	if players[1].blackboard.equipment.right_hand and not players[1].blackboard.equipment.right_hand.unlimited_ammo:
+		player_two_right_hand_ammo_label.text = str(ammo)
+	else:
+		player_two_right_hand_ammo_label.text = ""
 
 func _on_player_one_level_changed(level: int):
 	level_label.text = "Level: " + str(level)
@@ -133,6 +171,11 @@ func _on_player_one_equipment_changed():
 	else:
 		player_one_a.texture = null
 
+	if players[0].blackboard.equipment.left_hand and not players[0].blackboard.equipment.left_hand.unlimited_ammo:
+		player_one_left_hand_ammo_label.text = str(players[0].blackboard.equipment.left_hand.ammo)
+	if players[0].blackboard.equipment.right_hand and not players[0].blackboard.equipment.right_hand.unlimited_ammo:
+		player_one_right_hand_ammo_label.text = str(players[0].blackboard.equipment.right_hand.ammo)
+
 func _on_player_two_equipment_changed():
 	if players[1].blackboard.equipment.left_hand:
 		player_two_b.texture = players[1].blackboard.equipment.left_hand.texture
@@ -142,6 +185,11 @@ func _on_player_two_equipment_changed():
 		player_two_a.texture = players[1].blackboard.equipment.right_hand.texture
 	else:
 		player_two_a.texture = null
+
+	if players[1].blackboard.equipment.left_hand and not players[1].blackboard.equipment.left_hand.unlimited_ammo:
+		player_two_left_hand_ammo_label.text = str(players[1].blackboard.equipment.left_hand.ammo) + "/" + str(players[1].blackboard.equipment.left_hand.max_ammo)
+	if players[1].blackboard.equipment.right_hand and not players[1].blackboard.equipment.right_hand.unlimited_ammo:
+		player_two_right_hand_ammo_label.text = str(players[1].blackboard.equipment.right_hand.ammo) + "/" + str(players[1].blackboard.equipment.right_hand.max_ammo)
 
 func _on_player_one_inventory_changed(_item: Item):
 	if players[0].blackboard.inventory.items.size() > 0:

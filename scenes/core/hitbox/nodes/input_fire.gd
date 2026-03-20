@@ -33,10 +33,31 @@ func _process(delta: float) -> void:
 		_fire()
 	_update_weapon_cooldowns(delta)
 
-func spawn_projectile_from_weapon() -> void:
-	var weapon = parent.blackboard.equipment.left_hand
+func _get_hand_weapon() -> Weapon:
+	var e: Equipable = parent.blackboard.equipment.left_hand
 	if hand == InputHand.RIGHT:
-		weapon = parent.blackboard.equipment.right_hand
+		e = parent.blackboard.equipment.right_hand
+	return e as Weapon if e is Weapon else null
+
+
+func _emit_hand_ammo_changed(w: Weapon) -> void:
+	if w.unlimited_ammo:
+		return
+	var eq := parent.blackboard.equipment
+
+	if parent.blackboard.equipment.left_hand.name == parent.blackboard.equipment.right_hand.name:
+		eq.ammo_changed_left_hand.emit(w.ammo, w.max_ammo)
+		eq.ammo_changed_right_hand.emit(w.ammo, w.max_ammo)
+		return
+
+	if hand == InputHand.LEFT:
+		eq.ammo_changed_left_hand.emit(w.ammo, w.max_ammo)
+	else:
+		eq.ammo_changed_right_hand.emit(w.ammo, w.max_ammo)
+
+
+func spawn_projectile_from_weapon() -> void:
+	var weapon := _get_hand_weapon()
 	if not weapon or weapon.projectile == "":
 		return
 	var aim_direction = Vector2.RIGHT
@@ -60,18 +81,19 @@ func spawn_projectile_from_weapon() -> void:
 		entity.start(spawn_position, aim_direction)
 
 func _update_weapon_cooldowns(delta: float) -> void:
-	var weapon = parent.blackboard.equipment.left_hand
-	if hand == InputHand.RIGHT:
-		weapon = parent.blackboard.equipment.right_hand
+	var weapon := _get_hand_weapon()
 	if weapon:
 		weapon.update_cooldown(delta)
 
 func _fire() -> void:
-	var weapon = parent.blackboard.equipment.left_hand
-	if hand == InputHand.RIGHT:
-		weapon = parent.blackboard.equipment.right_hand
-	if not weapon or not weapon.can_fire():
+	var w := _get_hand_weapon()
+	if not w:
+		return
+	if not w.unlimited_ammo and w.ammo < 1:
+		return
+	if not w.can_fire():
 		return
 	parent.is_attacking = true
 	spawn_projectile_from_weapon()
-	weapon.fire()
+	w.fire()
+	_emit_hand_ammo_changed(w)

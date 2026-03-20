@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://defqs0jrcrqqj"]
+
+[ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="1_aueqo"]
+[ext_resource type="Texture2D" uid="uid://dxox5mnyyv26y" path="res://assets/packs/games/zelda/bomb_explosion-Sheet.png" id="2_vgitw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmlj7"]
+
+[sub_resource type="Animation" id="Animation_gtv8i"]
+resource_name = "Fire"
+length = 1.25
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BombExplosionSheet:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.01899305, 0, 0, 0, 1, -0.14444444, 0, 0, 0),
+"times": PackedFloat32Array(0.11937511, 0.23333347, 1.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BombExplosionSheet:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.01899305, 0, 0, 0, 1, -0.14444444, 0, 0, 0),
+"times": PackedFloat32Array(0.11937511, 0.23333347, 1.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BombExplosionSheet:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.01899305, 0, 0, 0, 1, -0.14444444, 0, 0, 0),
+"times": PackedFloat32Array(0.11937511, 0.23333347, 1.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BombExplosionSheet:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.01899305, -0.16666667, 0, 0, 0, -0.16666667, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0.03333336, 0.100000024, 0.8333334)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BombExplosionSheet:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.006716992, -0.16666667, 0, 0, 2, -0.005555555, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0.20000005, 0.36666667, 0.5333333)
+}
+
+[sub_resource type="Animation" id="Animation_dt7ep"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BombExplosionSheet:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BombExplosionSheet:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BombExplosionSheet:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BombExplosionSheet:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BombExplosionSheet:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbef0"]
+_data = {
+&"Fire": SubResource("Animation_gtv8i"),
+&"RESET": SubResource("Animation_dt7ep")
+}
+
+[node name="BombExplosionHitbox" type="Area2D" unique_id=1568146020]
+collision_layer = 8
+collision_mask = 66
+script = ExtResource("1_aueqo")
+damage = 20
+metadata/_custom_type_script = "uid://chj8v1sp4qgus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1192427144]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hmlj7")
+
+[node name="BombExplosionSheet" type="Sprite2D" parent="." unique_id=552959057]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_vgitw")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1719317211]
+libraries/ = SubResource("AnimationLibrary_hbef0")
+autoplay = &"Fire"

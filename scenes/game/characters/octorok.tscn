@@ -26,13 +26,13 @@ friction = 10.0
 metadata/_custom_type_script = "uid://xij0fxllggis"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhlpo"]
-size = Vector2(16, 16)
+size = Vector2(12, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxtxh"]
-size = Vector2(16, 16)
+size = Vector2(12, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd8g5"]
-size = Vector2(14, 13)
+size = Vector2(12, 13)
 
 [sub_resource type="Shader" id="Shader_efxgm"]
 code = "shader_type canvas_item;
@@ -95,6 +95,7 @@ hitbox = NodePath("Hitbox")
 metadata/_custom_type_script = "uid://om5mwrgyg8u7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533761963]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_dhlpo")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1711131074]
@@ -104,6 +105,7 @@ script = ExtResource("2_8mg08")
 metadata/_custom_type_script = "uid://conxtgxbjjak8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470119857]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_fxtxh")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=289147002]

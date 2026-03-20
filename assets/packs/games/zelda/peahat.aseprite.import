@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://comnleqbxil5w"
+path="res://.godot/imported/peahat.aseprite-2d52c6855b0ff6b0e632cfb22f6221df.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/peahat.aseprite"
+dest_files=["res://.godot/imported/peahat.aseprite-2d52c6855b0ff6b0e632cfb22f6221df.res"]
+
+[params]
+

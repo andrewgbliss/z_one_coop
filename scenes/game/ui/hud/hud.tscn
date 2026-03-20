@@ -518,7 +518,7 @@ shader_parameter/color = Color(0.341176, 0.286275, 0.113725, 0.47451)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5atvc"]
 
-[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button", "player_one_b", "player_one_a", "player_two_b", "player_two_a", "player_one_inventory_grid", "player_two_inventory_grid", "level_label")]
+[node name="Hud" type="Node2D" unique_id=627039106 node_paths=PackedStringArray("player_one_coins_label", "player_two_coins_label", "player_one_hearts", "player_two_hearts", "restart_button", "player_one_b", "player_one_a", "player_two_b", "player_two_a", "player_one_inventory_grid", "player_two_inventory_grid", "level_label", "fps_label", "player_one_left_hand_ammo_label", "player_one_right_hand_ammo_label", "player_two_left_hand_ammo_label", "player_two_right_hand_ammo_label")]
 process_mode = 3
 script = ExtResource("1_4jqwt")
 player_one_coins_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/CoinLabel")
@@ -534,6 +534,11 @@ player_two_a = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureR
 player_one_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/InventoryContainer")
 player_two_inventory_grid = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/InventoryContainer")
 level_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/LevelLabel")
+fps_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/LabelFPS")
+player_one_left_hand_ammo_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect/Label")
+player_one_right_hand_ammo_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect2/Label")
+player_two_left_hand_ammo_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect/Label")
+player_two_right_hand_ammo_label = NodePath("PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect2/Label")
 metadata/_custom_type_script = "uid://c8wbfqp4accut"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1262092961]
@@ -669,6 +674,22 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
+[node name="Label" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect" unique_id=2097976572]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -28.0
+offset_right = -17.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 2
+
 [node name="TextureRect2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=940038310]
 layout_mode = 0
 offset_left = 112.0
@@ -691,6 +712,22 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
+
+[node name="Label" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl/TextureRect2" unique_id=1658590405]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -28.0
+offset_right = -17.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 2
 
 [node name="TextureRect3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=431275063]
 layout_mode = 0
@@ -909,6 +946,14 @@ offset_right = 207.0
 offset_bottom = 44.0
 text = "Level 0"
 
+[node name="LabelFPS" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerOneControl" unique_id=1256239799]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 28.0
+offset_right = 238.0
+offset_bottom = 44.0
+text = "FPS: 0"
+
 [node name="PlayerTwoControl" type="Control" parent="PlayerBar/CanvasLayer/Control" unique_id=499949790]
 layout_mode = 1
 anchors_preset = 1
@@ -1020,6 +1065,22 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
+[node name="Label" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect" unique_id=1565413745]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -28.0
+offset_right = -17.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 2
+
 [node name="TextureRect2" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=647814513]
 layout_mode = 0
 offset_left = -98.0
@@ -1042,6 +1103,22 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
+
+[node name="Label" type="Label" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl/TextureRect2" unique_id=896451361]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -28.0
+offset_right = -17.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 2
 
 [node name="TextureRect3" type="TextureRect" parent="PlayerBar/CanvasLayer/Control/PlayerTwoControl" unique_id=1778484002]
 layout_mode = 0

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://cj3dkkqsy7wud"]
+
+[ext_resource type="Script" uid="uid://dps8sxdkteuwk" path="res://scenes/core/items/resources/weapon.gd" id="1_2t3iw"]
+[ext_resource type="Texture2D" uid="uid://celhjjmu2jdhc" path="res://assets/packs/games/zelda/wand.png" id="2_6rkxe"]
+
+[resource]
+script = ExtResource("1_2t3iw")
+damage_min = 10
+damage_max = 15
+attack_rate = 0.3
+stamina_cost = 1.0
+projectile = "wand"
+unlimited_ammo = true
+top_level = false
+slot = 9
+equip_on_pickup = true
+name = "Wand"
+is_game_unique = true
+texture = ExtResource("2_6rkxe")
+weight = 1
+durability = 1
+sell_price = 100
+buy_price = 1
+level_requirement = 5
+metadata/_custom_type_script = "uid://dps8sxdkteuwk"
