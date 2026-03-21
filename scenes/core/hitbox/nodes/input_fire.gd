@@ -75,13 +75,14 @@ func spawn_projectile_from_weapon() -> void:
 		tl = true
 		spawn_position = global_position
 	var entity = SpawnManager.spawn(projectile, spawn_position, container)
-	if entity is Projectile:
-		if tl:
-			entity.top_level = true
-		entity.start(spawn_position, aim_direction)
-	if entity.get_node("CoinPickupBox") is CoinPickupBox:
-		var coin_pickup_box = entity.get_node("CoinPickupBox")
-		coin_pickup_box.picked_up.connect(_on_picked_up)
+	if entity:
+		if entity is Projectile:
+			if tl:
+				entity.top_level = true
+			entity.start(spawn_position, aim_direction)
+		if entity.get_node("CoinPickupBox") is CoinPickupBox:
+			var coin_pickup_box = entity.get_node("CoinPickupBox")
+			coin_pickup_box.picked_up.connect(_on_picked_up)
 
 func _on_picked_up(item: Item) -> void:
 	parent.item_pickup(item)

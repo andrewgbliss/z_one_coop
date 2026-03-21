@@ -18,6 +18,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterController:
 		if door_type == DoorType.OVERWORLD:
+			SpawnManager.free_group("enemy")
 			level.teleport_to_cave(global_position)
 		elif door_type == DoorType.CAVE:
 			level.teleport_back_to_pos()

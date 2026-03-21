@@ -31,6 +31,8 @@ enum CharacterGender {Male, Female}
 @export var max_special: int = 0
 @export var xp: int = 0
 @export var max_xp: int = 0
+@export var hearts: int = 0
+@export var max_hearts: int = 0
 
 @export_group("Stats")
 @export var strength: int = 0
@@ -49,6 +51,7 @@ signal alignment_changed(alignment: float)
 signal inventory_changed
 signal equipment_changed
 signal level_changed(level: int)
+signal hearts_changed(hearts: int, max_hearts: int)
 
 @export_group("Physics")
 @export var speed: float = 300.0
@@ -67,6 +70,9 @@ signal level_changed(level: int)
 @export_group("Inventory")
 @export var inventory: Inventory
 @export var equipment: Equipment
+
+const HEART_HP := 10
+const HEART_HALF_HP := 5
 
 func restore():
 	restore_blackboard()
@@ -114,15 +120,19 @@ func reset():
 	mana = max_mana
 	stamina = max_stamina
 	special = max_special
+	hearts = max_hearts
 	health_changed.emit(health, max_health)
 	mana_changed.emit(mana, max_mana)
 	stamina_changed.emit(stamina, max_stamina)
 	special_changed.emit(special, max_special)
+	hearts_changed.emit(hearts, max_hearts)
 
 func full_reset():
 	level = 0
 	health = 30
 	max_health = 30
+	hearts = 3
+	max_hearts = 12
 	mana = 0
 	max_mana = 0
 	stamina = 0
@@ -140,6 +150,7 @@ func full_reset():
 	mana_changed.emit(mana, max_mana)
 	stamina_changed.emit(stamina, max_stamina)
 	special_changed.emit(special, max_special)
+	hearts_changed.emit(hearts, max_hearts)
 	var gold = inventory.gold
 	inventory = Inventory.new()
 	inventory.gold = gold
@@ -155,6 +166,7 @@ func spawn_reset():
 	health_changed.emit(health, max_health)
 	mana_changed.emit(mana, max_mana)
 	stamina_changed.emit(stamina, max_stamina)
+	hearts_changed.emit(hearts, max_hearts)
 
 func take_damage(amount: int):
 	health -= amount
@@ -244,6 +256,13 @@ func add_xp(value: int):
 func change_level(value: int):
 	level = value
 	level_changed.emit(level)
+
+func add_hearts(value: int):
+	hearts = clamp(hearts + value, 0, max_hearts)
+	hearts_changed.emit(hearts, max_hearts)
+	max_health += HEART_HP
+	health = max_health
+	health_changed.emit(health, max_health)
 
 func serialize():
 	var data = {

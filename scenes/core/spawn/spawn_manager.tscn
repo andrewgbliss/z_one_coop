@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cmw1lfbexedpv" path="res://scenes/core/spawn/spawn_manager.gd" id="1_b7hal"]
 [ext_resource type="PackedScene" uid="uid://dcyysp40m6m22" path="res://scenes/game/characters/link.tscn" id="2_ox1rk"]
 [ext_resource type="PackedScene" uid="uid://dbs8rbbiblq67" path="res://scenes/game/projectiles/wood_sword_shoot.tscn" id="4_uyff0"]
-[ext_resource type="PackedScene" uid="uid://co602ptr3ssm" path="res://scenes/game/characters/octorok.tscn" id="5_1ywyu"]
+[ext_resource type="PackedScene" uid="uid://co602ptr3ssm" path="res://scenes/game/enemies/octorok.tscn" id="5_1ywyu"]
 [ext_resource type="PackedScene" uid="uid://f0i3j5iar35x" path="res://scenes/game/effects/sword_hit.tscn" id="6_b7sl6"]
 [ext_resource type="PackedScene" uid="uid://c5ikeeommtxrp" path="res://scenes/game/effects/enemy_killed_explosion.tscn" id="7_gw8sj"]
-[ext_resource type="PackedScene" uid="uid://rt435g2ll4a4" path="res://scenes/game/characters/octorok_blue.tscn" id="8_1ls2g"]
+[ext_resource type="PackedScene" uid="uid://rt435g2ll4a4" path="res://scenes/game/enemies/octorok_blue.tscn" id="8_1ls2g"]
 [ext_resource type="PackedScene" uid="uid://v76i6msp3ueh" path="res://scenes/game/pickups/coin_1_pickup.tscn" id="9_q5ooc"]
 [ext_resource type="PackedScene" uid="uid://c4c1088je742y" path="res://scenes/game/pickups/coin_5_pickup.tscn" id="10_82vro"]
 [ext_resource type="PackedScene" uid="uid://tvfb84pb4hge" path="res://scenes/game/projectiles/wood_sword.tscn" id="11_82vro"]
@@ -30,10 +30,18 @@
 [ext_resource type="PackedScene" uid="uid://cyqi07srx8nr5" path="res://scenes/game/projectiles/wand_blast.tscn" id="28_7a2c2"]
 [ext_resource type="PackedScene" uid="uid://d2p2wcby0mg84" path="res://scenes/game/projectiles/candle_fire.tscn" id="29_4tief"]
 [ext_resource type="PackedScene" uid="uid://d3xa1fg63pm33" path="res://scenes/game/projectiles/blue_candle_fire.tscn" id="30_r7wu4"]
+[ext_resource type="PackedScene" uid="uid://cn8rgmmj6snyq" path="res://scenes/game/enemies/moblin.tscn" id="31_ya54r"]
+[ext_resource type="PackedScene" uid="uid://b1tvdg0wnq1fb" path="res://scenes/game/enemies/moblin_blue.tscn" id="32_neq7l"]
+[ext_resource type="PackedScene" uid="uid://c2d6qw4gtglhq" path="res://scenes/game/enemies/lynel.tscn" id="33_l0i0m"]
+[ext_resource type="PackedScene" uid="uid://bmm6oph7hi7ot" path="res://scenes/game/enemies/lynel_blue.tscn" id="34_5y03u"]
+[ext_resource type="PackedScene" uid="uid://boc3iky1m0mhu" path="res://scenes/game/enemies/armos.tscn" id="35_v8kby"]
+[ext_resource type="PackedScene" uid="uid://co5wubspbtvje" path="res://scenes/game/enemies/armos_blue.tscn" id="36_ewnba"]
 
 [node name="SpawnManager" type="Node2D" unique_id=600587778]
 script = ExtResource("1_b7hal")
 entities = Dictionary[String, PackedScene]({
+"armos": ExtResource("35_v8kby"),
+"armos_blue": ExtResource("36_ewnba"),
 "arrow": ExtResource("25_wso5f"),
 "arrow_shoot": ExtResource("25_wso5f"),
 "blue_arrow": ExtResource("26_lmq4s"),
@@ -56,8 +64,12 @@ entities = Dictionary[String, PackedScene]({
 "heart": ExtResource("11_al1ou"),
 "heart_container": ExtResource("12_w1heu"),
 "link": ExtResource("2_ox1rk"),
+"lynel": ExtResource("33_l0i0m"),
+"lynel_blue": ExtResource("34_5y03u"),
 "master_sword": ExtResource("15_srpbc"),
 "master_sword_shoot": ExtResource("16_kjyse"),
+"moblin": ExtResource("31_ya54r"),
+"moblin_blue": ExtResource("32_neq7l"),
 "octorok": ExtResource("5_1ywyu"),
 "octorok_blue": ExtResource("8_1ls2g"),
 "small_explosion": ExtResource("21_0mitn"),

@@ -107,6 +107,8 @@ func enable_area(layer_index: int = -1, debug_prints: bool = true) -> void:
 	for layer in tile_map_layers:
 		if layer:
 			layer.process_mode = Node.PROCESS_MODE_DISABLED
+		if layer.get_parent() is NavigationRegion2D:
+			layer.get_parent().enabled = false
 
 	if target_index < 0 or target_index >= tile_map_layers.size():
 		if debug_prints:
@@ -122,6 +124,8 @@ func enable_area(layer_index: int = -1, debug_prints: bool = true) -> void:
 		var layer := tile_map_layers[idx]
 		if layer:
 			layer.process_mode = Node.PROCESS_MODE_INHERIT
+			if layer.get_parent() is NavigationRegion2D:
+				layer.get_parent().enabled = true
 			if debug_prints:
 				print("MazeBuilder.enable_area: enabled idx=", idx, " name=", layer.name)
 		elif debug_prints:
@@ -134,50 +138,6 @@ func enable_area(layer_index: int = -1, debug_prints: bool = true) -> void:
 				print("MazeBuilder.enable_area: layer[", i, "] = null")
 				continue
 			print("MazeBuilder.enable_area: layer[", i, "] name=", l.name, " process_mode=", l.process_mode)
-
-func set_navigation_active_layer(_layer_index: int) -> void:
-	# this will just enable / diable the region as needed already pre baked
-	pass
-	# if not navigation_region:
-	# 	return
-	# if tile_map_layers.is_empty():
-	# 	return
-	# if layer_index < 0 or layer_index >= tile_map_layers.size():
-	# 	return
-
-	# var target: TileMapLayerAdvanced = tile_map_layers[layer_index]
-	# if not target:
-	# 	return
-
-	# # Move any existing TileMapLayerAdvanced children of the navigation region back under the builder.
-	# # This keeps the region owning exactly one active layer at a time.
-	# for child in navigation_region.get_children():
-	# 	if child is TileMapLayerAdvanced:
-	# 		var existing: TileMapLayerAdvanced = child
-	# 		if existing != target:
-	# 			existing.reparent(self , true)
-
-	# # If our tracked active layer is different, ensure it's also moved out.
-	# if _navigation_active_layer and is_instance_valid(_navigation_active_layer) and _navigation_active_layer != target:
-	# 	if _navigation_active_layer.get_parent() == navigation_region:
-	# 		_navigation_active_layer.reparent(self , true)
-
-	# # Finally, move the requested layer under the navigation region.
-	# if target.get_parent() != navigation_region:
-	# 	target.reparent(navigation_region, true)
-	# _navigation_active_layer = target
-	# call_deferred("_bake_navigation_deferred")
-
-func _bake_navigation_deferred() -> void:
-	if not navigation_region:
-		return
-	# This function is invoked via `call_deferred()`, then we wait one more frame
-	# so reparenting/tile updates have fully applied before baking.
-	# await get_tree().create_timer(1.0).timeout
-	# if navigation_region.has_method("bake_navigation_polygon_async"):
-	# 	navigation_region.bake_navigation_polygon_async()
-	# elif navigation_region.has_method("bake_navigation_polygon"):
-	# 	navigation_region.bake_navigation_polygon()
 
 func _main_layer() -> TileMapLayerAdvanced:
 	if tile_map_layers.is_empty():
@@ -430,6 +390,8 @@ func _get_tile_from_main_layer_at_cell(cell_pos: Vector2i) -> Dictionary:
 		"alternative_tile": _current_tile_map_layer.get_cell_alternative_tile(tile_pos)
 	}
 
+## Fills [member tile_map_layers] for overworld-style stacked areas. For authored dungeon rooms
+## (entrance, blocks, boss, triforce) use [method MazeDungeonBuilder.generate_maze] on a [MazeDungeonBuilder].
 func generate_maze() -> Vector2i:
 	if tile_map_layers.is_empty():
 		return Vector2i(-1, -1)
@@ -684,11 +646,17 @@ func generate_maze() -> Vector2i:
 			first_start_tile = Vector2i(start_cell.x * cell_size, start_cell.y * cell_size)
 
 		_apply_layer_positions()
+		_bake_navigation()
 	# After generation, parent the exported level's layer under the navigation region
 	# so navigation can be generated/queried for that active layer immediately.
-	set_navigation_active_layer(int(level) if level != null else 0)
 	maze_generated.emit(first_start_tile)
 	return first_start_tile
+
+func _bake_navigation() -> void:
+	for layer in tile_map_layers:
+		if layer:
+			if layer.get_parent() is NavigationRegion2D:
+				layer.get_parent().bake_navigation_polygon()
 
 func _get_border_cells() -> Array[Vector2i]:
 	var border: Array[Vector2i] = []

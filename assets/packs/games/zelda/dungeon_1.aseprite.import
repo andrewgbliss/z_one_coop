@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c36ietutjrfpx"
+path="res://.godot/imported/dungeon_1.aseprite-a559eaa28f8d84dc651f7010b10e859d.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/dungeon_1.aseprite"
+dest_files=["res://.godot/imported/dungeon_1.aseprite-a559eaa28f8d84dc651f7010b10e859d.res"]
+
+[params]
+

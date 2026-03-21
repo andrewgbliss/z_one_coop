@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://blqsqjblqhdil"
+path="res://.godot/imported/underground_passage_item.aseprite-bab4a456f25cd0585da7cc11c9d45080.res"
+
+[deps]
+
+source_file="res://assets/packs/games/zelda/underground_passage_item.aseprite"
+dest_files=["res://.godot/imported/underground_passage_item.aseprite-bab4a456f25cd0585da7cc11c9d45080.res"]
+
+[params]
+

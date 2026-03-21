@@ -5,14 +5,10 @@
 
 [resource]
 script = ExtResource("1_ui4sn")
-level = 1
+hearts = 1
 consume_on_pickup = true
 name = "Heart Container"
 is_game_unique = true
 texture = ExtResource("2_xjpno")
-weight = null
-durability = null
-sell_price = 25
-buy_price = null
-level_requirement = null
+sell_price = 1
 metadata/_custom_type_script = "uid://dfarl1fr76j2f"

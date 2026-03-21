@@ -1,8 +1,5 @@
 class_name Hud extends Node2D
 
-const HEART_HP := 10
-const HEART_HALF_HP := 5
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 			
 @export var player_one_coins_label: Label
@@ -111,6 +108,7 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.equipment.equipment_changed.connect(_on_player_one_equipment_changed)
 		player.blackboard.health_changed.connect(_on_player_one_health_changed)
 		player.blackboard.level_changed.connect(_on_player_one_level_changed)
+		player.blackboard.hearts_changed.connect(_on_player_one_hearts_changed)
 		player.blackboard.equipment.ammo_changed_left_hand.connect(_on_player_one_left_hand_ammo_changed)
 		player.blackboard.equipment.ammo_changed_right_hand.connect(_on_player_one_right_hand_ammo_changed)
 		_update_hearts_container(player, player_one_hearts)
@@ -125,11 +123,18 @@ func setup_player_ui(player: CharacterController):
 		player.blackboard.equipment.equipment_changed.connect(_on_player_two_equipment_changed)
 		player.blackboard.health_changed.connect(_on_player_two_health_changed)
 		player.blackboard.level_changed.connect(_on_player_two_level_changed)
+		player.blackboard.hearts_changed.connect(_on_player_two_hearts_changed)
 		_update_hearts_container(player, player_two_hearts)
 		player.blackboard.equipment.ammo_changed_left_hand.connect(_on_player_two_left_hand_ammo_changed)
 		player.blackboard.equipment.ammo_changed_right_hand.connect(_on_player_two_right_hand_ammo_changed)
 		_on_player_two_coins_changed(player.blackboard.inventory.gold)
 		_on_player_two_inventory_changed(null)
+
+func _on_player_one_hearts_changed(_hearts: int, _max_hearts: int):
+	_update_hearts_container(players[0], player_one_hearts)
+
+func _on_player_two_hearts_changed(_hearts: int, _max_hearts: int):
+	_update_hearts_container(players[1], player_two_hearts)
 
 func _on_player_one_left_hand_ammo_changed(ammo: int, _max_ammo: int):
 	if players[0].blackboard.equipment.left_hand and not players[0].blackboard.equipment.left_hand.unlimited_ammo:
@@ -277,9 +282,7 @@ func _update_hearts_container(player: CharacterController, container: GridContai
 	if not container or not _heart_full:
 		return
 	var health := player.blackboard.health
-	var max_health := player.blackboard.max_health
-	@warning_ignore("integer_division")
-	var heart_count := int(max_health / HEART_HP)
+	var heart_count := player.blackboard.hearts
 	var slot_count := container.get_child_count()
 	for i in slot_count:
 		var heart_rect: TextureRect = container.get_child(i) as TextureRect
@@ -289,9 +292,9 @@ func _update_hearts_container(player: CharacterController, container: GridContai
 			heart_rect.visible = false
 			continue
 		heart_rect.visible = true
-		var heart_hp_start := i * HEART_HP
-		var heart_hp_mid := heart_hp_start + HEART_HALF_HP
-		var heart_hp_full := heart_hp_start + HEART_HP
+		var heart_hp_start := i * CharacterBlackboard.HEART_HP
+		var heart_hp_mid := heart_hp_start + CharacterBlackboard.HEART_HALF_HP
+		var heart_hp_full := heart_hp_start + CharacterBlackboard.HEART_HP
 		if health >= heart_hp_full:
 			heart_rect.texture = _heart_full
 		elif health >= heart_hp_mid:

@@ -6,6 +6,7 @@ class_name EntitySpawner extends Node2D
 @export var spawn_interval: float = 3.0 ## Seconds between spawn attempts
 @export var spawn_limit: int = 0 ## Max spawns; 0 means unlimited.
 @export var navigation_region: NavigationRegion2D
+@export var group_name: String = "enemy"
 
 var _spawn_timer: Timer
 var finished = false
@@ -44,10 +45,10 @@ func _on_spawn_timer_timeout() -> void:
 	_spawn_once()
 
 func _spawn_once() -> void:
-	if finished:
+	if finished or not level.spawn_enemies:
 		return
 
-	if not navigation_region:
+	if not navigation_region or navigation_region.process_mode == PROCESS_MODE_DISABLED:
 		return
 
 	if spawn_limit > 0 and spawned_count >= spawn_limit:
@@ -79,8 +80,9 @@ func _spawn_once() -> void:
 	if entity_blue_name != "" and randf() < entity_blue_chance:
 		name_to_spawn = entity_blue_name
 
-	SpawnManager.spawn(name_to_spawn, snapped_pos, level)
-	spawned_count += 1
+	var entity = SpawnManager.spawn(name_to_spawn, snapped_pos, level, group_name)
+	if entity:
+		spawned_count += 1
 
 func _pick_point_on_camera_edge() -> Vector2:
 	var rect := _get_camera_world_rect()

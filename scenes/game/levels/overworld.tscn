@@ -53,39 +53,39 @@ position = Vector2(3056, 496)
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer2" parent_id_path=PackedInt32Array(290448617, 359096247) index="0" unique_id=818640830]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D2/TileMapLayer2" parent_id_path=PackedInt32Array(290448617, 359096247) index="0" unique_id=818640830]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer3" parent_id_path=PackedInt32Array(290448617, 503331523) index="0" unique_id=937907100]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D3/TileMapLayer3" parent_id_path=PackedInt32Array(290448617, 503331523) index="0" unique_id=937907100]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer4" parent_id_path=PackedInt32Array(290448617, 2085410294) index="0" unique_id=1658544444]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D4/TileMapLayer4" parent_id_path=PackedInt32Array(290448617, 2085410294) index="0" unique_id=1658544444]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer5" parent_id_path=PackedInt32Array(290448617, 751222148) index="0" unique_id=1994702969]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D5/TileMapLayer5" parent_id_path=PackedInt32Array(290448617, 751222148) index="0" unique_id=1994702969]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer6" parent_id_path=PackedInt32Array(290448617, 1345622446) index="0" unique_id=1461201916]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D6/TileMapLayer6" parent_id_path=PackedInt32Array(290448617, 1345622446) index="0" unique_id=1461201916]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer7" parent_id_path=PackedInt32Array(290448617, 1671073041) index="0" unique_id=2070153256]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D7/TileMapLayer7" parent_id_path=PackedInt32Array(290448617, 1671073041) index="0" unique_id=2070153256]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer8" parent_id_path=PackedInt32Array(290448617, 1013859009) index="0" unique_id=456065862]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D8/TileMapLayer8" parent_id_path=PackedInt32Array(290448617, 1013859009) index="0" unique_id=456065862]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer9" parent_id_path=PackedInt32Array(290448617, 499910406) index="0" unique_id=1512192155]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D9/TileMapLayer9" parent_id_path=PackedInt32Array(290448617, 499910406) index="0" unique_id=1512192155]
 monitoring = true
 monitorable = true
 
-[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/TileMapLayer10" parent_id_path=PackedInt32Array(290448617, 109948264) index="0" unique_id=1913408054]
+[node name="CameraArea2D" parent="BuildLevel/MazeBuilder/NavigationRegion2D10/TileMapLayer10" parent_id_path=PackedInt32Array(290448617, 109948264) index="0" unique_id=1913408054]
 monitoring = true
 monitorable = true
 

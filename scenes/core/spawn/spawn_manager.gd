@@ -1,10 +1,24 @@
 extends Node2D
 
 @export var entities: Dictionary[String, PackedScene]
+@export var entity_group_limits: Dictionary[String, int] = {"enemy": 10}
 
 var ui_label: Label = Label.new()
 
-func spawn(entity_name: String, spawn_position: Vector2, parent = null):
+func has_group_limit(group: String) -> bool:
+	if not entity_group_limits.has(group):
+		return false
+	var group_entities = get_group(group)
+	if not group_entities:
+		return false
+	if group_entities.size() >= entity_group_limits[group]:
+		return true
+	return false
+
+func spawn(entity_name: String, spawn_position: Vector2, parent = null, group = ""):
+	if group != "" and has_group_limit(group):
+		return null
+
 	if not entities.has(entity_name):
 		return null
 	
@@ -13,6 +27,9 @@ func spawn(entity_name: String, spawn_position: Vector2, parent = null):
 	var entity = spawn_scene.instantiate()
 	entity.position = spawn_position
 	
+	if group != "":
+		entity.add_to_group(group)
+
 	if parent:
 		parent.add_child(entity)
 	else:
@@ -20,6 +37,8 @@ func spawn(entity_name: String, spawn_position: Vector2, parent = null):
 
 	if entity.has_method("spawn"):
 		entity.spawn(spawn_position)
+
+
 
 	return entity
 
@@ -73,3 +92,10 @@ func fade_out_text(duration: float = 1.0):
 	var tween = create_tween()
 	tween.parallel().tween_property(ui_label, "position", ui_label.position + Vector2(0, 16), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.parallel().tween_property(ui_label, "modulate:a", 0.0, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func get_group(group: String):
+	return get_tree().get_nodes_in_group(group)
+	
+func free_group(group: String):
+	for node in get_group(group):
+		node.queue_free()

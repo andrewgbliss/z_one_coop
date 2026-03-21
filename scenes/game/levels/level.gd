@@ -16,6 +16,7 @@ var player_one: CharacterController
 var player_two: CharacterController
 
 var players: Array[CharacterController] = []
+var spawn_enemies: bool = false
 
 signal loaded
 
@@ -29,15 +30,15 @@ func _after_ready():
 		_spawn_players(true)
 	elif GameManager.game_state == GameManager.GAME_STATE.GAME_PLAY:
 		_spawn_players(false)
+	spawn_enemies = true
 
 func _on_player_level_changed(new_level: int) -> void:
 	if not build_level:
 		return
 	print("Level._on_player_level_changed: new_level=", new_level)
-	# `new_level` is already a 0-based index into MazeBuilder.tile_map_layers.
+	SpawnManager.free_group("enemy")
 	build_level.level = new_level
 	build_level.enable_area(new_level, true)
-	# build_level.set_navigation_active_layer(new_level)
 
 func _pick_random_spawn_point_in_first_layer(rng: RandomNumberGenerator, first_start_tile: Vector2i) -> Vector2:
 	# Spawn relative to the shop template placed on the entry layer (layer index `1`).
@@ -247,6 +248,7 @@ func _set_cave_shop_camera():
 	phantom_camera.limit_target = cave_shop.camera_area.get_node("CollisionShape2D").get_path()
 
 func teleport_to_cave(pos: Vector2):
+	spawn_enemies = false
 	player_one.blackboard.last_spawn_point = pos
 	player_one.global_position = cave_shop.door_one.global_position + Vector2(0, -32)
 	if player_two:
@@ -256,6 +258,7 @@ func teleport_to_cave(pos: Vector2):
 	_set_cave_shop_camera()
 
 func teleport_back_to_pos():
+	spawn_enemies = true
 	player_one.global_position = player_one.blackboard.last_spawn_point + Vector2(0, 16)
 	if player_two:
 		player_two.global_position = player_two.blackboard.last_spawn_point + Vector2(0, 16)

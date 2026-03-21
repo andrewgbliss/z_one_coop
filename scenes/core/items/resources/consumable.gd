@@ -6,7 +6,7 @@ class_name Consumable extends Item
 @export var sp: int = 0
 @export var armor: int = 0
 @export var ammo: int = 0
-@export var level: int = 0
+@export var hearts: int = 0
 @export var consume_on_pickup: bool = false
 
 func save():
@@ -16,7 +16,7 @@ func save():
 	data["sp"] = sp
 	data["armor"] = armor
 	data["ammo"] = ammo
-	data["level"] = level
+	data["hearts"] = hearts
 	data["consume_on_pickup"] = consume_on_pickup
 	return data
 
@@ -32,7 +32,7 @@ func restore(data):
 		armor = data["armor"]
 	if data.has("ammo"):
 		ammo = data["ammo"]
-	if data.has("level"):
-		level = data["level"]
+	if data.has("hearts"):
+		hearts = data["hearts"]
 	if data.has("consume_on_pickup"):
 		consume_on_pickup = data["consume_on_pickup"]

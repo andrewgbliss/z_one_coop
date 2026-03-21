@@ -208,11 +208,12 @@ func die():
 				item = drop_items[i]
 				break
 		var new_item = SpawnManager.spawn(item, global_position, get_parent())
-		if new_item.item:
-			new_item.respawn_time = 0.0
-			new_item.item.sell_price = 0
-			if new_item.label:
-				new_item.label.hide()
+		if new_item:
+			if new_item.item:
+				new_item.respawn_time = 0.0
+				new_item.item.sell_price = 0
+				if new_item.label:
+					new_item.label.hide()
 	if garbage:
 		await get_tree().create_timer(garbage_time).timeout
 		call_deferred("queue_free")
@@ -293,6 +294,8 @@ func item_pickup(item: Item) -> bool:
 				blackboard.add_mana(item.mp)
 			if item.sp > 0:
 				blackboard.add_stamina(item.sp)
+			if item.hearts > 0:
+				blackboard.add_hearts(item.hearts)
 	return true
 		
 func focus():
