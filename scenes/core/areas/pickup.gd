@@ -22,6 +22,7 @@ var _orbit_center: Vector2
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
 	_setup_sprite()
 	set_cost_label()
 	if radius > 0:
@@ -51,6 +52,13 @@ func _setup_sprite() -> void:
 		sprite.hframes = item.hframes
 		sprite.vframes = item.vframes
 		sprite.frame = item.frame
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is CoinPickupBox:
+		if not enabled:
+			return
+		if item and area and area.has_method("item_pickup"):
+			_handle_pickup(area)
 
 func _on_body_entered(body):
 	if not enabled:

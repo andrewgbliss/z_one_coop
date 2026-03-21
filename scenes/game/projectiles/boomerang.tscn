@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dehl6u5trkeod" path="res://scenes/game/effects/bullet_damage.tscn" id="4_prk1u"]
 [ext_resource type="Script" uid="uid://chj8v1sp4qgus" path="res://scenes/core/hitbox/collisions/hitbox.gd" id="4_qeny8"]
 [ext_resource type="Texture2D" uid="uid://dhhiiah41p8ac" path="res://assets/packs/games/zelda/boomerang-Sheet.png" id="5_vg41c"]
+[ext_resource type="Script" uid="uid://3ltf68emmoaq" path="res://scenes/core/areas/coin_pickup_box.gd" id="6_vg41c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_prk1u"]
 radius = 5.0
@@ -47,6 +48,9 @@ _data = {
 &"RESET": SubResource("Animation_prk1u")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er8yh"]
+size = Vector2(10, 10)
+
 [node name="Boomerang" type="Node2D" unique_id=6012962 node_paths=PackedStringArray("audio")]
 script = ExtResource("1_prk1u")
 speed = 200
@@ -76,3 +80,11 @@ libraries/ = SubResource("AnimationLibrary_7gs1r")
 [node name="BoomerangSheet" type="Sprite2D" parent="." unique_id=204605755]
 texture = ExtResource("5_vg41c")
 hframes = 10
+
+[node name="CoinPickupBox" type="Area2D" parent="." unique_id=1365384903]
+collision_mask = 4
+script = ExtResource("6_vg41c")
+metadata/_custom_type_script = "uid://3ltf68emmoaq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinPickupBox" unique_id=1173912286]
+shape = SubResource("RectangleShape2D_er8yh")
