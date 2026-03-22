@@ -6,18 +6,21 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_7tlh7"]
 [ext_resource type="PackedScene" uid="uid://c5crrb1erwhvc" path="res://scenes/game/ui/hud/hud.tscn" id="7_7tlh7"]
 [ext_resource type="PackedScene" uid="uid://cfmbmc7gy3bhl" path="res://scenes/game/doors/cave_shop.tscn" id="7_8l6u3"]
+[ext_resource type="PackedScene" uid="uid://b3cb4ne5psh50" path="res://scenes/game/levels/build_dungeon.tscn" id="8_8l6u3"]
+[ext_resource type="Script" uid="uid://d1fd54ch3frow" path="res://scenes/game/levels/entity_spawner.gd" id="9_80em8"]
 [ext_resource type="PackedScene" uid="uid://bvuss4ojj158t" path="res://scenes/game/levels/build_level.tscn" id="15_p5ctg"]
 
 [sub_resource type="Resource" id="Resource_80em8"]
 script = ExtResource("5_7tlh7")
 
-[node name="Overworld" type="Node2D" unique_id=795329044 node_paths=PackedStringArray("camera", "phantom_camera", "hud", "build_level", "cave_shop")]
+[node name="Overworld" type="Node2D" unique_id=795329044 node_paths=PackedStringArray("camera", "phantom_camera", "hud", "build_level", "cave_shop", "build_dungeon")]
 script = ExtResource("1_srsdh")
 camera = NodePath("Camera2D")
 phantom_camera = NodePath("PhantomCamera2D")
 hud = NodePath("Hud")
 build_level = NodePath("BuildLevel/MazeBuilder")
 cave_shop = NodePath("CaveShop")
+build_dungeon = NodePath("BuildDungeon/MazeDungeonBuilder")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=397562598]
 top_level = true
@@ -92,4 +95,14 @@ monitorable = true
 [node name="CaveShop" parent="." unique_id=279969993 instance=ExtResource("7_8l6u3")]
 position = Vector2(96, -7160)
 
+[node name="BuildDungeon" parent="." unique_id=1604176434 instance=ExtResource("8_8l6u3")]
+position = Vector2(8272, -6912)
+
+[node name="DungeonEntitySpawner" parent="BuildDungeon/MazeDungeonBuilder/NavigationRegion2D/TileMapLayer1" parent_id_path=PackedInt32Array(1604176434, 960021768) index="1" unique_id=1358316666]
+script = ExtResource("9_80em8")
+spawn_interval = 3.0
+spawn_limit = 0
+metadata/_custom_type_script = "uid://d1fd54ch3frow"
+
 [editable path="BuildLevel"]
+[editable path="BuildDungeon"]

@@ -20,6 +20,8 @@ var clear_terrain_action = clear_terrain
 signal maze_generated(start_tile: Vector2i)
 
 @export var tile_map_layers: Array[TileMapLayerAdvanced] = []
+## When false (default), no dungeon entrance tile is stamped on the surface layer (layer 0); deeper layers still get optional dungeon cells from maze carve.
+@export var place_dungeon_entrance_on_first_layer: bool = false
 ## Used during generation; first layer is used for get_tile_by_pos / get_tiles_by_type when array is non-empty.
 var _current_tile_map_layer: TileMapLayerAdvanced
 ## The TileMapLayer currently parented under `navigation_region` for navigation baking/queries.
@@ -247,6 +249,71 @@ func _copy_cell_block(
 					continue
 			if not tile_fallback.is_empty():
 				_current_tile_map_layer.set_cell(tile_pos, tile_fallback.source_id, tile_fallback.atlas_coords, tile_fallback.alternative_tile)
+
+## Picks a dungeon template layer and a fallback single-tile dict for stamping dungeon entrances.
+func _resolve_dungeon_layer_and_fallback_tile(rng: RandomNumberGenerator, ref_cell_for_fallback: Vector2i) -> Array:
+	var dtile: Dictionary = {}
+	var dungeon_layer: TileMapLayerAdvanced = null
+	var group: MazeLayerGroup = _current_tile_map_layer.maze_layer_group if _current_tile_map_layer else null
+	if group and group.tile_map_dungeons.size() > 0:
+		dungeon_layer = group.tile_map_dungeons[rng.randi_range(0, group.tile_map_dungeons.size() - 1)]
+		dtile = _get_any_tile_from_layer_used_cells(dungeon_layer)
+		if dtile.is_empty():
+			dtile = _get_any_tile_from_layer(dungeon_layer)
+	if dtile.is_empty():
+		dtile = _get_tile_from_main_layer_at_cell(ref_cell_for_fallback)
+	if dtile.is_empty() and group and group.tile_map_walls.size() > 0:
+		var _wall_layer: TileMapLayerAdvanced = _get_wall_layer_for_row(int(grid_size.y / 2.0))
+		dtile = _get_any_tile_from_layer(_wall_layer) if _wall_layer else {}
+	if dtile.is_empty() and group and group.tile_map_walls.size() > 0:
+		dtile = _get_tile_from_layer(group.tile_map_walls[0], Vector2i(0, 0))
+	return [dungeon_layer, dtile]
+
+## Stamps the 8x8 dungeon template near the recorded shop so layer 0 has a visible entrance (same tiles as procedural dungeons).
+func _stamp_dungeon_entrance_adjacent_to_shop(dungeon_layer: TileMapLayerAdvanced, dtile: Dictionary) -> void:
+	if not _current_tile_map_layer or dtile.is_empty():
+		return
+	if last_shop_top_left_tile_in_layer.x < 0:
+		return
+	var max_tx := grid_size.x * cell_size - 1
+	var max_ty := grid_size.y * cell_size - 1
+	var col_tx: int
+	if last_shop_bottom_mid_tile_in_layer.x >= 0:
+		col_tx = last_shop_bottom_mid_tile_in_layer.x
+	else:
+		col_tx = last_shop_top_left_tile_in_layer.x + int(floor(last_shop_size_in_tiles.x / 2.0))
+	col_tx = clampi(col_tx, 0, max_tx)
+	var row_below_ty: int = last_shop_top_left_tile_in_layer.y + last_shop_size_in_tiles.y
+	var door_top_ty: int = clampi(row_below_ty, 0, max_ty - cell_size + 1)
+	var door_cell_x: int = col_tx / cell_size
+	var door_cell_y: int = door_top_ty / cell_size
+	# Bottom maze row is border wall on the surface layer — prefer one row above the shop.
+	if door_cell_y >= grid_size.y - 1:
+		var row_above_ty: int = last_shop_top_left_tile_in_layer.y - cell_size
+		if row_above_ty >= 0:
+			door_cell_y = row_above_ty / cell_size
+	# Top/bottom maze rows and columns are border walls; keep stamp in the walkable interior.
+	door_cell_x = clampi(door_cell_x, 1, maxi(1, grid_size.x - 2))
+	door_cell_y = clampi(door_cell_y, 1, maxi(1, grid_size.y - 2))
+
+	if last_wall_source_id >= 0:
+		var candidates: Array[Vector2i] = [
+			Vector2i(door_cell_x, door_cell_y),
+			Vector2i(door_cell_x, door_cell_y + 1),
+			Vector2i(door_cell_x, door_cell_y - 1),
+			Vector2i(door_cell_x + 1, door_cell_y),
+			Vector2i(door_cell_x - 1, door_cell_y),
+		]
+		for cand in candidates:
+			if cand.x < 1 or cand.y < 1 or cand.x > grid_size.x - 2 or cand.y > grid_size.y - 2:
+				continue
+			var tl := Vector2i(cand.x * cell_size, cand.y * cell_size) + _current_layer_map_offset
+			var sid: int = _current_tile_map_layer.get_cell_source_id(tl)
+			if sid >= 0 and sid != last_wall_source_id:
+				_copy_cell_block(cand, dungeon_layer, dtile)
+				return
+
+	_copy_cell_block(Vector2i(door_cell_x, door_cell_y), dungeon_layer, dtile)
 
 func _template_block_has_any_tile(layer: TileMapLayerAdvanced, origin: Vector2i) -> bool:
 	if not layer:
@@ -491,6 +558,10 @@ func generate_maze() -> Vector2i:
 
 			# Place at least one shop template inside this layer.
 			_place_shop_templates_in_current_layer(rng)
+			# Surface layer never runs the maze DFS that stamps dungeons on deeper layers — optionally place entrance by the shop.
+			if place_dungeon_entrance_on_first_layer:
+				var dungeon_pair_surface: Array = _resolve_dungeon_layer_and_fallback_tile(rng, Vector2i(1, 1))
+				_stamp_dungeon_entrance_adjacent_to_shop(dungeon_pair_surface[0], dungeon_pair_surface[1])
 
 			# Layer 1 position: in the direction the exit faces (exit on top -> layer 1 above).
 			if tile_map_layers.size() > 1:
@@ -563,20 +634,9 @@ func generate_maze() -> Vector2i:
 		var visited := {}
 		visited[start_inner] = true
 
-		var dtile: Dictionary = {}
-		var dungeon_layer: TileMapLayerAdvanced = null
-		if _current_tile_map_layer.maze_layer_group.tile_map_dungeons.size() > 0:
-			dungeon_layer = _current_tile_map_layer.maze_layer_group.tile_map_dungeons[rng.randi_range(0, _current_tile_map_layer.maze_layer_group.tile_map_dungeons.size() - 1)]
-			dtile = _get_any_tile_from_layer_used_cells(dungeon_layer)
-			if dtile.is_empty():
-				dtile = _get_any_tile_from_layer(dungeon_layer)
-		if dtile.is_empty():
-			dtile = _get_tile_from_main_layer_at_cell(start_inner)
-		if dtile.is_empty() and _current_tile_map_layer.maze_layer_group.tile_map_walls.size() > 0:
-			var _wall_layer: TileMapLayerAdvanced = _get_wall_layer_for_row(int(grid_size.y / 2.0))
-			dtile = _get_any_tile_from_layer(_wall_layer)
-		if dtile.is_empty() and _current_tile_map_layer.maze_layer_group.tile_map_walls.size() > 0:
-			dtile = _get_tile_from_layer(_current_tile_map_layer.maze_layer_group.tile_map_walls[0], Vector2i(0, 0))
+		var dungeon_pair: Array = _resolve_dungeon_layer_and_fallback_tile(rng, start_inner)
+		var dungeon_layer: TileMapLayerAdvanced = dungeon_pair[0]
+		var dtile: Dictionary = dungeon_pair[1]
 		var carved_count: int = 0
 		var dungeon_target: int = 1
 		var dungeon_cell_choice: Vector2i = Vector2i(-1, -1)

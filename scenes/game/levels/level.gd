@@ -9,8 +9,14 @@ class_name Level extends Node2D
 @export var follow: bool = true
 @export var build_level: MazeBuilder
 @export var cave_shop: CaveShop
+@export var build_dungeon: MazeDungeonBuilder
 
 var last_camera_area: NodePath
+var active_dungeon_index: int = 0
+## PhantomCamera is not updating correctly after dungeon warp; drive Camera2D here until we leave (must run after PhantomCameraHost priority 300).
+var _dungeon_direct_camera_follow: bool = false
+## Blocks re-teleport spam (e.g. door Area2D) which was firing [signal dungeon_entered] repeatedly and baking nav every time.
+var _dungeon_teleport_lock_until_msec: int = 0
 
 var player_one: CharacterController
 var player_two: CharacterController
@@ -19,6 +25,8 @@ var players: Array[CharacterController] = []
 var spawn_enemies: bool = false
 
 signal loaded
+## Fired after the player warps into a dungeon and dungeon camera limits are applied (good for spawning).
+signal dungeon_entered(dungeon_index: int)
 
 func _ready() -> void:
 	call_deferred("_after_ready")
@@ -231,7 +239,9 @@ func _set_camera():
 	camera.make_current()
 
 func change_camera_area(area: Area2D):
-	phantom_camera.limit_target = area.get_child(0).get_path()
+	var shape: Node = area.get_child(0)
+	if shape:
+		phantom_camera.limit_target = phantom_camera.get_path_to(shape)
 	_set_camera()
 
 func _on_player_died(pos: Vector2):
@@ -245,7 +255,8 @@ func _on_player_died(pos: Vector2):
 		hud.show_game_over(pos)
 
 func _set_cave_shop_camera():
-	phantom_camera.limit_target = cave_shop.camera_area.get_node("CollisionShape2D").get_path()
+	var col: Node = cave_shop.camera_area.get_node("CollisionShape2D")
+	phantom_camera.limit_target = phantom_camera.get_path_to(col)
 
 func teleport_to_cave(pos: Vector2):
 	spawn_enemies = false
@@ -258,6 +269,9 @@ func teleport_to_cave(pos: Vector2):
 	_set_cave_shop_camera()
 
 func teleport_back_to_pos():
+	_dungeon_teleport_lock_until_msec = 0
+	_dungeon_direct_camera_follow = false
+	process_physics_priority = 0
 	spawn_enemies = true
 	player_one.global_position = player_one.blackboard.last_spawn_point + Vector2(0, 16)
 	if player_two:
@@ -265,3 +279,77 @@ func teleport_back_to_pos():
 	if last_camera_area:
 		phantom_camera.limit_target = last_camera_area
 	_set_camera()
+
+func teleport_to_dungeon(pos: Vector2, dungeon_index: int = -1):
+	if not build_dungeon:
+		return
+	var now: int = Time.get_ticks_msec()
+	if now < _dungeon_teleport_lock_until_msec:
+		return
+	_dungeon_teleport_lock_until_msec = now + 500
+	spawn_enemies = false
+	var idx: int = dungeon_index
+	if idx < 0 and player_one and player_one.blackboard:
+		idx = player_one.blackboard.level
+	var max_i: int = maxi(0, build_dungeon.get_dungeon_layer_count() - 1)
+	active_dungeon_index = clampi(idx, 0, max_i)
+	player_one.blackboard.last_spawn_point = pos
+	var spawns: Array = build_dungeon.get_entrance_spawn_global_positions(active_dungeon_index)
+	if spawns.size() >= 1:
+		player_one.global_position = spawns[0]
+	if player_two:
+		player_two.blackboard.last_spawn_point = pos
+		if spawns.size() >= 2:
+			player_two.global_position = spawns[1]
+		elif spawns.size() >= 1:
+			player_two.global_position = spawns[0]
+	last_camera_area = phantom_camera.limit_target
+	# Must not add Area2D / change collision during body_entered (physics query flush).
+	call_deferred("_dungeon_teleport_finish_deferred")
+
+func _dungeon_teleport_finish_deferred() -> void:
+	if build_dungeon:
+		var limit_col: CollisionShape2D = build_dungeon.get_dungeon_camera_collision_shape(active_dungeon_index)
+		if limit_col:
+			phantom_camera.limit_target = phantom_camera.get_path_to(limit_col)
+	if follow and not players.is_empty() and is_instance_valid(camera):
+		if is_instance_valid(phantom_camera):
+			phantom_camera.update_limit_all_sides()
+		_dungeon_direct_camera_follow = true
+		process_physics_priority = 400
+		_apply_dungeon_camera_to_players()
+		if is_instance_valid(camera):
+			camera.make_current()
+	# One synchronous bake per warp (shared by all dungeon spawners). Avoids each listener rebaking + async pile-ups.
+	if build_dungeon and build_dungeon.navigation_region:
+		build_dungeon.navigation_region.bake_navigation_polygon()
+	dungeon_entered.emit(active_dungeon_index)
+
+func _apply_dungeon_camera_to_players() -> void:
+	if not is_instance_valid(camera) or players.is_empty():
+		return
+	var target: Vector2
+	if players.size() == 1:
+		target = players[0].global_position
+	else:
+		target = (players[0].global_position + players[1].global_position) * 0.5
+	camera.zoom = zoom
+	if camera.limit_enabled:
+		var half_ext: Vector2 = get_viewport().get_visible_rect().size / (zoom * 2.0)
+		var lx: float = camera.limit_left + half_ext.x
+		var rx: float = camera.limit_right - half_ext.x
+		var ty: float = camera.limit_top + half_ext.y
+		var by: float = camera.limit_bottom - half_ext.y
+		if lx <= rx and ty <= by:
+			target.x = clampf(target.x, lx, rx)
+			target.y = clampf(target.y, ty, by)
+	camera.global_position = target
+	if is_instance_valid(phantom_camera):
+		phantom_camera.global_position = target
+
+func _physics_process(_delta: float) -> void:
+	if not _dungeon_direct_camera_follow or not follow or players.is_empty():
+		return
+	if not is_instance_valid(camera):
+		return
+	_apply_dungeon_camera_to_players()

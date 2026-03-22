@@ -1154,6 +1154,9 @@ func teleport_position() -> void:
 	_follow_velocity_ref = Vector2.ZERO
 	_set_follow_position()
 	_transform_output.origin = _follow_target_position
+	# Keep the node transform in sync; FRAMED reads global_position when inside the dead zone, and
+	# process_logic overwrites _transform_output from global_transform when not following.
+	global_position = _follow_target_position
 	_phantom_camera_manager.pcam_teleport.emit(self)
 
 

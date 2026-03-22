@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cny715kho3cs3"]
+
+[ext_resource type="Script" uid="uid://oqdx44bi0pk" path="res://scenes/game/doors/overworld_dungeon_door.gd" id="1_0vkcd"]
+[ext_resource type="Texture2D" uid="uid://bapg8ei27urd4" path="res://assets/packs/games/zelda/dungeon_1.png" id="2_0vkcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2eoc"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be8w8"]
+atlas = ExtResource("2_0vkcd")
+region = Rect2(112, 160, 16, 16)
+
+[node name="DungeonOverworldDoor" type="Node2D" unique_id=1345818104]
+script = ExtResource("1_0vkcd")
+door_type = 0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1070016605]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1843910926]
+shape = SubResource("RectangleShape2D_f2eoc")
+
+[node name="Dungeon1" type="Sprite2D" parent="." unique_id=1721136101]
+texture = SubResource("AtlasTexture_be8w8")
